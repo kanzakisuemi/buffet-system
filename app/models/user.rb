@@ -1,10 +1,12 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   enum role: [:business_owner, :client]
+
+  def humanized_role
+    I18n.t("activerecord.attributes.user.roles.#{role}", user: self)
+  end
 
   private
 
@@ -13,4 +15,5 @@ class User < ApplicationRecord
       [I18n.t("activerecord.attributes.user.roles.#{role}"), role]
     end
   end
+
 end

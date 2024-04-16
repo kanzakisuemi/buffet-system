@@ -14,7 +14,7 @@
         <% if user_signed_in? %>
           <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
           <%= current_user.email %>
-          <%= t("activerecord.attributes.user.roles.#{current_user.role}", user: current_user) %>
+          <%= current_user.humanized_role %>
         <% else %>
           <%= link_to "Entrar", new_user_session_path, class: "btn btn-success" %>
         <% end %>
