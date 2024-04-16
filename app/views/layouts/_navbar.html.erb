@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= link_to "Cadê Buffet?", root_path, class: "navbar-brand" %>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <% if user_signed_in? %>
+          <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+          <%= current_user.email %>
+          <%= t("activerecord.attributes.user.roles.#{current_user.role}", user: current_user) %>
+        <% else %>
+          <%= link_to "Entrar", new_user_session_path, class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

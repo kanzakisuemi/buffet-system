@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    attributes:
+      user:
+        roles:
+          business_owner: Dono de Buffet
+          client: Cliente
