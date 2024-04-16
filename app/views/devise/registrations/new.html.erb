@@ -1,39 +1,47 @@
-<h2>Registrar</h2>
+<%= turbo_frame_tag "modal" do %>
+  <div class="dean-modal">
+    <div class="mb-3 ">
+      <%= link_to "", root_path, class: "btn btn-close btn-sm" %>
+    </div>
+    
+    <h2>Registrar</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="form-floating mb-2">
-    <%= f.email_field :name, autofocus: true, class: "form-control" %>
-    <%= f.label :name, class: "form-label" %>
-  </div>
+      <div class="form-floating mb-2">
+        <%= f.email_field :name, autofocus: true, class: "form-control" %>
+        <%= f.label :name, class: "form-label" %>
+      </div>
 
-  <div class="form-floating mb-2">
-    <%= f.select :role, options_for_select(User.role_options_for_select), { include_blank: true }, class: "form-select" %>
-    <%= f.label :role, class: "form-label" %>
-  </div>
+      <div class="form-floating mb-2">
+        <%= f.select :role, options_for_select(User.role_options_for_select), { include_blank: true }, class: "form-select" %>
+        <%= f.label :role, class: "form-label" %>
+      </div>
 
-  <div class="form-floating mb-2">
-    <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
-    <%= f.label :email, class: "form-label" %>
-  </div>
+      <div class="form-floating mb-2">
+        <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+        <%= f.label :email, class: "form-label" %>
+      </div>
 
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+      <div class="form-floating mb-2">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        <%= f.label :password, class: "form-label" %>
+      </div>
+
+      <div class="form-floating mb-2">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        <%= f.label :password_confirmation, class: "form-label" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Registrar", class: "btn btn-primary" %>
+      </div>
     <% end %>
-  <div class="form-floating mb-2">
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-    <%= f.label :password, class: "form-label" %>
-  </div>
 
-  <div class="form-floating mb-2">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-    <%= f.label :password_confirmation, class: "form-label" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Registrar", class: "btn btn-primary" %>
+    <%= render "devise/shared/links" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

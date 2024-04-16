@@ -16,7 +16,7 @@
           <%= current_user.email %>
           <%= current_user.humanized_role %>
         <% else %>
-          <%= link_to "Entrar", new_user_session_path, class: "btn btn-success" %>
+          <%= link_to "Entrar", new_user_session_path, class: "btn btn-success", data: { turbo_frame: "modal" } %>
         <% end %>
       </div>
     </div>
