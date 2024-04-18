@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   enum role: [:business_owner, :client]
 
+  has_one :buffet
+
   def humanized_role
     I18n.t("activerecord.attributes.user.roles.#{role}", user: self)
   end

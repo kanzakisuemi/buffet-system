@@ -99,6 +99,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
     erubi (1.12.0)
+    foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.4)
@@ -247,6 +248,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise
+  foreman
   jbuilder
   jsbundling-rails
   pry

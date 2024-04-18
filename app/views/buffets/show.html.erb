@@ -1,0 +1,57 @@
+<div>
+  <span>Nome do Buffet:</span>
+  <span><%= @buffet.social_name %></span>
+</div>
+<div>
+  <span>Razão Social:</span>
+  <span><%= @buffet.corporate_name %></span>
+</div>
+<div>
+  <span>CNPJ:</span>
+  <span><%= @buffet.company_registration_number %></span>
+</div>
+<div>
+  <span>Telefone:</span>
+  <span><%= @buffet.phone %></span>
+</div>
+<div>
+  <span>E-mail:</span>
+  <span><%= @buffet.email %></span>
+</div>
+<div>
+  <span>Endereço:</span>
+  <span><%= @buffet.address %></span>
+</div>
+<div>
+  <span>Bairro:</span>
+  <span><%= @buffet.neighborhood %></span>
+</div>
+<div>
+  <span>Cidade:</span>
+  <span><%= @buffet.city %></span>
+</div>
+<div>
+  <span>Estado:</span>
+  <span><%= @buffet.state %></span>
+</div>
+<div>
+  <span>CEP:</span>
+  <span><%= @buffet.zip_code %></span>
+</div>
+<div>
+  <span>Descrição:</span>
+  <span><%= @buffet.description %></span>
+</div>
+<div>
+  <span>Dono:</span>
+  <span><%= @buffet.user.name %></span>
+</div>
+<% if @buffet.payment_method_ids.any? %>
+  <div>
+    <span>Métodos de Pagamento:</span>
+    <% @buffet.payment_methods.each do |payment_method| %>
+      <%= payment_method.name %>
+      <% unless payment_method == @buffet.payment_methods.last %>, <% end %>
+    <% end %>
+  </div>
+<% end %>

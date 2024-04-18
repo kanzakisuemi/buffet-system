@@ -1,0 +1,73 @@
+<p>Registro de Buffet</p>
+<%= form_with(model: @buffet) do |f| %>
+  <div class="form-floating mb-2">
+    <%= f.text_field :social_name, class: "form-control" %>
+    <%= f.label :social_name %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_field :corporate_name, class: "form-control" %>
+    <%= f.label :corporate_name %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_field :company_registration_number, class: "form-control" %>
+    <%= f.label :company_registration_number %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_field :phone, class: "form-control" %>
+    <%= f.label :phone %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_field :email, class: "form-control" %>
+    <%= f.label :email %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_field :address, class: "form-control" %>
+    <%= f.label :address %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_field :neighborhood, class: "form-control" %>
+    <%= f.label :neighborhood %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_field :city, class: "form-control" %>
+    <%= f.label :city %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_field :state, class: "form-control" %>
+    <%= f.label :state %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_field :zip_code, class: "form-control" %>
+    <%= f.label :zip_code %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_area :description, class: "form-control" %>
+    <%= f.label :description %>
+  </div>
+  
+  <div class="accordion mb-2">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Métodos de Pagamento
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+          <%= f.collection_check_boxes :payment_method_ids, PaymentMethod.all, :id, :name, { multiple: true }, { class: "form-check-input" } do |b| %>
+            <div class="form-check ms-4">
+              <%= b.check_box %>
+              <%= b.label class: "form-check-label" do %>
+                <%= b.text %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <%= f.submit "Registrar", class: "btn btn-primary" %>
+  </div>
+<% end %>

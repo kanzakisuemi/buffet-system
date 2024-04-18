@@ -5,3 +5,24 @@ pt-BR:
         roles:
           business_owner: Dono de Buffet
           client: Cliente
+      buffet:
+        social_name: Nome Social
+        corporate_name: Razão Social
+        company_registration_number: CNPJ
+        phone: Telefone
+        email: E-mail
+        address: Endereço
+        neighborhood: Bairro
+        city: Cidade
+        state: Estado
+        zip_code: CEP
+        description: Descrição
+      payment_method:
+        payment_types:
+          credit_card: Cartão de Crédito
+          debit_card: Cartão de Débito
+          pix: Pix
+          bank_transfer: Transferência Bancária
+          bill: Boleto
+          cash: Dinheiro
+

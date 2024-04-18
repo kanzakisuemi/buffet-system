@@ -8,3 +8,7 @@ document.addEventListener("turbo:frame-missing", (event) => {
   event.preventDefault()
   visit(response)
 })
+
+// document.addEventListener("turbo:before-frame-render", (event) => {
+//   location.reload()
+// })

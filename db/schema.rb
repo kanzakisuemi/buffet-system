@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_15_231745) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_18_040908) do
+  create_table "buffets", force: :cascade do |t|
+    t.string "social_name"
+    t.string "corporate_name"
+    t.string "company_registration_number"
+    t.string "phone"
+    t.string "email"
+    t.string "address"
+    t.string "neighborhood"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.text "description"
+  end
+
+  create_table "payables", force: :cascade do |t|
+    t.integer "buffet_id"
+    t.integer "payment_method_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -25,4 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_15_231745) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "buffets", "users"
+  add_foreign_key "payables", "buffets"
+  add_foreign_key "payables", "payment_methods"
 end

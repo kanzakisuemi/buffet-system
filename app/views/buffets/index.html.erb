@@ -1,0 +1,15 @@
+<section>
+  <h3 class="text-center">Buffets</h3>
+
+  <% if @buffets.empty? %>
+    <p class="text-center">Não existem buffets cadastrados</p>
+  <% end %>
+
+  <% @buffets.each do |buffet| %>
+    <%= link_to buffet, class: "" do %>
+      <%= content_tag(:span, buffet.social_name) %>
+      <%= content_tag(:span, buffet.city) %>
+    <% end %>
+  <% end %>
+</section>
+
