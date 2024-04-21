@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe 'business owner edits a event type' do
-  it 'successfully' do
-    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+
+  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
+  let(:buffet) { 
     Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
@@ -16,7 +17,9 @@ describe 'business owner edits a event type' do
       zip_code: '123456',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
-    )
+    ) 
+  }
+  let(:event_type) { 
     EventType.create!(
       category: 3,
       name: 'Festa Infantil',
@@ -29,7 +32,11 @@ describe 'business owner edits a event type' do
       parking_service: true,
       buffet: kylie.buffet
     )
+  }
 
+  it 'successfully' do
+    buffet
+    event_type
     login_as(kylie)
     visit root_path
 

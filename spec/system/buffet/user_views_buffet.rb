@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 describe 'user sees buffet details' do
-  it 'as business owner successfully through navbar' do
-    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+
+  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
+  let(:kendall) { User.create!(name: 'Kendall Jenner', email: 'kendall@jenner.com', password: 'password123', role: 1) }
+  let(:buffet) {
     Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
@@ -17,7 +19,10 @@ describe 'user sees buffet details' do
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
+  }
 
+  it 'as business owner successfully through navbar' do
+    buffets
     login_as(kylie)
     visit root_path
 
@@ -41,8 +46,6 @@ describe 'user sees buffet details' do
     expect(page).to have_content('Kylie Kristen Jenner')
   end
   it 'as business owner through navbar and fails' do
-    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
-
     login_as(kylie)
     visit root_path
 
@@ -52,24 +55,8 @@ describe 'user sees buffet details' do
     end
   end
   it 'as client through navbar and fails' do
-    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
-    Buffet.create!(
-      social_name: 'Buffet da Maria',
-      corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
-      phone: '996348000',
-      email: 'maria@email.com',
-      address: 'Rua das Flores, 230',
-      neighborhood: 'Jardim das Flores',
-      city: 'São Paulo',
-      state: 'SP',
-      zip_code: '123456',
-      description: 'Buffet para festas infantis e de adultos',
-      user: kylie
-    )
-    kenny = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1)
-
-    login_as(kenny)
+    buffet
+    login_as(kendall)
     visit root_path
 
     within('nav') do
