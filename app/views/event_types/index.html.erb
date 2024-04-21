@@ -1,0 +1,47 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="dean-modal">
+    <div class="mb-3 ">
+      <%= link_to "", "#", class: "btn btn-close btn-sm" %>
+    </div>
+
+    <%= link_to "Adicionar Tipo de Evento", new_event_type_path, class: "" %>
+
+    <% if @event_types.empty? -%>
+      <p class="text-center">Não existem tipos de evento cadastrados para este buffet.</p>
+    <% end %>
+
+    <% @event_types.each do |event_type| %>
+      <div class="accordion mb-2 mt-3">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= event_type.id %>" aria-expanded="true" aria-controls="collapse<%= event_type.id %>">
+              <%= event_type.name %>
+            </button>
+          </h2>
+          <div id="collapse<%= event_type.id %>" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+              <div>
+                <div>
+                  <p><strong>Categoria:</strong> <%= event_type.humanized_category %></p>
+                  <p><strong>Descrição:</strong> <%= event_type.description %></p>
+                  <p><strong>Capacidade Mínima:</strong> <%= event_type.minimal_people_capacity %> pessoas</p>
+                  <p><strong>Capacidade Máxima:</strong> <%= event_type.maximal_people_capacity %> pessoas</p>
+                  <p><strong>Duração Padrão:</strong> <%= event_type.default_duration_minutes %> minutos</p>
+                  <p><strong>Cardápio:</strong> <%= event_type.food_menu %></p>
+                  <p><strong>Disponibilidade de Bebidas Alcoólicas:</strong> <%= event_type.alcoholic_drinks ? "Sim" : "Não" %></p>
+                  <p><strong>Decoração:</strong> <%= event_type.decoration ? "Sim" : "Não" %></p>
+                  <p><strong>Estacionamento/Valet:</strong> <%= event_type.parking_service ? "Sim" : "Não" %></p>
+                  <p><strong>Flexibilidade de Localização:</strong> <%= event_type.location_flexibility ? "Sim" : "Não" %></p>
+                </div>
+                <div>
+                  <%= link_to "Editar", edit_event_type_path(event_type), class: "btn btn-primary" %>
+                  <%= link_to "Remover", event_type, method: :delete, data: { confirm: "Tem certeza que deseja remover este tipo de evento?" }, class: "btn btn-danger" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+  </div>
+<% end %>

@@ -22,8 +22,8 @@ describe 'user sees buffet details' do
     visit root_path
 
     within('nav') do
-      click_on 'Buffet'
-      click_on 'Ver Buffet'
+      click_on 'Buffets'
+      click_on 'Ver meu Buffet'
     end
 
     expect(current_path).to eq(buffet_path(kylie.buffet))
@@ -74,7 +74,7 @@ describe 'user sees buffet details' do
 
     within('nav') do
       click_on 'Buffets'
-      expect(page).not_to have_link('Ver Buffet')
+      expect(page).not_to have_link('Ver meu Buffet')
     end
   end
 end

@@ -6,6 +6,9 @@ describe 'User accesses homepage' do
   end
   it 'and sees application name' do
     visit root_path
-    expect(page).to have_content("Cadê Buffet?")  
+    within('nav') do
+      expect(page).to have_content("Cadê Buffet?")
+    end
+    expect(page).to have_content("Você está na homepage da aplicação Cadê Buffet?")
   end
 end

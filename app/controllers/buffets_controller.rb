@@ -1,6 +1,4 @@
 class BuffetsController < ApplicationController
-  # before_action :buffet_yet_to_be_registered, if: :user_signed_in?
-  # skip_before_action :buffet_yet_to_be_registered, only: [:new, :create]
   before_action :set_buffet, only: %i[show edit update]
 
   def index

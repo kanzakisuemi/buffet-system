@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'business owner edits buffet' do
-  it 'adding payment methods successfully through navbar' do
+  it 'adding payment methods successfully' do
     kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
     Buffet.create!(
       social_name: 'Buffet da Maria',
@@ -22,9 +22,12 @@ describe 'business owner edits buffet' do
     visit root_path
 
     within('nav') do
-      click_on 'Buffet'
-      click_on 'Editar Buffet'
+      click_on 'Buffets'
+      click_on 'Ver meu Buffet'
     end
+
+    expect(current_path).to eq(buffet_path(kylie.buffet))
+    click_on 'Editar Buffet'
 
     expect(page).to have_field('Nome Social', with: 'Buffet da Maria')
     expect(page).to have_field('Razão Social', with: 'Buffet da Maria LTDA')

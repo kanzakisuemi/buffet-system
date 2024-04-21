@@ -25,4 +25,21 @@ pt-BR:
           bank_transfer: Transferência Bancária
           bill: Boleto
           cash: Dinheiro
-
+      event_type:
+        category: Categoria
+        name: Nome
+        description: Descrição
+        minimal_people_capacity: Quantidade Mínima de Pessoas
+        maximal_people_capacity: Quantidade Máxima de Pessoas
+        default_duration_minutes: Duração Padrão
+        food_menu: Cardápio
+        alcoholic_drinks: Bebidas Alcoólicas
+        parking_service: Estacionamento/Valet
+        decoration: Decoração
+        location_flexibility: Flexibilidade de Localização
+        categories:
+          wedding: Casamento
+          birthday: Aniversário
+          graduation: Formatura
+          corporate: Corporativo
+          other: Outro

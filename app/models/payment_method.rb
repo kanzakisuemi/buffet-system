@@ -1,6 +1,6 @@
 class PaymentMethod < ApplicationRecord
-  has_many :payables
-  has_many :buffets, through: :payables
+  has_many :buffet_payments
+  has_many :buffets, through: :buffet_payments
 
   validates :name, presence: true, uniqueness: true
 end

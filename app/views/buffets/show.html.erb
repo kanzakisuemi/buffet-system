@@ -1,57 +1,83 @@
-<div>
-  <span>Nome do Buffet:</span>
-  <span><%= @buffet.social_name %></span>
-</div>
-<div>
-  <span>Razão Social:</span>
-  <span><%= @buffet.corporate_name %></span>
-</div>
-<div>
-  <span>CNPJ:</span>
-  <span><%= @buffet.company_registration_number %></span>
-</div>
-<div>
-  <span>Telefone:</span>
-  <span><%= @buffet.phone %></span>
-</div>
-<div>
-  <span>E-mail:</span>
-  <span><%= @buffet.email %></span>
-</div>
-<div>
-  <span>Endereço:</span>
-  <span><%= @buffet.address %></span>
-</div>
-<div>
-  <span>Bairro:</span>
-  <span><%= @buffet.neighborhood %></span>
-</div>
-<div>
-  <span>Cidade:</span>
-  <span><%= @buffet.city %></span>
-</div>
-<div>
-  <span>Estado:</span>
-  <span><%= @buffet.state %></span>
-</div>
-<div>
-  <span>CEP:</span>
-  <span><%= @buffet.zip_code %></span>
-</div>
-<div>
-  <span>Descrição:</span>
-  <span><%= @buffet.description %></span>
-</div>
-<div>
-  <span>Dono:</span>
-  <span><%= @buffet.user.name %></span>
-</div>
-<% if @buffet.payment_method_ids.any? %>
-  <div>
-    <span>Métodos de Pagamento:</span>
-    <% @buffet.payment_methods.each do |payment_method| %>
-      <%= payment_method.name %>
-      <% unless payment_method == @buffet.payment_methods.last %>, <% end %>
+<div class="card border-dark mx-auto mb-5" style="max-width: 30rem; background-color: white;">
+  <div class="card-body">  
+    
+    <div class="d-flex justify-content-between">
+      <span>Nome do Buffet:</span>
+      <span><%= @buffet.social_name %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>Razão Social:</span>
+      <span><%= @buffet.corporate_name %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>CNPJ:</span>
+      <span><%= @buffet.company_registration_number %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>Telefone:</span>
+      <span><%= @buffet.phone %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>E-mail:</span>
+      <span><%= @buffet.email %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>Endereço:</span>
+      <span><%= @buffet.address %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>Bairro:</span>
+      <span><%= @buffet.neighborhood %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>Cidade:</span>
+      <span><%= @buffet.city %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>Estado:</span>
+      <span><%= @buffet.state %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>CEP:</span>
+      <span><%= @buffet.zip_code %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>Descrição:</span>
+      <span class="mw-50 text-end"><%= @buffet.description %></span>
+    </div>
+    <hr class="divider"/>
+    <div class="d-flex justify-content-between">
+      <span>Dono:</span>
+      <span><%= @buffet.user.name %></span>
+    </div>
+    <hr class="divider"/>
+    <% if @buffet.payment_method_ids.any? %>
+      <div class="d-flex justify-content-between">
+        <span>Métodos de Pagamento:</span>
+        <% @buffet.payment_methods.each do |payment_method| %>
+          <%= payment_method.name %>
+          <% unless payment_method == @buffet.payment_methods.last %>, <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet %>
+      <hr class="divider" />
+      <div class="d-flex justify-content-center">
+        <%= link_to 'Editar Buffet', edit_buffet_path(@buffet), class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %>
+        <%= link_to 'Configurar Eventos', event_types_path, class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %>
+      </div>
     <% end %>
   </div>
-<% end %>
+</div>
+

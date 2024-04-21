@@ -62,7 +62,7 @@ describe 'user accesses buffets index' do
     visit root_path
 
     within('nav') do
-      click_on 'Buffet'
+      click_on 'Buffets'
       click_on 'Todos Buffets'
     end
 

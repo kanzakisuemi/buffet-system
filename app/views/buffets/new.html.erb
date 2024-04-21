@@ -1,12 +1,18 @@
-<div class="dean-modal">
-  <p class="notice"><%= notice %></p>
-  <% if @buffet.errors.any? %>
-    <div style="color: red;">
-      <h5><%= pluralize(@buffet.errors.count, "erro") %> impediram o cadastro do produto:</h5>
-      <% @buffet.errors.full_messages.each do |message| %>
-        <span><%= message %></span><br/>
-      <% end %>
-    </div>
-  <% end %>
-  <%= render "form" %>
-</div>
+<% content_for :head do %>
+  <meta name="turbo-visit-control" content="reload">
+<% end %>
+
+<%= turbo_frame_tag "modal" do %>
+  <div class="dean-modal">
+    <p class="notice"><%= notice %></p>
+    <% if @buffet.errors.any? %>
+      <div style="color: red;">
+        <h5><%= pluralize(@buffet.errors.count, "erro") %> impediram o cadastro do produto:</h5>
+        <% @buffet.errors.full_messages.each do |message| %>
+          <span><%= message %></span><br/>
+        <% end %>
+      </div>
+    <% end %>
+    <%= render "form" %>
+  </div>
+<% end %>

@@ -1,0 +1,49 @@
+<%= form_with(model: @event_type) do |f| %>
+  <div class="form-floating mb-2">
+    <%= f.select :category, options_for_select(EventType.category_options_for_select, @event_type.category), { include_blank: true }, class: "form-select" %>
+    <%= f.label :category, class: "form-label" %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :name %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_area :description, class: "form-control" %>
+    <%= f.label :description %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.number_field :minimal_people_capacity, class: "form-control" %>
+    <%= f.label :minimal_people_capacity %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.number_field :maximal_people_capacity, class: "form-control" %>
+    <%= f.label :maximal_people_capacity %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.number_field :default_duration_minutes, class: "form-control" %>
+    <%= f.label :default_duration_minutes %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_area :food_menu, class: "form-control" %>
+    <%= f.label :food_menu %>
+  </div>
+  <div class="form-check form-switch">
+    <%= f.check_box :alcoholic_drinks, role: "switch", class: "form-check-input" %>
+    <%= f.label :alcoholic_drinks, class: "form-check-label"%>
+  </div>
+  <div class="form-check form-switch">
+    <%= f.check_box :decoration, role: "switch", class: "form-check-input" %>
+    <%= f.label :decoration, class: "form-check-label"%>
+  </div>
+  <div class="form-check form-switch">
+    <%= f.check_box :parking_service, role: "switch", class: "form-check-input" %>
+    <%= f.label :parking_service, class: "form-check-label"%>
+  </div>
+  <div class="form-check form-switch">
+    <%= f.check_box :location_flexibility, role: "switch", class: "form-check-input" %>
+    <%= f.label :location_flexibility, class: "form-check-label"%>
+  </div>
+  <div>
+    <%= f.submit "Salvar", class: "btn btn-primary" %>
+  </div>
+<% end %>

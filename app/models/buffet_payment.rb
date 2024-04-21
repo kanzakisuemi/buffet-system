@@ -1,4 +1,4 @@
-class Payable < ApplicationRecord
+class BuffetPayment < ApplicationRecord
   belongs_to :payment_method
   belongs_to :buffet
 end
