@@ -24,8 +24,33 @@
     <%= f.label :default_duration_minutes %>
   </div>
   <div class="form-floating mb-2">
-    <%= f.text_area :food_menu, class: "form-control" %>
+    <%= f.text_area :food_menu, class: "form-control", rows: "5" %>
     <%= f.label :food_menu %>
+  </div>
+  <hr class="divider"/>
+  <div class="form-floating mb-2">
+    <%= f.number_field :base_price, class: "form-control" %>
+    <%= f.label :base_price %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.number_field :weekend_fee, class: "form-control" %>
+    <%= f.label :weekend_fee %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.number_field :per_person_fee, class: "form-control" %>
+    <%= f.label :per_person_fee %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.number_field :per_person_weekend_fee, class: "form-control" %>
+    <%= f.label :per_person_weekend_fee %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.number_field :per_hour_fee, class: "form-control" %>
+    <%= f.label :per_hour_fee %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.number_field :per_hour_weekend_fee, class: "form-control" %>
+    <%= f.label :per_hour_weekend_fee %>
   </div>
   <div class="form-check form-switch">
     <%= f.check_box :alcoholic_drinks, role: "switch", class: "form-check-input" %>

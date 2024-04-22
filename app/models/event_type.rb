@@ -5,6 +5,13 @@ class EventType < ApplicationRecord
 
   enum category: %i[corporate graduation wedding birthday other]
 
+  def apply_fee(value, fee_percentage)
+    fee_amount = value * (fee_percentage.to_f / 100)
+    value_with_fee = value + fee_amount
+    return value_with_fee
+  end
+
+
   def humanized_category
     I18n.t("activerecord.attributes.event_type.categories.#{category}", payment_type: self)
   end

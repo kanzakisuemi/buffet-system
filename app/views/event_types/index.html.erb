@@ -32,10 +32,31 @@
                   <p><strong>Decoração:</strong> <%= event_type.decoration ? "Sim" : "Não" %></p>
                   <p><strong>Estacionamento/Valet:</strong> <%= event_type.parking_service ? "Sim" : "Não" %></p>
                   <p><strong>Flexibilidade de Localização:</strong> <%= event_type.location_flexibility ? "Sim" : "Não" %></p>
+                  <hr class="divider" />
+                  <p>
+                    <strong>Preço Base:</strong> <%= event_type.base_price ? "R$#{event_type.base_price}" : "Não registrado" %>
+                    <strong>Taxa de Final de Semana:</strong> <%= event_type.weekend_fee ? "#{event_type.weekend_fee}%" : "Não registrado" %>
+                  </p>
+                  <% if event_type.base_price && event_type.weekend_fee %>
+                    <p><strong>Preço Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.base_price, event_type.weekend_fee)}" %></p>
+                  <% end %>
+                  <p>
+                    <strong>Preço por Pessoa Excedente:</strong> <%= event_type.per_person_fee ? "R$#{event_type.per_person_fee}" : "Não registrado" %>
+                    <strong>Taxa de Final de Semana:</strong> <%= event_type.per_person_weekend_fee ? "#{event_type.per_person_weekend_fee}%" : "Não registrado" %>
+                  </p>
+                  <% if event_type.per_person_fee && event_type.per_person_weekend_fee %>
+                    <p><strong>Preço por Pessoa Excedente no Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.per_person_fee, event_type.per_person_weekend_fee)}" %></p>
+                  <% end %>
+                  <p>
+                    <strong>Preço por Hora Excedente:</strong> <%= event_type.per_hour_fee ? "R$#{event_type.per_hour_fee}" : "Não registrado" %>
+                    <strong>Taxa de Final de Semana:</strong> <%= event_type.per_hour_weekend_fee ? "#{event_type.per_hour_weekend_fee}%" : "Não registrado" %>
+                  </p>
+                  <% if event_type.per_hour_fee && event_type.per_hour_weekend_fee %>
+                    <p><strong>Preço por Hora Excedente no Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.per_hour_fee, event_type.per_hour_weekend_fee)}" %></p>
+                  <% end %>
                 </div>
                 <div>
                   <%= link_to "Editar", edit_event_type_path(event_type), class: "btn btn-primary" %>
-                  <%= link_to "Remover", event_type, method: :delete, data: { confirm: "Tem certeza que deseja remover este tipo de evento?" }, class: "btn btn-danger" %>
                 </div>
               </div>
             </div>

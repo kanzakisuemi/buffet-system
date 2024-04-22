@@ -1,5 +1,5 @@
 class EventTypesController < ApplicationController
-  before_action :set_event_type, only: [:edit, :update, :destroy]
+  before_action :set_event_type, only: [:edit, :update]
   
   def index
     @event_types = EventType.all
@@ -30,11 +30,6 @@ class EventTypesController < ApplicationController
     end
   end
 
-  def destroy
-    @event_type.destroy
-    redirect_to event_types_path
-  end
-
   private
 
   def set_event_type
@@ -42,6 +37,24 @@ class EventTypesController < ApplicationController
   end
 
   def event_type_params
-    params.require(:event_type).permit(:category, :name, :description, :minimal_people_capacity, :maximal_people_capacity, :default_duration_minutes, :food_menu, :alcoholic_drinks, :decoration, :parking_service, :location_flexibility)
+    params.require(:event_type).permit(
+      :category, 
+      :name, 
+      :description, 
+      :minimal_people_capacity, 
+      :maximal_people_capacity, 
+      :default_duration_minutes, 
+      :food_menu, 
+      :alcoholic_drinks, 
+      :decoration, 
+      :parking_service, 
+      :location_flexibility, 
+      :base_price, 
+      :weekend_fee, 
+      :per_person_fee, 
+      :per_person_weekend_fee, 
+      :per_hour_fee, 
+      :per_hour_weekend_fee
+    )
   end
 end

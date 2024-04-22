@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_19_220430) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_21_202924) do
   create_table "buffet_payments", force: :cascade do |t|
     t.integer "buffet_id", null: false
     t.integer "payment_method_id", null: false
@@ -52,6 +52,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_19_220430) do
     t.integer "buffet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "base_price", precision: 8, scale: 2
+    t.integer "weekend_fee"
+    t.decimal "per_person_fee", precision: 8, scale: 2
+    t.integer "per_person_weekend_fee"
+    t.decimal "per_hour_fee", precision: 8, scale: 2
+    t.integer "per_hour_weekend_fee"
     t.index ["buffet_id"], name: "index_event_types_on_buffet_id"
   end
 
