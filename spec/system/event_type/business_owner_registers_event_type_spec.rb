@@ -105,11 +105,11 @@ describe 'business owner adds a event type' do
     expect(page).to have_content('Decoração: Não')
     expect(page).to have_content('Estacionamento/Valet: Sim')
     expect(page).to have_content('Flexibilidade de Localização: Não')
-    expect(page).to have_content('Preço Base: 4000')
-    expect(page).to have_content('Taxa de Final de Semana (%): 25')
-    expect(page).to have_content('Preço por Pessoa Excedente: 50')
-    expect(page).to have_content('Taxa de Final de Semana (%) por Pessoa Excedente: 10')
-    expect(page).to have_content('Preço por Pessoa Excedente: 300')
-    expect(page).to have_content('Taxa de Final de Semana (%) por Pessoa Excedente: 10')
+    expect(page).to have_content('Preço Base: R$4000.0 Taxa de Final de Semana: 25%')
+    expect(page).to have_content('Preço Final de Semana (taxa aplicada): R$5000.0')
+    expect(page).to have_content('Preço por Pessoa Excedente: R$50.0 Taxa de Final de Semana: 10%')
+    expect(page).to have_content('Preço por Pessoa Excedente no Final de Semana (taxa aplicada): R$55.0')
+    expect(page).to have_content('Preço por Hora Excedente: R$300.0 Taxa de Final de Semana: 10%')
+    expect(page).to have_content('Preço por Hora Excedente no Final de Semana (taxa aplicada): R$330.0')
   end
 end
