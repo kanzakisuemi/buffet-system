@@ -6,11 +6,13 @@
       <span><%= @buffet.social_name %></span>
     </div>
     <hr class="divider"/>
-    <div class="d-flex justify-content-between">
-      <span>Razão Social:</span>
-      <span><%= @buffet.corporate_name %></span>
-    </div>
-    <hr class="divider"/>
+    <% if user_signed_in? %>
+      <div class="d-flex justify-content-between">
+        <span>Razão Social:</span>
+        <span><%= @buffet.corporate_name %></span>
+      </div>
+      <hr class="divider"/>
+    <% end %>
     <div class="d-flex justify-content-between">
       <span>CNPJ:</span>
       <span><%= @buffet.company_registration_number %></span>
