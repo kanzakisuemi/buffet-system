@@ -74,7 +74,7 @@
     <div class="mb-3">
       <% @event_type.pictures.each do |picture| %>
         <%= f.hidden_field :pictures, multiple: true, value: picture.signed_id %>
-        <div>
+        <div id="<%= dom_id(picture) %>">
           <%= image_tag(@event_type.resize(picture), class: "d-block") %>
           <%= link_to "Remover", remove_picture_event_type_path(id: @event_type.id, picture_id: picture.id), data: { turbo_method: :delete }, class: "d-block" %>
         </div>

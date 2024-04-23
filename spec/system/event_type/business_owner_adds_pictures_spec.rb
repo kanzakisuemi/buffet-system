@@ -117,5 +117,5 @@ describe 'business owner attaches' do
     expect(page).to have_css('img[src*="kevin_malone.jpg"]')
     expect(page).to have_css('img[src*="michael_scott.jpg"]')
     
-  end
+  end  
 end
