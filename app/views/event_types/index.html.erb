@@ -55,7 +55,11 @@
                     <p><strong>Preço por Hora Excedente no Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.per_hour_fee, event_type.per_hour_weekend_fee)}" %></p>
                   <% end %>
                 </div>
-                <div>
+                <hr class="divider" />
+                <% event_type.pictures_as_thumbnails.each do |picture| %>
+                  <%= image_tag(picture) %>
+                <% end %>
+                <div class="mt-3">
                   <%= link_to "Editar", edit_event_type_path(event_type), class: "btn btn-primary" %>
                 </div>
               </div>

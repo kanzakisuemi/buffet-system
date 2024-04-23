@@ -24,7 +24,7 @@
     <%= f.label :default_duration_minutes %>
   </div>
   <div class="form-floating mb-2">
-    <%= f.text_area :food_menu, class: "form-control", rows: "5" %>
+    <%= f.text_area :food_menu, class: "form-control"  %>
     <%= f.label :food_menu %>
   </div>
   <hr class="divider"/>
@@ -68,6 +68,20 @@
     <%= f.check_box :location_flexibility, role: "switch", class: "form-check-input" %>
     <%= f.label :location_flexibility, class: "form-check-label"%>
   </div>
+  <hr class="divider">
+  <%= f.label :pictures, class: "form-label" %>
+  <% if @event_type.pictures.attached? %>
+    <div class="mb-3">
+      <% @event_type.pictures.each do |picture| %>
+        <%= f.hidden_field :pictures, multiple: true, value: picture.signed_id %>
+        <div>
+          <%= image_tag(@event_type.resize(picture), class: "d-block") %>
+          <%= link_to "Remover", remove_picture_event_type_path(id: @event_type.id, picture_id: picture.id), data: { turbo_method: :delete }, class: "d-block" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= f.file_field :pictures, multiple: true, class: "form-control mb-3" %>
   <div>
     <%= f.submit "Salvar", class: "btn btn-primary" %>
   </div>

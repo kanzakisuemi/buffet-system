@@ -30,6 +30,13 @@ class EventTypesController < ApplicationController
     end
   end
 
+  def remove_picture
+    @picture = ActiveStorage::Attachment.find(params[:picture_id])
+    @picture.purge
+    set_event_type
+    redirect_to edit_event_type_path(@event_type)
+  end
+
   private
 
   def set_event_type
@@ -54,7 +61,8 @@ class EventTypesController < ApplicationController
       :per_person_fee, 
       :per_person_weekend_fee, 
       :per_hour_fee, 
-      :per_hour_weekend_fee
+      :per_hour_weekend_fee, 
+      pictures: []
     )
   end
 end

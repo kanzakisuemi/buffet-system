@@ -2,21 +2,17 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.active_storage.variant_processor = :mini_magick
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-
   # Do not eager load code on boot.
   config.eager_load = false
-
   # Show full error reports.
   config.consider_all_requests_local = true
-
   # Enable server timing
   config.server_timing = true
-
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?
@@ -33,7 +29,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # config.active_storage.service = :local
+  config.active_storage.service = :local
   # config.action_mailer.raise_delivery_errors = false
   # config.action_mailer.perform_caching = false
 
