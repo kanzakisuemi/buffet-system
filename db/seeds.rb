@@ -10,9 +10,6 @@ PaymentMethod.create(name: 'Cheque')
 PaymentMethod.create(name: 'Vale-refeição')
 
 # User - Business Owner
-# kendall 0
-# kylie 0
-# kris 1
 tereza = User.create!(name: 'Tereza Kanzaki', email: 'tkanzaki@eemail.com', password: 'password123', role: 0)
 felipe = User.create!(name: 'Felipe Chineze', email: 'felipe@email.com', password: 'password123', role: 0)
 rafa = User.create!(name: 'Rafaela Bruschi', email: 'rafa@outlook.com', password: 'password123', role: 0)
@@ -89,4 +86,29 @@ Buffet.create!(
   zip_code: '86050600',
   description: 'Buffet focado em alimentos saudáveis e fitness, refeições e doces milimetricamente avaliados pela nutri Antonia Grassano.',
   user: antonia
+)
+# Event Type enum category: %i[corporate graduation wedding birthday other]
+EventType.create!(
+  category: 1,
+  name: 'Formatura de Cursos',
+  description: 'Festa de formatura para turmas de cursos pequenos.',
+  default_duration_minutes: 180,
+  minimal_people_capacity: 100,
+  maximal_people_capacity: 150,
+  food_menu: 'Entrada: Churros. Prato principal: Massas. Sobremesa: Bolo e sorvete.',
+  alcoholic_drinks: true,
+  decoration: true,
+  buffet: luis_f.buffet
+)
+EventType.create!(
+  category: 0,
+  name: 'Festa Corporativa',
+  description: 'Festa Corporativa para empresas de pequeno e médio porte.',
+  default_duration_minutes: 50,
+  minimal_people_capacity: 100,
+  maximal_people_capacity: 150,
+  food_menu: 'Entrada: Salada. Prato principal: Massas. Sobremesa: Bolo e sorvete.',
+  alcoholic_drinks: true,
+  decoration: true,
+  buffet: luis_f.buffet
 )
