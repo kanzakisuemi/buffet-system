@@ -4,9 +4,11 @@
       <%= link_to "", "#", class: "btn btn-close btn-sm" %>
     </div>
 
-    <%= link_to "Adicionar Tipo de Evento", new_event_type_path, class: "" %>
+    <% if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet %>
+      <%= link_to "Adicionar Tipo de Evento", new_event_type_path, class: "" %>
+    <% end %>
 
-    <% if @event_types.empty? -%>
+    <% if @event_types.empty? %>
       <p class="text-center">Não existem tipos de evento cadastrados para este buffet.</p>
     <% end %>
 
@@ -59,9 +61,11 @@
                 <% event_type.pictures_as_thumbnails.each do |picture| %>
                   <%= image_tag(picture) %>
                 <% end %>
-                <div class="mt-3">
-                  <%= link_to "Editar", edit_event_type_path(event_type), class: "btn btn-primary" %>
-                </div>
+                <% if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet %>
+                  <div class="mt-3">
+                    <%= link_to "Editar", edit_event_type_path(event_type), class: "btn btn-primary" %>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>

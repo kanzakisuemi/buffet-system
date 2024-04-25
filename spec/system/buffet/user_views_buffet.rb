@@ -22,7 +22,7 @@ describe 'user sees buffet details' do
   }
 
   it 'as business owner successfully through navbar' do
-    buffets
+    buffet
     login_as(kylie)
     visit root_path
 
@@ -45,15 +45,6 @@ describe 'user sees buffet details' do
     expect(page).to have_content('Buffet para festas infantis e de adultos')
     expect(page).to have_content('Kylie Kristen Jenner')
   end
-  it 'as business owner through navbar and fails' do
-    login_as(kylie)
-    visit root_path
-
-    within('nav') do
-      expect(page).not_to have_link('Buffets')
-      expect(page).to have_link('Registrar Buffet')
-    end
-  end
   it 'as client through navbar and fails' do
     buffet
     login_as(kendall)
@@ -63,5 +54,50 @@ describe 'user sees buffet details' do
       click_on 'Buffets'
       expect(page).not_to have_link('Ver meu Buffet')
     end
+  end
+  it 'as client successfully' do
+    buffet
+    login_as(kendall)
+    visit root_path
+
+    within('nav') do
+      click_on 'Buffets'
+    end
+
+    click_on 'Buffet da Maria | São Paulo | SP'
+    expect(page).to have_content('Buffet da Maria')
+    expect(page).to have_content('Buffet da Maria LTDA')
+    expect(page).to have_content('12345678910111')
+    expect(page).to have_content('996348000')
+    expect(page).to have_content('maria@email.com')
+    expect(page).to have_content('Rua das Flores, 230')
+    expect(page).to have_content('Jardim das Flores')
+    expect(page).to have_content('São Paulo')
+    expect(page).to have_content('SP')
+    expect(page).to have_content('123456')
+    expect(page).to have_content('Buffet para festas infantis e de adultos')
+    expect(page).to have_content('Kylie Kristen Jenner')
+  end
+  it 'as visitor successfully and does not see corporate name' do
+    buffet
+    visit root_path
+
+    within('nav') do
+      click_on 'Buffets'
+    end
+
+    click_on 'Buffet da Maria | São Paulo | SP'
+    expect(page).to have_content('Buffet da Maria')
+    expect(page).not_to have_content('Buffet da Maria LTDA')
+    expect(page).to have_content('12345678910111')
+    expect(page).to have_content('996348000')
+    expect(page).to have_content('maria@email.com')
+    expect(page).to have_content('Rua das Flores, 230')
+    expect(page).to have_content('Jardim das Flores')
+    expect(page).to have_content('São Paulo')
+    expect(page).to have_content('SP')
+    expect(page).to have_content('123456')
+    expect(page).to have_content('Buffet para festas infantis e de adultos')
+    expect(page).to have_content('Kylie Kristen Jenner')
   end
 end

@@ -2,6 +2,7 @@ class EventTypesController < ApplicationController
   before_action :set_event_type, only: [:edit, :update]
   
   def index
+    @buffet = current_user.buffet if user_signed_in?
     @event_types = EventType.all
   end
 

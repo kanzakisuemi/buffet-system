@@ -32,6 +32,11 @@
 
       </ul>
 
+      <%= form_tag "/buffets", method: "GET", class: "d-flex mx-auto" do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Pesquisar Buffet", class: "form-control mx-2" %>
+        <%= submit_tag "Pesquisar", class: "btn btn-secondary" %>
+      <% end %>
+
       <div class="d-flex">
         <% if user_signed_in? %>
           <div class="me-4 mt-1">

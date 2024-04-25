@@ -3,6 +3,29 @@ class BuffetsController < ApplicationController
 
   def index
     @buffets = Buffet.all
+    @results = []
+
+    if params[:search].present?
+      query = params[:search].downcase
+
+      found_buffets = @buffets.where("LOWER(social_name) LIKE :query OR LOWER(city) LIKE :query", query: "%#{query}%")
+
+      if found_buffets.exists?
+        @results = found_buffets.order(social_name: :asc)
+      else
+        query_as_sym = query.to_sym
+
+        if EventType.categories.key?(query_as_sym)
+          buffet_ids = EventType.where(category: query_as_sym).pluck(:buffet_id)
+          @results = @buffets.where(id: buffet_ids)
+        else
+          buffet_ids = EventType.where("LOWER(name) LIKE ?", "%#{query}%").pluck(:buffet_id)
+          @results = @buffets.where(id: buffet_ids)
+        end
+      end
+
+      @buffets = @buffets.where.not(id: @results.pluck(:id))
+    end
   end
 
   def show

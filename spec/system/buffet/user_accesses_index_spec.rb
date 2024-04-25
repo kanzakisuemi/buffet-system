@@ -20,7 +20,26 @@ describe 'user accesses buffets index' do
       user: kylie
     ) 
   }
+  it 'successfully as visitor and sees all buffets' do
+    buffet
 
+    visit root_path
+
+    within('nav') do
+      click_on 'Buffets'
+    end
+
+    expect(page).to have_content('Buffet da Maria | São Paulo | SP')
+  end
+  it 'successfully as visitor and theres no buffet' do
+    visit root_path
+
+    within('nav') do
+      click_on 'Buffets'
+    end
+
+    expect(page).to have_content('Não existem buffets cadastrados')
+  end
   it 'successfully as client and sees all buffets' do
     buffet
     login_as(kendall)
@@ -31,8 +50,7 @@ describe 'user accesses buffets index' do
       click_on 'Buffets'
     end
 
-    expect(page).to have_content('Buffet da Maria')
-    expect(page).to have_content('São Paulo')
+    expect(page).to have_content('Buffet da Maria | São Paulo | SP')
   end
   it 'successfully as client and theres no buffet' do
     login_as(kendall)
@@ -54,7 +72,6 @@ describe 'user accesses buffets index' do
       click_on 'Todos Buffets'
     end
 
-    expect(page).to have_content('Buffet da Maria')
-    expect(page).to have_content('São Paulo')
+    expect(page).to have_content('Buffet da Maria | São Paulo | SP')
   end
 end
