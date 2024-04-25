@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 describe 'User logs in' do
+
+  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
+
   it 'as business owner and does not have a buffet' do
-    User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    kylie
 
     visit root_path
     click_on 'Entrar'
-    within('form') do
+    within('form#new_user') do
       fill_in 'E-mail', with: 'khy@jenner.com'
       fill_in 'Senha', with: 'password123'
       click_on 'Entrar'
@@ -16,7 +19,7 @@ describe 'User logs in' do
     expect(page).to have_content('Registro de Buffet')
   end
   it 'as business owner and having a buffet' do
-    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    kylie
 
     Buffet.create!(
       social_name: 'Buffet da Maria',
@@ -35,7 +38,7 @@ describe 'User logs in' do
 
     visit root_path
     click_on 'Entrar'
-    within('form') do
+    within('form#new_user') do
       fill_in 'E-mail', with: 'khy@jenner.com'
       fill_in 'Senha', with: 'password123'
       click_on 'Entrar'
@@ -47,11 +50,11 @@ describe 'User logs in' do
     end
   end
   it 'as business owner and logs out' do
-    User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    kylie
 
     visit root_path
     click_on 'Entrar'
-    within('form') do
+    within('form#new_user') do
       fill_in 'E-mail', with: 'khy@jenner.com'
       fill_in 'Senha', with: 'password123'
       click_on 'Entrar'
@@ -65,11 +68,11 @@ describe 'User logs in' do
     expect(page).to have_content('Logout efetuado com sucesso.')
   end
   it 'as business owner and fails' do
-    User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    kylie
 
     visit root_path
     click_on 'Entrar'
-    within('form') do
+    within('form#new_user') do
       fill_in 'E-mail', with: 'khy@jenner.com'
       fill_in 'Senha', with: 'password'
       click_on 'Entrar'

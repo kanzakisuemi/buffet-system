@@ -7,7 +7,7 @@ describe 'User signs up' do
     click_on 'Entrar'
     click_on 'Criar Conta'
 
-    within('form') do
+    within('form#new_user') do
       fill_in 'Nome', with: 'Kylie Kristen Jenner'
       select 'Dono de Buffet', from: 'Perfil'
       fill_in 'E-mail', with: 'khy@jenner.com'
