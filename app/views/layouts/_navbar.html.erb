@@ -43,7 +43,7 @@
             <span class="d-block lh-1"><%= current_user.email %></span>
             <span class="d-block lh-1"><%= current_user.humanized_role %></span>
           </div>
-          <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+          <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "btn btn-success" %>
         <% else %>
           <%= link_to "Entrar", new_user_session_path, class: "btn btn-success", data: { turbo_frame: "modal" } %>
         <% end %>

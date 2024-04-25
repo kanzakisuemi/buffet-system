@@ -12,65 +12,61 @@
       <p class="text-center">Não existem tipos de evento cadastrados para este buffet.</p>
     <% end %>
 
-    <% @event_types.each do |event_type| %>
-      <div class="accordion mb-2 mt-3">
+    <div class="accordion mb-2 mt-3">
+      <% @event_types.each do |event_type| %>
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= event_type.id %>" aria-expanded="true" aria-controls="collapse<%= event_type.id %>">
               <%= event_type.name %>
             </button>
           </h2>
-          <div id="collapse<%= event_type.id %>" class="accordion-collapse collapse show">
+          <div id="collapse<%= event_type.id %>" class="accordion-collapse collapse hide">
             <div class="accordion-body">
-              <div>
-                <div>
-                  <p><strong>Categoria:</strong> <%= event_type.humanized_category %></p>
-                  <p><strong>Descrição:</strong> <%= event_type.description %></p>
-                  <p><strong>Capacidade Mínima:</strong> <%= event_type.minimal_people_capacity %> pessoas</p>
-                  <p><strong>Capacidade Máxima:</strong> <%= event_type.maximal_people_capacity %> pessoas</p>
-                  <p><strong>Duração Padrão:</strong> <%= event_type.default_duration_minutes %> minutos</p>
-                  <p><strong>Cardápio:</strong> <%= event_type.food_menu %></p>
-                  <p><strong>Disponibilidade de Bebidas Alcoólicas:</strong> <%= event_type.alcoholic_drinks ? "Sim" : "Não" %></p>
-                  <p><strong>Decoração:</strong> <%= event_type.decoration ? "Sim" : "Não" %></p>
-                  <p><strong>Estacionamento/Valet:</strong> <%= event_type.parking_service ? "Sim" : "Não" %></p>
-                  <p><strong>Flexibilidade de Localização:</strong> <%= event_type.location_flexibility ? "Sim" : "Não" %></p>
-                  <hr class="divider" />
-                  <p>
-                    <strong>Preço Base:</strong> <%= event_type.base_price ? "R$#{event_type.base_price}" : "Não registrado" %>
-                    <strong>Taxa de Final de Semana:</strong> <%= event_type.weekend_fee ? "#{event_type.weekend_fee}%" : "Não registrado" %>
-                  </p>
-                  <% if event_type.base_price && event_type.weekend_fee %>
-                    <p><strong>Preço Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.base_price, event_type.weekend_fee)}" %></p>
-                  <% end %>
-                  <p>
-                    <strong>Preço por Pessoa Excedente:</strong> <%= event_type.per_person_fee ? "R$#{event_type.per_person_fee}" : "Não registrado" %>
-                    <strong>Taxa de Final de Semana:</strong> <%= event_type.per_person_weekend_fee ? "#{event_type.per_person_weekend_fee}%" : "Não registrado" %>
-                  </p>
-                  <% if event_type.per_person_fee && event_type.per_person_weekend_fee %>
-                    <p><strong>Preço por Pessoa Excedente no Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.per_person_fee, event_type.per_person_weekend_fee)}" %></p>
-                  <% end %>
-                  <p>
-                    <strong>Preço por Hora Excedente:</strong> <%= event_type.per_hour_fee ? "R$#{event_type.per_hour_fee}" : "Não registrado" %>
-                    <strong>Taxa de Final de Semana:</strong> <%= event_type.per_hour_weekend_fee ? "#{event_type.per_hour_weekend_fee}%" : "Não registrado" %>
-                  </p>
-                  <% if event_type.per_hour_fee && event_type.per_hour_weekend_fee %>
-                    <p><strong>Preço por Hora Excedente no Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.per_hour_fee, event_type.per_hour_weekend_fee)}" %></p>
-                  <% end %>
+              <p><strong>Categoria:</strong> <%= event_type.humanized_category %></p>
+              <p><strong>Descrição:</strong> <%= event_type.description %></p>
+              <p><strong>Capacidade Mínima:</strong> <%= event_type.minimal_people_capacity %> pessoas</p>
+              <p><strong>Capacidade Máxima:</strong> <%= event_type.maximal_people_capacity %> pessoas</p>
+              <p><strong>Duração Padrão:</strong> <%= event_type.default_duration_minutes %> minutos</p>
+              <p><strong>Cardápio:</strong> <%= event_type.food_menu %></p>
+              <p><strong>Disponibilidade de Bebidas Alcoólicas:</strong> <%= event_type.alcoholic_drinks ? "Sim" : "Não" %></p>
+              <p><strong>Decoração:</strong> <%= event_type.decoration ? "Sim" : "Não" %></p>
+              <p><strong>Estacionamento/Valet:</strong> <%= event_type.parking_service ? "Sim" : "Não" %></p>
+              <p><strong>Flexibilidade de Localização:</strong> <%= event_type.location_flexibility ? "Sim" : "Não" %></p>
+              <hr class="divider" />
+              <p>
+                <strong>Preço Base:</strong> <%= event_type.base_price ? "R$#{event_type.base_price}" : "Não registrado" %>
+                <strong>Taxa de Final de Semana:</strong> <%= event_type.weekend_fee ? "#{event_type.weekend_fee}%" : "Não registrado" %>
+              </p>
+              <% if event_type.base_price && event_type.weekend_fee %>
+                <p><strong>Preço Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.base_price, event_type.weekend_fee)}" %></p>
+              <% end %>
+              <p>
+                <strong>Preço por Pessoa Excedente:</strong> <%= event_type.per_person_fee ? "R$#{event_type.per_person_fee}" : "Não registrado" %>
+                <strong>Taxa de Final de Semana:</strong> <%= event_type.per_person_weekend_fee ? "#{event_type.per_person_weekend_fee}%" : "Não registrado" %>
+              </p>
+              <% if event_type.per_person_fee && event_type.per_person_weekend_fee %>
+                <p><strong>Preço por Pessoa Excedente no Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.per_person_fee, event_type.per_person_weekend_fee)}" %></p>
+              <% end %>
+              <p>
+                <strong>Preço por Hora Excedente:</strong> <%= event_type.per_hour_fee ? "R$#{event_type.per_hour_fee}" : "Não registrado" %>
+                <strong>Taxa de Final de Semana:</strong> <%= event_type.per_hour_weekend_fee ? "#{event_type.per_hour_weekend_fee}%" : "Não registrado" %>
+              </p>
+              <% if event_type.per_hour_fee && event_type.per_hour_weekend_fee %>
+                <p><strong>Preço por Hora Excedente no Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.per_hour_fee, event_type.per_hour_weekend_fee)}" %></p>
+              <% end %>
+              <hr class="divider" />
+              <% event_type.pictures_as_thumbnails.each do |picture| %>
+                <%= image_tag(picture) %>
+              <% end %>
+              <% if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet %>
+                <div class="mt-3">
+                  <%= link_to "Editar", edit_event_type_path(event_type), class: "btn btn-primary" %>
                 </div>
-                <hr class="divider" />
-                <% event_type.pictures_as_thumbnails.each do |picture| %>
-                  <%= image_tag(picture) %>
-                <% end %>
-                <% if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet %>
-                  <div class="mt-3">
-                    <%= link_to "Editar", edit_event_type_path(event_type), class: "btn btn-primary" %>
-                  </div>
-                <% end %>
-              </div>
+              <% end %>
             </div>
           </div>
         </div>
-
-    <% end %>
+      <% end %>
+    </div>
   </div>
 <% end %>

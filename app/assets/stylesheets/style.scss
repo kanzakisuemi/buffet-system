@@ -1,0 +1,28 @@
+::selection {
+    background-color: $rosa;
+}
+
+.form-control {
+  background-color: #eef2fd;
+}
+
+.form-control:focus {
+  background-color: #eef2fd;
+}
+
+.form-select {
+  background-color: #eef2fd;
+}
+
+body {
+  background: $azulbg;
+}
+
+.card {
+  max-width: 40rem;
+  background-color: $azulbg;
+}
+
+.bold {
+  font-weight: bold;
+}

@@ -73,10 +73,10 @@
       </div>
     <% end %>
 
-    <hr class="divider" />
     <% if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet %>
+    <hr class="divider"/>
       <div class="d-flex justify-content-center">
-        <%= link_to 'Editar Buffet', edit_buffet_path(@buffet), class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %>
+        <%= link_to 'Editar Buffet', edit_buffet_path(@buffet), class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %> 
         <%= link_to 'Configurar Eventos', event_types_path, class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %>
       </div>
     <% else %>

@@ -1,0 +1,26 @@
+/*Required*/
+@import "../node_modules/bootstrap/scss/functions";
+
+/*COLORS*/
+$rosa: #f7c9ed;
+$darkerRosa: #ffb1ee;
+$azul: #c9d6f7;
+
+/*Variable overrides*/
+$primary: $rosa;
+$secondary: $azul;
+$success: $rosa;
+$link-color: $test;
+$dropdown-link-hover-bg: $rosa;
+$list-group-hover-bg: $rosa;
+$list-group-action-active-bg: $darkerRosa;
+$dropdown-link-active-bg: $darkerRosa;
+$dropdown-link-active-color: black;
+$list-group-action-hover-color: black;
+
+
+/*Required*/
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
