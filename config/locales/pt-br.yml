@@ -2,6 +2,7 @@ pt-BR:
   activerecord:
     attributes:
       user:
+        social_security_number: CPF
         roles:
           business_owner: Dono de Buffet
           client: Cliente

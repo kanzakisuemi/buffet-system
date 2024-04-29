@@ -43,6 +43,10 @@ gem 'devise'
 
 gem "foreman"
 
+gem "jquery-rails"
+
+gem "cpf_cnpj"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

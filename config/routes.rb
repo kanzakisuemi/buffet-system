@@ -9,5 +9,5 @@ Rails.application.routes.draw do
       delete :remove_picture
     end
   end
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 end
