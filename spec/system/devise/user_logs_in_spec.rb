@@ -1,11 +1,8 @@
 require 'rails_helper'
 
 describe 'User logs in' do
-
-  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
-
   it 'as business owner and does not have a buffet' do
-    kylie
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
 
     visit root_path
     click_on 'Entrar'
@@ -19,7 +16,7 @@ describe 'User logs in' do
     expect(page).to have_content('Registro de Buffet')
   end
   it 'as business owner and having a buffet' do
-    kylie
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
 
     Buffet.create!(
       social_name: 'Buffet da Maria',
@@ -50,7 +47,7 @@ describe 'User logs in' do
     end
   end
   it 'as business owner and logs out' do
-    kylie
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
 
     visit root_path
     click_on 'Entrar'
@@ -68,7 +65,7 @@ describe 'User logs in' do
     expect(page).to have_content('Logout efetuado com sucesso.')
   end
   it 'as business owner and fails' do
-    kylie
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
 
     visit root_path
     click_on 'Entrar'

@@ -1,11 +1,9 @@
 require 'rails_helper'
 
 describe 'user accesses buffets index' do
-
-  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
-  let(:kendall) { User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1) }
-  let(:buffet) { 
-    Buffet.create!(
+  it 'successfully as visitor and sees all buffets' do
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
       company_registration_number: '12345678910111',
@@ -18,10 +16,7 @@ describe 'user accesses buffets index' do
       zip_code: '123456',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
-    ) 
-  }
-  it 'successfully as visitor and sees all buffets' do
-    buffet
+    )
 
     visit root_path
 
@@ -41,7 +36,22 @@ describe 'user accesses buffets index' do
     expect(page).to have_content('Não existem buffets cadastrados')
   end
   it 'successfully as client and sees all buffets' do
-    buffet
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
+    buffet = Buffet.create!(
+      social_name: 'Buffet da Maria',
+      corporate_name: 'Buffet da Maria LTDA',
+      company_registration_number: '12345678910111',
+      phone: '996348000',
+      email: 'maria@email.com',
+      address: 'Rua das Flores, 230',
+      neighborhood: 'Jardim das Flores',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123456',
+      description: 'Buffet para festas infantis e de adultos',
+      user: kylie
+    )
     login_as(kendall)
 
     visit root_path
@@ -53,6 +63,7 @@ describe 'user accesses buffets index' do
     expect(page).to have_content('Buffet da Maria | São Paulo | SP')
   end
   it 'successfully as client and theres no buffet' do
+    kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
     login_as(kendall)
     visit root_path
 
@@ -63,7 +74,21 @@ describe 'user accesses buffets index' do
     expect(page).to have_content('Não existem buffets cadastrados')
   end
   it 'successfully as business owner and sees all buffets' do
-    buffet
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet = Buffet.create!(
+      social_name: 'Buffet da Maria',
+      corporate_name: 'Buffet da Maria LTDA',
+      company_registration_number: '12345678910111',
+      phone: '996348000',
+      email: 'maria@email.com',
+      address: 'Rua das Flores, 230',
+      neighborhood: 'Jardim das Flores',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123456',
+      description: 'Buffet para festas infantis e de adultos',
+      user: kylie
+    )
     login_as(kylie)
     visit root_path
 

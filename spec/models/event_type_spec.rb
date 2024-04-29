@@ -1,144 +1,69 @@
 require 'rails_helper'
 
 RSpec.describe EventType, type: :model do
-    
-  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
-  let(:buffet) { 
-    Buffet.create!(
-      social_name: 'Buffet da Maria',
-      corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
-      phone: '996348000',
-      email: 'maria@email.com',
-      address: 'Rua das Flores, 230',
-      neighborhood: 'Jardim das Flores',
-      city: 'São Paulo',
-      state: 'SP',
-      zip_code: '123456',
-      description: 'Buffet para festas infantis e de adultos',
-      user: kylie
-    )
-  }
-
   describe '#presence' do
     it 'of category' do
-      invalid_event_type = EventType.new(
-        category: nil,
-        name: 'Casamento de Pets',
-        description: 'Casamento de animais de estimação convencionais',
-        minimal_people_capacity: 10,
-        maximal_people_capacity: 30,
-        default_duration_minutes: 120,
-        food_menu: 'Petiscos e cupcakes orgânicos',
-        alcoholic_drinks: false,
-        parking_service: false,
-        decoration: true,
-        location_flexibility: true,
-        buffet: kylie.buffet
-      )
-      expect(invalid_event_type).not_to be_valid
+      event_type = EventType.new(category: nil)
+
+      event_type.valid?
+      result = event_type.errors.include?(:category)
+
+      expect(result).to be true
     end
     it 'of name' do
-      invalid_event_type = EventType.new(
-        category: 2,
-        name: nil,
-        description: 'Casamento de animais de estimação convencionais',
-        minimal_people_capacity: 10,
-        maximal_people_capacity: 30,
-        default_duration_minutes: 120,
-        food_menu: 'Petiscos e cupcakes orgânicos',
-        alcoholic_drinks: false,
-        parking_service: false,
-        decoration: true,
-        location_flexibility: true,
-        buffet: kylie.buffet
-      )
-      expect(invalid_event_type).not_to be_valid
+      event_type = EventType.new(name: nil)
+
+      event_type.valid?
+      result = event_type.errors.include?(:name)
+
+      expect(result).to be true
     end
     it 'of description' do
-      invalid_event_type = EventType.new(
-        category: 2,
-        name: 'Casamento de Pets',
-        description: nil,
-        minimal_people_capacity: 10,
-        maximal_people_capacity: 30,
-        default_duration_minutes: 120,
-        food_menu: 'Petiscos e cupcakes orgânicos',
-        alcoholic_drinks: false,
-        parking_service: false,
-        decoration: true,
-        location_flexibility: true,
-        buffet: kylie.buffet
-      )
-      expect(invalid_event_type).not_to be_valid
+      event_type = EventType.new(description: nil)
+
+      event_type.valid?
+      result = event_type.errors.include?(:description)
+
+      expect(result).to be true
     end
     it 'of minimal people capacity' do
-      invalid_event_type = EventType.new(
-        category: 2,
-        name: 'Casamento de Pets',
-        description: 'Casamento de animais de estimação convencionais',
-        minimal_people_capacity: nil,
-        maximal_people_capacity: 30,
-        default_duration_minutes: 120,
-        food_menu: 'Petiscos e cupcakes orgânicos',
-        alcoholic_drinks: false,
-        parking_service: false,
-        decoration: true,
-        location_flexibility: true,
-        buffet: kylie.buffet
-      )
-      expect(invalid_event_type).not_to be_valid
+      event_type = EventType.new(minimal_people_capacity: nil)
+
+      event_type.valid?
+      result = event_type.errors.include?(:minimal_people_capacity)
+
+      expect(result).to be true
     end
     it 'of maximal people capacity' do
-      invalid_event_type = EventType.new(
-        category: 2,
-        name: 'Casamento de Pets',
-        description: 'Casamento de animais de estimação convencionais',
-        minimal_people_capacity: 10,
-        maximal_people_capacity: nil,
-        default_duration_minutes: 120,
-        food_menu: 'Petiscos e cupcakes orgânicos',
-        alcoholic_drinks: false,
-        parking_service: false,
-        decoration: true,
-        location_flexibility: true,
-        buffet: kylie.buffet
-      )
-      expect(invalid_event_type).not_to be_valid
+      event_type = EventType.new(maximal_people_capacity: nil)
+
+      event_type.valid?
+      result = event_type.errors.include?(:maximal_people_capacity)
+
+      expect(result).to be true
     end
     it 'of default duration in minutes' do
-      invalid_event_type = EventType.new(
-        category: 2,
-        name: 'Casamento de Pets',
-        description: 'Casamento de animais de estimação convencionais',
-        minimal_people_capacity: 10,
-        maximal_people_capacity: 30,
-        default_duration_minutes: nil,
-        food_menu: 'Petiscos e cupcakes orgânicos',
-        alcoholic_drinks: false,
-        parking_service: false,
-        decoration: true,
-        location_flexibility: true,
-        buffet: kylie.buffet
-      )
-      expect(invalid_event_type).not_to be_valid
+      event_type = EventType.new(default_duration_minutes: nil)
+
+      event_type.valid?
+      result = event_type.errors.include?(:default_duration_minutes)
+
+      expect(result).to be true
     end
     it 'of food menu' do
-      invalid_event_type = EventType.new(
-        category: 2,
-        name: 'Casamento de Pets',
-        description: 'Casamento de animais de estimação convencionais',
-        minimal_people_capacity: 10,
-        maximal_people_capacity: 30,
-        default_duration_minutes: 120,
-        food_menu: nil,
-        alcoholic_drinks: false,
-        parking_service: false,
-        decoration: true,
-        location_flexibility: true,
-        buffet: kylie.buffet
-      )
-      expect(invalid_event_type).not_to be_valid
+      event_type = EventType.new(food_menu: nil)
+
+      event_type.valid?
+      result = event_type.errors.include?(:food_menu)
+
+      expect(result).to be true
+    end
+  end
+  describe '#has_many_attached' do
+    it 'pictures' do
+      event_type = EventType.new
+
+      expect(event_type.pictures).to be_an_instance_of(ActiveStorage::Attached::Many)
     end
   end
 end

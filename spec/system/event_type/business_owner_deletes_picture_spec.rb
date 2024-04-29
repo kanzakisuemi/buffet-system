@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe 'business owner deletes' do
-  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
-  let(:buffet) { 
-    Buffet.create!(
+  it 'one picture from event type w/ two pictures' do
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
       company_registration_number: '12345678910111',
@@ -16,10 +16,8 @@ describe 'business owner deletes' do
       zip_code: '123456',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
-    ) 
-  }
-  let(:event_type) { 
-    EventType.create!(
+    )
+    event_type = EventType.create!(
       category: 3,
       name: 'Festa Infantil',
       description: 'Festa para crianças',
@@ -31,11 +29,6 @@ describe 'business owner deletes' do
       parking_service: true,
       buffet: kylie.buffet
     )
-  }
-
-  it 'one picture from event type w/ two pictures' do
-    buffet
-    event_type
     login_as(kylie)
     visit root_path
 

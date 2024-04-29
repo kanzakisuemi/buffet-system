@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe 'user searches' do
-  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
-  let(:buffet_kylie) { 
-    Buffet.create!(
+  it 'for buffets name - as visitor' do
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet_kylie = Buffet.create!(
       social_name: 'Buffet da Kylie',
       corporate_name: 'Buffet da Kylie LTDA',
       company_registration_number: '12345678910111',
@@ -16,11 +16,9 @@ describe 'user searches' do
       zip_code: '123456',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
-    ) 
-  }
-  let(:kendall) { User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 0) }
-  let(:buffet_kendall) { 
-    Buffet.create!(
+    )
+    kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 0)
+    buffet_kendall = Buffet.create!(
       social_name: 'Buffet da Kendall',
       corporate_name: 'Buffet da Kendall LTDA',
       company_registration_number: '12345678978009',
@@ -33,43 +31,7 @@ describe 'user searches' do
       zip_code: '123407',
       description: 'Buffet para festas de cavalos',
       user: kendall
-    ) 
-  }
-  let(:julia) { User.create!(name: 'Julia Suemi Kanzaki', email: 'ju@kanzaki.com', password: 'password123', role: 0) }
-  let(:buffet_julia) { 
-    Buffet.create!(
-      social_name: 'As Festas da Ju',
-      corporate_name: 'As Festas da Ju LTDA',
-      company_registration_number: '18975600978008',
-      phone: '996347600',
-      email: 'support@kanzaki.com',
-      address: 'Rua dos Morros, 450',
-      neighborhood: 'Jardim dos Morros',
-      city: 'São Paulo',
-      state: 'SP',
-      zip_code: '458901',
-      description: 'Buffet para as melhores festas do mundo!',
-      user: julia
-    ) 
-  }
-  let(:event_type) { 
-    EventType.create!(
-      category: 1,
-      name: 'Formatura de Faculdade',
-      description: 'Festa de formatura para turmas de universidades.',
-      default_duration_minutes: 300,
-      minimal_people_capacity: 200,
-      maximal_people_capacity: 300,
-      food_menu: 'Entrada: Salgadinhos e docinhos. Prato principal: Buffet de massas. Sobremesa: Bolo de chocolate e sorvete.',
-      alcoholic_drinks: true,
-      parking_service: true,
-      decoration: true,
-      buffet: kylie.buffet
     )
-  }
-  it 'for buffets name - as visitor' do
-    buffet_kylie
-    buffet_kendall
 
     visit root_path
     within('nav') do
@@ -83,8 +45,36 @@ describe 'user searches' do
     end
   end
   it 'for buffets by city - as visitor' do
-    buffet_kylie
-    buffet_kendall
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet_kylie = Buffet.create!(
+      social_name: 'Buffet da Kylie',
+      corporate_name: 'Buffet da Kylie LTDA',
+      company_registration_number: '12345678910111',
+      phone: '996348000',
+      email: 'support@khybuffet.com',
+      address: 'Rua das Flores, 230',
+      neighborhood: 'Jardim das Flores',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123456',
+      description: 'Buffet para festas infantis e de adultos',
+      user: kylie
+    )
+    kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 0)
+    buffet_kendall = Buffet.create!(
+      social_name: 'Buffet da Kendall',
+      corporate_name: 'Buffet da Kendall LTDA',
+      company_registration_number: '12345678978009',
+      phone: '996345000',
+      email: 'support@buffetkendall.com',
+      address: 'Rua dos Cactos, 780',
+      neighborhood: 'Jardim dos Cactos',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123407',
+      description: 'Buffet para festas de cavalos',
+      user: kendall
+    )
 
     visit root_path
     within('nav') do
@@ -98,9 +88,49 @@ describe 'user searches' do
     end
   end
   it 'for buffets by event type - as visitor' do
-    buffet_kylie
-    buffet_kendall
-    event_type
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet_kylie = Buffet.create!(
+      social_name: 'Buffet da Kylie',
+      corporate_name: 'Buffet da Kylie LTDA',
+      company_registration_number: '12345678910111',
+      phone: '996348000',
+      email: 'support@khybuffet.com',
+      address: 'Rua das Flores, 230',
+      neighborhood: 'Jardim das Flores',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123456',
+      description: 'Buffet para festas infantis e de adultos',
+      user: kylie
+    )
+    kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 0)
+    buffet_kendall = Buffet.create!(
+      social_name: 'Buffet da Kendall',
+      corporate_name: 'Buffet da Kendall LTDA',
+      company_registration_number: '12345678978009',
+      phone: '996345000',
+      email: 'support@buffetkendall.com',
+      address: 'Rua dos Cactos, 780',
+      neighborhood: 'Jardim dos Cactos',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123407',
+      description: 'Buffet para festas de cavalos',
+      user: kendall
+    )
+    event_type = EventType.create!(
+      category: 1,
+      name: 'Formatura de Faculdade',
+      description: 'Festa de formatura para turmas de universidades.',
+      default_duration_minutes: 300,
+      minimal_people_capacity: 200,
+      maximal_people_capacity: 300,
+      food_menu: 'Entrada: Salgadinhos e docinhos. Prato principal: Buffet de massas. Sobremesa: Bolo de chocolate e sorvete.',
+      alcoholic_drinks: true,
+      parking_service: true,
+      decoration: true,
+      buffet: kylie.buffet
+    )
 
     visit root_path
     within('nav') do
@@ -119,9 +149,51 @@ describe 'user searches' do
     end
   end
   it 'for a buffet and results are ordered - as visitor' do
-    buffet_kylie
-    buffet_kendall
-    buffet_julia
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet_kylie = Buffet.create!(
+      social_name: 'Buffet da Kylie',
+      corporate_name: 'Buffet da Kylie LTDA',
+      company_registration_number: '12345678910111',
+      phone: '996348000',
+      email: 'support@khybuffet.com',
+      address: 'Rua das Flores, 230',
+      neighborhood: 'Jardim das Flores',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123456',
+      description: 'Buffet para festas infantis e de adultos',
+      user: kylie
+    )
+    kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 0)
+    buffet_kendall = Buffet.create!(
+      social_name: 'Buffet da Kendall',
+      corporate_name: 'Buffet da Kendall LTDA',
+      company_registration_number: '12345678978009',
+      phone: '996345000',
+      email: 'support@buffetkendall.com',
+      address: 'Rua dos Cactos, 780',
+      neighborhood: 'Jardim dos Cactos',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123407',
+      description: 'Buffet para festas de cavalos',
+      user: kendall
+    )
+    julia = User.create!(name: 'Julia Suemi Kanzaki', email: 'ju@kanzaki.com', password: 'password123', role: 0)
+    buffet_julia = Buffet.create!(
+      social_name: 'As Festas da Ju',
+      corporate_name: 'As Festas da Ju LTDA',
+      company_registration_number: '18975600978008',
+      phone: '996347600',
+      email: 'support@kanzaki.com',
+      address: 'Rua dos Morros, 450',
+      neighborhood: 'Jardim dos Morros',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '458901',
+      description: 'Buffet para as melhores festas do mundo!',
+      user: julia
+    )
       
     visit root_path
     within('nav') do

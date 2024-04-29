@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 describe 'business owner adds a event type' do
-
-  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
-  let(:buffet) { 
-    Buffet.create!(
+  it 'successfully' do
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
       company_registration_number: '12345678910111',
@@ -17,11 +16,7 @@ describe 'business owner adds a event type' do
       zip_code: '123456',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
-    ) 
-  }
-
-  it 'successfully' do
-    buffet
+    )
     login_as(kylie)
     visit root_path
 
@@ -62,7 +57,21 @@ describe 'business owner adds a event type' do
   end
 
   it 'successfully w/ pricing' do
-    buffet
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet = Buffet.create!(
+      social_name: 'Buffet da Maria',
+      corporate_name: 'Buffet da Maria LTDA',
+      company_registration_number: '12345678910111',
+      phone: '996348000',
+      email: 'maria@email.com',
+      address: 'Rua das Flores, 230',
+      neighborhood: 'Jardim das Flores',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123456',
+      description: 'Buffet para festas infantis e de adultos',
+      user: kylie
+    )
     login_as(kylie)
     visit root_path
 

@@ -1,11 +1,9 @@
 require 'rails_helper'
 
 describe 'user sees buffet details' do
-
-  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
-  let(:kendall) { User.create!(name: 'Kendall Jenner', email: 'kendall@jenner.com', password: 'password123', role: 1) }
-  let(:buffet) {
-    Buffet.create!(
+  it 'as business owner successfully through navbar' do
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
       company_registration_number: '12345678910111',
@@ -19,10 +17,6 @@ describe 'user sees buffet details' do
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
-  }
-
-  it 'as business owner successfully through navbar' do
-    buffet
     login_as(kylie)
     visit root_path
 
@@ -46,7 +40,22 @@ describe 'user sees buffet details' do
     expect(page).to have_content('Kylie Kristen Jenner')
   end
   it 'as client through navbar and fails' do
-    buffet
+    kendall = User.create!(name: 'Kendall Jenner', email: 'kendall@jenner.com', password: 'password123', role: 1)
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet = Buffet.create!(
+      social_name: 'Buffet da Maria',
+      corporate_name: 'Buffet da Maria LTDA',
+      company_registration_number: '12345678910111',
+      phone: '996348000',
+      email: 'maria@email.com',
+      address: 'Rua das Flores, 230',
+      neighborhood: 'Jardim das Flores',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123456',
+      description: 'Buffet para festas infantis e de adultos',
+      user: kylie
+    )
     login_as(kendall)
     visit root_path
 
@@ -56,7 +65,22 @@ describe 'user sees buffet details' do
     end
   end
   it 'as client successfully' do
-    buffet
+    kendall = User.create!(name: 'Kendall Jenner', email: 'kendall@jenner.com', password: 'password123', role: 1)
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet = Buffet.create!(
+      social_name: 'Buffet da Maria',
+      corporate_name: 'Buffet da Maria LTDA',
+      company_registration_number: '12345678910111',
+      phone: '996348000',
+      email: 'maria@email.com',
+      address: 'Rua das Flores, 230',
+      neighborhood: 'Jardim das Flores',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123456',
+      description: 'Buffet para festas infantis e de adultos',
+      user: kylie
+    )
     login_as(kendall)
     visit root_path
 
@@ -79,7 +103,21 @@ describe 'user sees buffet details' do
     expect(page).to have_content('Kylie Kristen Jenner')
   end
   it 'as visitor successfully and does not see corporate name' do
-    buffet
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet = Buffet.create!(
+      social_name: 'Buffet da Maria',
+      corporate_name: 'Buffet da Maria LTDA',
+      company_registration_number: '12345678910111',
+      phone: '996348000',
+      email: 'maria@email.com',
+      address: 'Rua das Flores, 230',
+      neighborhood: 'Jardim das Flores',
+      city: 'São Paulo',
+      state: 'SP',
+      zip_code: '123456',
+      description: 'Buffet para festas infantis e de adultos',
+      user: kylie
+    )
     visit root_path
 
     within('nav') do

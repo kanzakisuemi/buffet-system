@@ -47,6 +47,9 @@ describe 'business owner registers buffet' do
   end
   it 'successfully with payment methods' do
     kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    PaymentMethod.create!(name: 'Dinheiro')
+    PaymentMethod.create!(name: 'Cartão de Crédito')
+    PaymentMethod.create!(name: 'Cartão de Débito')
 
     login_as(kylie)
     visit root_path

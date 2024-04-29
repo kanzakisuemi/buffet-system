@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe 'user sees event types' do
-  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
-  let(:buffet) {
-    Buffet.create!(
+  it 'as visitor successfully' do
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
       company_registration_number: '12345678910111',
@@ -17,9 +17,7 @@ describe 'user sees event types' do
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
-  }
-  let(:event_type) { 
-    EventType.create!(
+    event_type = EventType.create!(
       category: 3,
       name: 'Festa Infantil',
       description: 'Festa para crianças',
@@ -37,10 +35,6 @@ describe 'user sees event types' do
       per_hour_weekend_fee: 10,
       buffet: kylie.buffet
     )
-  }
-  it 'as visitor successfully' do
-    buffet
-    event_type
     visit root_path
 
     within('nav') do
@@ -67,6 +61,5 @@ describe 'user sees event types' do
     expect(page).to have_content('Preço por Pessoa Excedente no Final de Semana (taxa aplicada): R$55.0')
     expect(page).to have_content('Preço por Hora Excedente: R$300.0 Taxa de Final de Semana: 10%')
     expect(page).to have_content('Preço por Hora Excedente no Final de Semana (taxa aplicada): R$330.0')
-
   end
 end

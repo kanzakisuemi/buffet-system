@@ -19,9 +19,9 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
 
-  config.before(:suite) do
-    Rails.application.load_seed
-  end
+  # config.before(:suite) do
+  #   Rails.application.load_seed
+  # end
 
   config.before(type: :system) do
     driven_by(:rack_test)

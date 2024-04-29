@@ -1,16 +1,15 @@
 require 'rails_helper'
 
 describe 'business owner without buffet tries to' do
-
-  let(:kylie) { User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0) }
-  
   it 'access homepage and is locked on buffet register page' do
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
     login_as(kylie)
     visit root_path
 
     expect(current_path).to eq(new_buffet_path)
   end
   it 'get to homepage' do
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
     login_as(kylie)
     visit root_path
 
@@ -23,6 +22,7 @@ describe 'business owner without buffet tries to' do
     expect(current_path).to eq(new_buffet_path)
   end
   it 'logout and it works' do
+    kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
     login_as(kylie)
     visit root_path
 
