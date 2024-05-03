@@ -4,13 +4,15 @@ class User < ApplicationRecord
 
   enum role: [:business_owner, :client]
 
+  has_one :buffet
+
+  has_many :orders
+
   validates :name, :role, presence: true
 
   validates :social_security_number, presence: true, on: :update, if: :client?
 
-  validates :social_security_number, uniqueness: true, if: :client?
-
-  has_one :buffet
+  validates :social_security_number, uniqueness: true, on: :update, if: :client?
 
   def humanized_role
     I18n.t("activerecord.attributes.user.roles.#{role}", user: self)
@@ -22,6 +24,5 @@ class User < ApplicationRecord
     roles.map do |role, _|
       [I18n.t("activerecord.attributes.user.roles.#{role}"), role]
     end
-  end
-
+  end 
 end

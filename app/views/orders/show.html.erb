@@ -1,0 +1,33 @@
+<% content_for :head do %>
+  <meta name="turbo-visit-control" content="reload">
+<% end %>
+<div class="card border-dark mx-auto mb-5 mt-5" style="max-width: 30rem; background-color: white;">
+  <div class="card-body">  
+    <p class="bold text-center"><%= @order.code %></p>
+    <p class="text-center bold"><%= @order.buffet.social_name %> - <%= @order.event_type.name %></p>
+    <p><span class="bold">Observações do cliente: </span><%= @order.event_details %></p>
+    <p><span class="bold">Data do Evento: </span><%= I18n.localize(@order.event_date) %></p>
+    <p><span class="bold">Quantidade de Convidados: </span><%= @order.guests_estimation %></p>
+    <p><span class="bold">Demandante: </span><%= @order.user.name %></p>
+    <button type="button" class="btn btn-lg btn-warning" data-bs-toggle="popover" data-bs-title="Status do Pedido" data-bs-content="Aguardando avaliação do Buffet :)">
+      <%= @order.humanized_status %> 
+    </button>
+  </div>
+</div>
+
+
+<% if @same_date_orders.any? %>
+  <div class="alert alert-primary d-flex align-items-center" >
+    <%= image_tag "calendar_date_event_icon", size: "35", class: "me-2" %>
+    <div>
+      Existe outro evento marcado para a mesma data. Confira: 
+      <% @same_date_orders.each do |order| %>
+        <%= link_to order, class: "d-block" do %>
+          <%= content_tag(:span, order.code) %> | 
+          <%= content_tag(:span, order.event_type.humanized_category) %> | 
+          <%= content_tag(:span, order.user.name) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

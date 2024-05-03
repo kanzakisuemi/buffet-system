@@ -30,6 +30,22 @@
           </li>
         <% end %>
 
+        <% if user_signed_in? && current_user.business_owner? && current_user.buffet.present? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Pedidos
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Todos Pedidos", orders_path, class: "dropdown-item" %></li>
+            </ul>
+          </li>
+        <% elsif user_signed_in? && current_user.client? %>
+          <li class="nav-item">
+            <%= link_to "Meus Pedidos", my_orders_path, class: "nav-link" %>
+          </li>
+        <% else %>
+        <% end %>
+
       </ul>
 
       <%= form_tag "/buffets", method: "GET", class: "d-flex mx-auto" do %>

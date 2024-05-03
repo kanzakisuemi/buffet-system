@@ -1,0 +1,18 @@
+<% if @orders.empty? %>
+  <p class="text-center mt-5">...</p>
+<% end %>
+
+<div class="list-group mx-auto text-center mt-5" style="max-width: 17rem;">
+  <% @orders.each do |order| %>
+    <% if order.pending? %>
+      <%= link_to order, class: "list-group-item list-group-item-action border-dark position-relative", id: dom_id(order) do %>
+        <%= order.code_and_date %>
+        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+          <span class="visually-hidden">Pendente</span>
+        </span>
+      <% end %>
+    <% else %>
+      <%= link_to order.code_and_date, order, class: "list-group-item list-group-item-action border-dark" %>
+    <% end %>
+  <% end %>
+</div>

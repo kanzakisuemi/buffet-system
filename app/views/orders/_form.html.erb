@@ -1,0 +1,23 @@
+<%= form_with(model: @order, url: event_type_orders_path, data: { turbo_confirm: "O seu pedido ficará pendente até que o Buffet aprove sua solicitação. Acompanhe o status do seu pedido em 'Meus Pedidos'." }) do |f| %>
+  <div class="mb-2 d-flex">
+    <%= f.label :event_date, class: "d-inline me-2" %>
+    <%= f.date_field :event_date, class: "form-control form-control-sm d-inline", style: "max-width: 9rem;" %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.number_field :guests_estimation, class: "form-control", placeholder: :guests_estimation %>
+    <%= f.label :guests_estimation %>
+  </div>
+  <div class="form-floating mb-2">
+    <%= f.text_area :event_details, class: "form-control", placeholder: :event_details %>
+    <%= f.label :event_details %>
+  </div>
+  <% if @event_type.location_flexibility %>
+    <div class="form-floating mb-2">
+      <%= f.text_field :event_address, class: "form-control", placeholder: :event_address %>
+      <%= f.label :event_address %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.submit "Agendar Evento", class: "btn btn-primary" %>
+  </div>
+<% end %>

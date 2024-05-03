@@ -1,0 +1,10 @@
+<% if @orders.empty? %>
+  <p class="text-center mt-5">Você ainda não fez nenhum pedido.</p>
+<% end %>
+
+<div class="list-group mx-auto text-center mt-5" style="max-width: 17rem;">
+  <% @orders.each do |order| %>
+    <%= link_to order.code_and_date, order, class: "list-group-item list-group-item-action border-dark" %>
+  <% end %>
+</div>
+
