@@ -110,5 +110,92 @@ EventType.create!(
   food_menu: 'Entrada: Salada. Prato principal: Massas. Sobremesa: Bolo e sorvete.',
   alcoholic_drinks: true,
   decoration: true,
+  location_flexibility: true,
+  parking_service: true,
   buffet: luis_f.buffet
 )
+EventType.create!(
+  category: 1,
+  name: 'Formatura de Ensino Fundamental',
+  description: 'Festa de formatura para turmas pequenas do Ensino Fundamental I e II.',
+  default_duration_minutes: 180,
+  minimal_people_capacity: 80,
+  maximal_people_capacity: 120,
+  food_menu: 'Entrada: HotDog. Prato principal: Strogonoff. Sobremesa: Bolo de Abacaxi.',
+  alcoholic_drinks: false,
+  decoration: true,
+  location_flexibility: true,
+  parking_service: false,
+  buffet: rafa.buffet
+)
+EventType.create!(
+  category: 3,
+  name: 'Aniversários Infantis',
+  description: 'Festa de aniversário para crianças de 1 a 12 anos.',
+  default_duration_minutes: 120,
+  minimal_people_capacity: 100,
+  maximal_people_capacity: 150,
+  food_menu: 'Entrada: Docinhos e Salgadinhos. Prato principal: Salada de Hortelã e Carne de Cordeiro. Sobremesa: Bolo de Abacaxi.',
+  alcoholic_drinks: false,
+  decoration: true,
+  location_flexibility: true,
+  parking_service: false,
+  buffet: rafa.buffet
+)
+EventType.create!(
+  category: 2,
+  name: 'Casamento de Luxo',
+  description: 'Casamento para casais de alto padrão.',
+  default_duration_minutes: 300,
+  minimal_people_capacity: 200,
+  maximal_people_capacity: 400,
+  food_menu: 'Entrada: Camarão Empanado. Prato principal: Risoto de Cogumelos. Sobremesa: Tiramisu.',
+  alcoholic_drinks: true,
+  decoration: true,
+  location_flexibility: false,
+  parking_service: true,
+  buffet: felipe.buffet
+)
+EventType.create!(
+  category: 3,
+  name: 'Aniversários de Casamento',
+  description: 'Festa de Bodas e Renovação de Votos.',
+  default_duration_minutes: 180,
+  minimal_people_capacity: 150,
+  maximal_people_capacity: 230,
+  food_menu: 'Entrada: Camarão Empanado. Prato principal: Refeição Surpresa. Sobremesa: Gelatto.',
+  alcoholic_drinks: true,
+  decoration: true,
+  location_flexibility: false,
+  parking_service: true,
+  buffet: felipe.buffet
+)
+EventType.create!(
+  category: 2,
+  name: 'Casamento Tropical',
+  description: 'Casamento pequeno para casais que desejam celebrar na praia.',
+  default_duration_minutes: 120,
+  minimal_people_capacity: 50,
+  maximal_people_capacity: 100,
+  food_menu: 'Entrada: Bolinho de Feijoada. Prato principal: Casquinha de Siri. Sobremesa: Salada de Frutas Gourmet.',
+  alcoholic_drinks: true,
+  decoration: true,
+  location_flexibility: true,
+  parking_service: true,
+  buffet: antonia.buffet
+)
+EventType.create!(
+  category: 3,
+  name: 'Aniversários para Idosos',
+  description: 'Festa de aniversário para idosos, com foco na alimentação saudável.',
+  default_duration_minutes: 120,
+  minimal_people_capacity: 40,
+  maximal_people_capacity: 60,
+  food_menu: 'Entrada: Salada de Tomate. Prato principal: Risoto de Frutos do Mar. Sobremesa: Laranjas com Canela.',
+  alcoholic_drinks: false,
+  decoration: true,
+  location_flexibility: true,
+  parking_service: false,
+  buffet: antonia.buffet
+)
+
