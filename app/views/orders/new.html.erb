@@ -1,0 +1,18 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="dean-modal">
+    <div class="mb-3 ">
+      <%= link_to "", :back, class: "btn btn-close btn-sm" %>
+    </div>
+
+    <% if @order.errors.any? %>
+      <div style="color: red;">
+        <% @order.errors.full_messages.each do |message| %>
+          <span><%= message %></span><br/>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= render "form" %>
+
+  </div>
+<% end %>

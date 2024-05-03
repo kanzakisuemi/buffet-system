@@ -51,3 +51,12 @@ pt-BR:
           graduation: Formatura
           corporate: Corporativo
           other: Outro
+      order:
+        event_date: Data do Evento
+        guests_estimation: Quantidade de Convidados
+        event_details: Observações
+        event_address: Endereço do Evento
+        status:
+          pending: Pendente
+          approved: Aprovado
+          canceled: Cancelado

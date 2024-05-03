@@ -1,5 +1,6 @@
 class BuffetsController < ApplicationController
-  before_action :set_buffet, only: %i[show edit update]
+  before_action :set_buffet, only: %i[show edit update event_types event_selection]
+  before_action :is_business_owner?, only: %i[new create edit update]
 
   def index
     @buffets = Buffet.all
@@ -17,14 +18,14 @@ class BuffetsController < ApplicationController
 
         if EventType.categories.key?(query_as_sym)
           buffet_ids = EventType.where(category: query_as_sym).pluck(:buffet_id)
-          @results = @buffets.where(id: buffet_ids)
+          @results = @buffets.where(id: buffet_ids).order(social_name: :asc)
         else
           buffet_ids = EventType.where("LOWER(name) LIKE ?", "%#{query}%").pluck(:buffet_id)
-          @results = @buffets.where(id: buffet_ids)
+          @results = @buffets.where(id: buffet_ids).order(social_name: :asc)
         end
       end
 
-      @buffets = @buffets.where.not(id: @results.pluck(:id))
+      @buffets = @buffets.where.not(id: @results.pluck(:id)).order(social_name: :asc)
     end
   end
 
@@ -58,7 +59,23 @@ class BuffetsController < ApplicationController
     end
   end
 
+  def event_types
+    @event_types = EventType.where(buffet: @buffet).order(:name)
+  end
+
+  def event_selection
+    @event_types = EventType.where(buffet: @buffet).order(:name)
+    if @event_types.empty?
+      flash[:notice] = "Este Buffet ainda não possui nenhum evento cadastrado"
+      redirect_to @buffet
+    end
+  end
+
   private
+
+  def is_business_owner?
+    redirect_to root_path unless current_user && current_user.business_owner?
+  end
 
   def set_buffet
     @buffet = Buffet.find(params[:id])

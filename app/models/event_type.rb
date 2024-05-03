@@ -1,6 +1,7 @@
 class EventType < ApplicationRecord
   belongs_to :buffet
   has_many_attached :pictures
+  has_many :orders
 
   validates :category, :name, :description, :minimal_people_capacity, :maximal_people_capacity, :default_duration_minutes, :food_menu, presence: true
 
