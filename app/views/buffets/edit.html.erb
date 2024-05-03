@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "modal" do %>
   <div class="dean-modal">
     <div class="mb-3 ">
-      <%= link_to "", "#", class: "btn btn-close btn-sm" %>
+      <%= link_to "", :back, class: "btn btn-close btn-sm" %>
     </div>
     <p class="notice"><%= notice %></p>
     <% if @buffet.errors.any? %>

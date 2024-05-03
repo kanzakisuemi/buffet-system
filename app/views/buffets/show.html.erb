@@ -1,4 +1,4 @@
-<div class="card border-dark mx-auto mb-5" style="max-width: 30rem; background-color: white;">
+<div class="card border-dark mx-auto mb-5 mt-5" style="max-width: 30rem; background-color: white;">
   <div class="card-body">  
     
     <div class="d-flex justify-content-between">
@@ -62,8 +62,8 @@
       <span>Dono:</span>
       <span><%= @buffet.user.name %></span>
     </div>
-    <hr class="divider"/>
     <% if @buffet.payment_method_ids.any? %>
+      <hr class="divider"/>
       <div class="d-flex justify-content-between">
         <span>Métodos de Pagamento:</span>
         <% @buffet.payment_methods.each do |payment_method| %>
@@ -77,10 +77,14 @@
     <hr class="divider"/>
       <div class="d-flex justify-content-center">
         <%= link_to 'Editar Buffet', edit_buffet_path(@buffet), class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %> 
-        <%= link_to 'Configurar Eventos', event_types_path, class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %>
+        <%= link_to 'Configurar Eventos', event_types_buffet_path, class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %>
       </div>
     <% else %>
-      <%= link_to 'Ver Tipos de Eventos', event_types_path, class: "btn btn-primary", data: { turbo_frame: "modal" } %>
+      <hr class="divider"/>
+      <div class="d-flex justify-content-between">
+        <%= link_to 'Ver Tipos de Eventos', event_types_buffet_path, class: "btn btn-primary", data: { turbo_frame: "modal" } %>
+        <%= link_to 'Contratar Buffet', event_selection_buffet_path, class: "btn btn-primary", data: { turbo_frame: "modal" } %>
+      </div>
     <% end %>
 
   </div>

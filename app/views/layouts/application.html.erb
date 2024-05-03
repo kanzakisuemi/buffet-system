@@ -8,15 +8,20 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", defer: true %>
   </head>
 
   <body>
     <%= render "layouts/navbar" %>
     <%= turbo_frame_tag "modal" %>
     <div class="container">
-      <p class="text-center"><%= notice %></p>
-      <p class="text-center"><%= alert %></p>
+      <% if notice %>
+        <div class="mt-3 alert alert-warning text-center" role="alert"><%= notice %></div>
+      <% end %>
+
+      <% if alert %>
+        <div class="mt-3 alert alert-danger text-center" role="alert"><%= alert %></div>
+      <% end %>
       <%= yield %>
     </div>
   </body>

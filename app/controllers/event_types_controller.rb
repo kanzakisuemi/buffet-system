@@ -1,11 +1,7 @@
 class EventTypesController < ApplicationController
   before_action :set_event_type, only: [:edit, :update]
+  before_action :is_business_owner?, only: [:new, :create, :edit, :update]
   
-  def index
-    @buffet = current_user.buffet if user_signed_in?
-    @event_types = EventType.all
-  end
-
   def new
     @event_type = EventType.new
   end
@@ -15,7 +11,7 @@ class EventTypesController < ApplicationController
     @event_type.buffet = current_user.buffet
 
     if @event_type.save
-      redirect_to event_types_path
+      redirect_to event_types_buffet_path(@event_type.buffet)
     else
       render :new
     end
@@ -25,7 +21,7 @@ class EventTypesController < ApplicationController
 
   def update
     if @event_type.update(event_type_params)
-      redirect_to event_types_path
+      redirect_to event_types_buffet_path(@event_type.buffet)
     else
       render :edit
     end
@@ -39,6 +35,10 @@ class EventTypesController < ApplicationController
   end
 
   private
+
+  def is_business_owner?
+    redirect_to root_path unless current_user && current_user.business_owner?
+  end
 
   def set_event_type
     @event_type = EventType.find(params[:id])
