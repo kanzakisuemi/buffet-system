@@ -40,13 +40,22 @@ RSpec.describe User, type: :model do
     it 'of social security number if user is a client' do
       cpf = CPF.generate
       User.create!(name: 'Harry Potter', email: 'harryp@mail.com', role: 1, social_security_number: cpf, password: 'password123')
-      user = User.create!(name: 'Hermione Granger', email: 'hermione@mail.com', role: 1, password: 'password123')
-      user.social_security_number = cpf
+      user = User.new(role: 1, social_security_number: cpf)
 
       user.valid?
       result = user.errors.include?(:social_security_number)
 
       expect(result).to be true
     end
-  end 
+  end
+  describe '#validations' do
+    it 'check_social_security_number' do
+      user = User.new(role: 1, social_security_number: '66666666666')
+
+      user.valid?
+      result = user.errors.include?(:social_security_number)
+
+      expect(result).to be true
+    end
+  end
 end
