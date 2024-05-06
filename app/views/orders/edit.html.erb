@@ -1,0 +1,56 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="dean-modal">
+    <div class="mb-3 ">
+      <%= link_to "", :back, class: "btn btn-close btn-sm" %>
+    </div>
+
+    <p class="bold text-center">Avaliação de Pedido - <%= @order.code %></p>
+    <span class="badge text-bg-secondary"><%= @order.humanized_status %></span>
+    <% if @order.event_date.on_weekend? %>
+      <span class="d-block bold">Evento com preços de Final de Semana</span>
+    <% else %>
+      <span class="d-block bold">Evento com preços de Dia de Semana</span>
+    <% end %>
+    <span class="d-block">Preço Base(<%= @order.event_type.minimal_people_capacity %> convidados): <%= @order.event_type.base_price %></span>
+    <span class="d-block">Quantidade de Convidados: <%= @order.guests_estimation %></span>
+    <span class="d-block">Valor Estimado: <%= @order.event_price %></span>
+    <hr class="divider">
+    <%= form_with(model: @order) do |f| %>
+      <div class="form-floating mb-2">
+        <%= f.select :payment_method_id, options_for_select(@order.payment_methods_options_for_select), { include_blank: true }, class: "form-select" %>
+        <%= f.label :payment_method_id, class: "form-label" %>
+      </div>
+      <div class="form-check form-switch">
+        <%= f.check_box :charge_fee, class: "form-check-input" %>
+        <%= f.label :charge_fee, class: "form-check-label" %>
+      </div>
+      <div class="form-check form-switch">
+        <%= f.check_box :grant_discount, class: "form-check-input" %>
+        <%= f.label :grant_discount, class: "form-check-label" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :extra_fee, class: "form-control" %>
+        <%= f.label :extra_fee, class: "form-label" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :discount, class: "form-control" %>
+        <%= f.label :discount, class: "form-label" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_area :budget_details, class: "form-control" %>
+        <%= f.label :budget_details, class: "form-label" %>
+      </div>
+      <div class="mb-2 d-flex">
+        <%= f.label :due_date, class: "d-inline me-2" %>
+        <%= f.date_field :due_date, class: "form-control form-control-sm d-inline", style: "max-width: 9rem;" %>
+      </div>
+      <%= f.hidden_field :budget, :value => @order.total_price %>
+      <div class="mb-2">
+        <%= f.submit "Aprovar Evento", class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+    <div>
+      <%= button_to "Cancelar Evento", canceled_order_path(@order), class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

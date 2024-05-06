@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :is_client?, only: %i[my]
   before_action :is_business_owner?, only: %i[index]
   before_action :set_event_type, only: %i[new create]
-  before_action :set_order, only: %i[show edit update]
+  before_action :set_order, only: %i[show edit update canceled]
   before_action :authenticate_user!, only: %i[new create edit update]
 
   def my
@@ -39,6 +39,20 @@ class OrdersController < ApplicationController
   end
 
   def update
+    if @order.update(order_params)
+      @order.approved! if current_user.role == 'business_owner'
+      flash[:notice] = 'Pedido atualizado com sucesso!'
+      redirect_to @order
+    else
+      flash.now[:notice] = 'Não foi possível atualizar o pedido.'
+      render 'edit'
+    end
+  end
+
+  def canceled
+    @order.canceled!
+    flash[:notice] = 'Pedido cancelado!'
+    redirect_to @order
   end
 
   private
@@ -73,7 +87,15 @@ class OrdersController < ApplicationController
       :guests_estimation,
       :event_details,
       :event_address,
-      :status
+      :status,
+      :payment_method_id,
+      :grant_discount,
+      :charge_fee,
+      :extra_fee,
+      :discount,
+      :budget_details,
+      :budget,
+      :due_date
     )
   end
 end

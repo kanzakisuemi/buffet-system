@@ -4,6 +4,7 @@ class EventType < ApplicationRecord
   has_many :orders
 
   validates :category, :name, :description, :minimal_people_capacity, :maximal_people_capacity, :default_duration_minutes, :food_menu, presence: true
+  validates :base_price, :weekend_fee, :per_person_fee, :per_person_weekend_fee, :per_hour_fee, :per_hour_weekend_fee, presence: true
 
   enum category: %i[corporate graduation wedding birthday other]
 

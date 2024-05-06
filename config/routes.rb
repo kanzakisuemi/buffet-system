@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   end
   resources :orders, only: %i[index show edit update] do
     get 'my', on: :collection
-    post 'approved', on: :member
     post 'canceled', on: :member
   end
   devise_for :users, controllers: { registrations: 'users/registrations' }

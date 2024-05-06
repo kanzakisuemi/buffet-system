@@ -18,14 +18,7 @@ pt-BR:
         state: Estado
         zip_code: CEP
         description: Descrição
-      payment_method:
-        payment_types:
-          credit_card: Cartão de Crédito
-          debit_card: Cartão de Débito
-          pix: Pix
-          bank_transfer: Transferência Bancária
-          bill: Boleto
-          cash: Dinheiro
+      payment_method: Método de Pagamento
       event_type:
         category: Categoria
         name: Nome
@@ -56,7 +49,17 @@ pt-BR:
         guests_estimation: Quantidade de Convidados
         event_details: Observações
         event_address: Endereço do Evento
+        charge_fee: Cobrar Taxa Extra
+        grant_discount: Conceder Desconto
+        extra_fee: Taxa Extra
+        discount: Desconto
+        budget_details: Detalhes do Orçamento
+        budget: Orçamento
+        due_date: Data de Vencimento
+        payment_method_id: Método de Pagamento
+        status: Status
         status:
           pending: Pendente
           approved: Aprovado
+          confirmed: Confirmado
           canceled: Cancelado

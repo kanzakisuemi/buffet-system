@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_01_053927) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_05_204638) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -100,7 +100,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_01_053927) do
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payment_method_id"
+    t.boolean "grant_discount", default: false
+    t.boolean "charge_fee", default: false
+    t.decimal "extra_fee", precision: 8, scale: 2
+    t.decimal "discount", precision: 8, scale: 2
+    t.text "budget_details"
+    t.decimal "budget", precision: 8, scale: 2
+    t.date "due_date"
     t.index ["event_type_id"], name: "index_orders_on_event_type_id"
+    t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -132,5 +141,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_01_053927) do
   add_foreign_key "buffets", "users"
   add_foreign_key "event_types", "buffets"
   add_foreign_key "orders", "event_types"
+  add_foreign_key "orders", "payment_methods"
   add_foreign_key "orders", "users"
 end

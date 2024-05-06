@@ -9,9 +9,31 @@
     <p><span class="bold">Data do Evento: </span><%= I18n.localize(@order.event_date) %></p>
     <p><span class="bold">Quantidade de Convidados: </span><%= @order.guests_estimation %></p>
     <p><span class="bold">Demandante: </span><%= @order.user.name %></p>
-    <button type="button" class="btn btn-lg btn-warning" data-bs-toggle="popover" data-bs-title="Status do Pedido" data-bs-content="Aguardando avaliação do Buffet :)">
-      <%= @order.humanized_status %> 
-    </button>
+    <% if @order.payment_method_id? %>
+      <p><span class="bold">Método de Pagamento: </span><%= @order.payment_method.name %></p>
+    <% end %>
+    <% if @order.charge_fee? %>
+      <p><span class="bold">Taxa Extra: </span>R$<%= @order.extra_fee %></p>
+    <% end %>
+    <% if @order.grant_discount? %>
+      <p><span class="bold">Desconto: </span>R$<%= @order.discount %></p>
+    <% end %>
+    <% if @order.charge_fee? || @order.grant_discount? %>
+      <p><span class="bold">Detalhes do Orçamento: </span><%= @order.budget_details %></p>
+    <% end %>
+    <% if @order.due_date? %>
+      <p><span class="bold">Data de Vencimento: </span><%= I18n.localize(@order.due_date) %></p>
+    <% end %>
+    <% if @order.budget? %>
+      <p><span class="bold">Orçamento: </span>R$<%= @order.budget %></p>
+    <% end %>
+    <% if current_user.client?  %>
+      <button type="button" class="btn btn-lg btn-warning" data-bs-toggle="popover" data-bs-title="Status do Pedido" data-bs-content="Aguardando avaliação do Buffet :)">
+        <%= @order.humanized_status %> 
+      </button>
+    <% elsif current_user.business_owner? %>
+      <%= link_to @order.humanized_status, edit_order_path(@order) %>
+    <% end %>
   </div>
 </div>
 
