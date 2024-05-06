@@ -6,10 +6,8 @@ class Order < ApplicationRecord
   before_validation :generate_code 
 
   validates :code, :user, :event_type, :event_date, :guests_estimation, :status, presence: true
-  # validates :receipt, :extra_fee, :discount, :due_date, presence: true, if: -> { status != 'pending' }
-  # validates :receipt, :extra_fee, :discount, :due_date,  presence: true, on: :update
-  # validates :receipt, :extra_fee, :discount, :due_date,  presence: true, on: :update, if: -> { status != 'pending' }
-
+  validates :due_date, comparison: { less_than: :event_date }, if: -> { due_date.present? }
+  validates :guests_estimation, numericality: { less_than_or_equal_to: ->(order) { order.event_type.maximal_people_capacity } }
 
   enum status: { pending: 0, approved: 1, confirmed: 2, canceled: 3 }
 
