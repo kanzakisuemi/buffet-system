@@ -202,4 +202,28 @@ RSpec.describe Buffet, type: :model do
       expect(result).to be true
     end
   end
+  describe '#associations' do
+    it 'has many event types' do
+      # esperar resposta no mattermost
+    end
+    it 'has many buffet payments' do
+      # esperar resposta no mattermost
+    end
+    it 'has many payment methods' do
+      # esperar resposta no mattermost
+    end
+    it 'buffet belongs to user - when user is nil' do
+      invalid_buffet = Buffet.new(user: nil)
+
+      expect(invalid_buffet).not_to be_valid
+    end
+    it 'buffet belongs to user - when user is defined' do
+      kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+      buffet = Buffet.new(user: kylie)
+
+      buffet.valid?
+
+      expect(buffet.errors.include?(:user)).to be false
+    end
+  end
 end

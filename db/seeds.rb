@@ -98,7 +98,13 @@ EventType.create!(
   food_menu: 'Entrada: Churros. Prato principal: Massas. Sobremesa: Bolo e sorvete.',
   alcoholic_drinks: true,
   decoration: true,
-  buffet: luis_f.buffet
+  buffet: luis_f.buffet,
+  base_price: 10000.00,
+  weekend_fee: 25,
+  per_person_fee: 90.00,
+  per_person_weekend_fee: 10,
+  per_hour_fee: 250.00,
+  per_hour_weekend_fee: 10
 )
 EventType.create!(
   category: 0,
@@ -112,7 +118,13 @@ EventType.create!(
   decoration: true,
   location_flexibility: true,
   parking_service: true,
-  buffet: luis_f.buffet
+  buffet: luis_f.buffet,
+  base_price: 10000.00,
+  weekend_fee: 25,
+  per_person_fee: 70.00,
+  per_person_weekend_fee: 10,
+  per_hour_fee: 70.00,
+  per_hour_weekend_fee: 10
 )
 EventType.create!(
   category: 1,
@@ -126,7 +138,13 @@ EventType.create!(
   decoration: true,
   location_flexibility: true,
   parking_service: false,
-  buffet: rafa.buffet
+  buffet: rafa.buffet,
+  base_price: 4000.00,
+  weekend_fee: 25,
+  per_person_fee: 40.00,
+  per_person_weekend_fee: 10,
+  per_hour_fee: 200.00,
+  per_hour_weekend_fee: 10
 )
 EventType.create!(
   category: 3,
@@ -140,7 +158,13 @@ EventType.create!(
   decoration: true,
   location_flexibility: true,
   parking_service: false,
-  buffet: rafa.buffet
+  buffet: rafa.buffet,
+  base_price: 8000.00,
+  weekend_fee: 25,
+  per_person_fee: 90.00,
+  per_person_weekend_fee: 10,
+  per_hour_fee: 100.00,
+  per_hour_weekend_fee: 10
 )
 EventType.create!(
   category: 2,
@@ -154,7 +178,13 @@ EventType.create!(
   decoration: true,
   location_flexibility: false,
   parking_service: true,
-  buffet: felipe.buffet
+  buffet: felipe.buffet,
+  base_price: 15000.00,
+  weekend_fee: 20,
+  per_person_fee: 70.00,
+  per_person_weekend_fee: 20,
+  per_hour_fee: 400.00,
+  per_hour_weekend_fee: 50
 )
 EventType.create!(
   category: 3,
@@ -168,7 +198,13 @@ EventType.create!(
   decoration: true,
   location_flexibility: false,
   parking_service: true,
-  buffet: felipe.buffet
+  buffet: felipe.buffet,
+  base_price: 9000.00,
+  weekend_fee: 10,
+  per_person_fee: 70.00,
+  per_person_weekend_fee: 20,
+  per_hour_fee: 400.00,
+  per_hour_weekend_fee: 50
 )
 EventType.create!(
   category: 2,
@@ -182,7 +218,13 @@ EventType.create!(
   decoration: true,
   location_flexibility: true,
   parking_service: true,
-  buffet: antonia.buffet
+  buffet: antonia.buffet,
+  base_price: 5000.00,
+  weekend_fee: 25,
+  per_person_fee: 60.00,
+  per_person_weekend_fee: 10,
+  per_hour_fee: 200.00,
+  per_hour_weekend_fee: 10
 )
 EventType.create!(
   category: 3,
@@ -196,6 +238,19 @@ EventType.create!(
   decoration: true,
   location_flexibility: true,
   parking_service: false,
-  buffet: antonia.buffet
+  buffet: antonia.buffet,
+  base_price: 1000.00,
+  weekend_fee: 20,
+  per_person_fee: 50.00,
+  per_person_weekend_fee: 20,
+  per_hour_fee: 100.00,
+  per_hour_weekend_fee: 50
 )
+
+# t.decimal "base_price", precision: 8, scale: 2
+# t.integer "weekend_fee"
+# t.decimal "per_person_fee", precision: 8, scale: 2
+# t.integer "per_person_weekend_fee"
+# t.decimal "per_hour_fee", precision: 8, scale: 2
+# t.integer "per_hour_weekend_fee"
 

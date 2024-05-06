@@ -37,6 +37,13 @@ describe 'business owner adds a event type' do
     fill_in 'Quantidade Máxima de Pessoas', with: 60
     fill_in 'Duração Padrão', with: 240
     fill_in 'Cardápio', with: 'Bolo, doces, salgados, refrigerante e suco'
+    fill_in 'Preço Base', with: '4000'
+    fill_in 'Taxa de Final de Semana (%)', with: '25'
+    fill_in 'Preço por Pessoa Excedente', with: '50'
+    fill_in 'Taxa de Final de Semana (%) por Pessoa Excedente', with: '10'
+    fill_in 'Preço por Hora Excedente', with: '300'
+    fill_in 'Taxa de Final de Semana (%) por Hora Excedente', with: '10'
+    
     check 'Bebidas Alcoólicas'
     check 'Estacionamento/Valet'
 

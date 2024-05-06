@@ -28,7 +28,13 @@ describe 'user tries to access' do
       food_menu: 'Bolo, doces, salgados, refrigerante e suco',
       alcoholic_drinks: true,
       parking_service: true,
-      buffet: kylie.buffet
+      buffet: kylie.buffet,
+      base_price: 1000.00,
+      weekend_fee: 20,
+      per_person_fee: 50.00,
+      per_person_weekend_fee: 20,
+      per_hour_fee: 100.00,
+      per_hour_weekend_fee: 50
     )
     allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('ABC00000')
     order = Order.create!(
@@ -82,7 +88,13 @@ describe 'user tries to access' do
       food_menu: 'Bolo, doces, salgados, refrigerante e suco',
       alcoholic_drinks: true,
       parking_service: true,
-      buffet: kylie.buffet
+      buffet: kylie.buffet,
+      base_price: 1000.00,
+      weekend_fee: 20,
+      per_person_fee: 50.00,
+      per_person_weekend_fee: 20,
+      per_hour_fee: 100.00,
+      per_hour_weekend_fee: 50
     )
     allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('ABC00000')
     order_1 = Order.create!(
