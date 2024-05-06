@@ -34,6 +34,11 @@
     <% elsif current_user.business_owner? %>
       <%= link_to @order.humanized_status, edit_order_path(@order) %>
     <% end %>
+    <% if current_user.client? && @order.approved? && (@order.due_date.future? || @order.due_date.today?) %>
+      <%= button_to "Confirmar Evento", confirmed_order_path(@order), class: "btn btn-primary" %>
+    <% elsif current_user.client? && @order.approved? && @order.due_date.past? %>
+      <p class="bold text-danger">O prazo de confirmação deste pedido passou :(</p>
+    <% end %>
   </div>
 </div>
 

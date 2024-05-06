@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :is_client?, only: %i[my]
   before_action :is_business_owner?, only: %i[index]
   before_action :set_event_type, only: %i[new create]
-  before_action :set_order, only: %i[show edit update canceled]
+  before_action :set_order, only: %i[show edit update canceled confirmed]
   before_action :authenticate_user!, only: %i[new create edit update]
 
   def my
@@ -47,6 +47,12 @@ class OrdersController < ApplicationController
       flash.now[:notice] = 'Não foi possível atualizar o pedido.'
       render 'edit'
     end
+  end
+
+  def confirmed
+    @order.confirmed!
+    flash[:notice] = 'Pedido confirmado!'
+    redirect_to @order
   end
 
   def canceled
