@@ -9,6 +9,8 @@ class Order < ApplicationRecord
   validates :due_date, comparison: { less_than: :event_date }, if: -> { due_date.present? }
   validates :guests_estimation, numericality: { less_than_or_equal_to: ->(order) { order.event_type.maximal_people_capacity } }
 
+  validate :event_date_is_future
+
   enum status: { pending: 0, approved: 1, confirmed: 2, canceled: 3 }
 
   def total_price
@@ -60,6 +62,13 @@ class Order < ApplicationRecord
   end
 
   private
+
+  def event_date_is_future
+    return if event_date.blank?
+    if event_date < Date.current
+      errors.add(:event_date, 'deve ser uma data futura')
+    end
+  end
 
   def generate_code
     self.code = SecureRandom.alphanumeric(8).upcase

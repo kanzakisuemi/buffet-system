@@ -129,5 +129,13 @@ RSpec.describe Order, type: :model do
 
       expect(result).to be true
     end
+    it 'event date must be in the future' do
+      order = Order.new(event_date: 1.day.ago)
+
+      order.valid?
+      result = order.errors.include?(:user)
+
+      expect(result).to be true
+    end
   end
 end
