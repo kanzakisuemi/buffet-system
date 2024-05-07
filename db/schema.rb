@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_05_204638) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_06_230757) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -89,6 +89,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_05_204638) do
     t.index ["buffet_id"], name: "index_event_types_on_buffet_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.integer "order_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_messages_on_order_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "event_type_id", null: false
     t.integer "user_id", null: false
@@ -140,6 +150,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_05_204638) do
   add_foreign_key "buffet_payments", "payment_methods"
   add_foreign_key "buffets", "users"
   add_foreign_key "event_types", "buffets"
+  add_foreign_key "messages", "orders"
+  add_foreign_key "messages", "users"
   add_foreign_key "orders", "event_types"
   add_foreign_key "orders", "payment_methods"
   add_foreign_key "orders", "users"

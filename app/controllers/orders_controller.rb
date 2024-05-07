@@ -33,6 +33,8 @@ class OrdersController < ApplicationController
 
   def show
     @same_date_orders = Order.where(event_date: @order.event_date).where.not(id: @order.id)
+    @messages = @order.messages
+    @message = Message.new
   end
 
   def edit

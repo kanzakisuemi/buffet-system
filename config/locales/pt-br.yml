@@ -63,3 +63,5 @@ pt-BR:
           approved: Aprovado
           confirmed: Confirmado
           canceled: Cancelado
+      message:
+        content: Mensagem

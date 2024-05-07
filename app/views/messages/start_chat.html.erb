@@ -1,0 +1,17 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="dean-modal" style="height: 40%;">
+    <div class="mb-3">
+      <%= link_to "", :back, class: "btn btn-close btn-sm" %>
+    </div>
+
+    <%= form_with(model: [ @order, @message ]) do |f| %>
+      <div class="form-floating mb-3">
+        <%= f.text_area :content, class: "form-control", style: "height: 50%;" %>
+        <%= f.label :content, class: "d-none" %>
+      </div>
+
+      <%= f.submit "Enviar Mensagem", class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>
+

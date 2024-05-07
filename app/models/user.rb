@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one :buffet
   has_many :orders
+  has_many :messages
 
   validates :name, :role, presence: true
   validates :social_security_number, presence: true, on: :update, if: :client?

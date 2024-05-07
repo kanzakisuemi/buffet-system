@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     delete :remove_picture, on: :member
   end
   resources :orders, only: %i[index show edit update] do
+    resources :messages, only: %i[index create] do
+      get 'start_chat', on: :collection
+    end
     get 'my', on: :collection
     post 'confirmed', on: :member
     post 'canceled', on: :member

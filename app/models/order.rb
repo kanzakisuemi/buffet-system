@@ -3,6 +3,8 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :payment_method, optional: true
 
+  has_many :messages, dependent: :delete_all
+
   before_validation :generate_code 
 
   validates :code, :user, :event_type, :event_date, :guests_estimation, :status, presence: true
