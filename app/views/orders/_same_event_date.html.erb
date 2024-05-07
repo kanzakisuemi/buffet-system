@@ -1,0 +1,15 @@
+<% if @same_date_orders.any? %>
+  <div class="alert alert-primary d-flex align-items-center" >
+    <%= image_tag "calendar_date_event_icon", size: "35", class: "me-2" %>
+    <div>
+      Existe outro evento marcado para a mesma data. Confira: 
+      <% @same_date_orders.each do |order| %>
+        <%= link_to order, class: "d-block" do %>
+          <%= content_tag(:span, order.code) %> | 
+          <%= content_tag(:span, order.event_type.humanized_category) %> | 
+          <%= content_tag(:span, order.user.name) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
