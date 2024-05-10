@@ -56,7 +56,7 @@
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="form-floating mb-3">
-          <%= f.text_field :social_security_number, autofocus: true, class: "form-control", placeholder: "___.___.___-__", minlength: 13, maxlength: 15, "data-controller": "social_security_number" %>
+          <%= f.text_field :social_security_number, autofocus: true, class: "form-control", "data-controller": "social-security-number" %>
           <%= f.label :social_security_number, class: "form-label" %>
         </div>
 

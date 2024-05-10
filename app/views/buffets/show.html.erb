@@ -1,4 +1,4 @@
-<div class="card border-dark mx-auto mb-5 mt-5" style="max-width: 30rem;">
+<div class="card border-dark mx-auto mb-5 mt-5" style="max-width: 40rem;">
   <div class="card-body">  
     
     <div class="d-flex justify-content-between">
@@ -15,12 +15,12 @@
     <% end %>
     <div class="d-flex justify-content-between">
       <span>CNPJ:</span>
-      <span><%= @buffet.company_registration_number %></span>
+      <span data-controller="company-registration-number"><%= @buffet.company_registration_number %></span>
     </div>
     <hr class="divider"/>
     <div class="d-flex justify-content-between">
       <span>Telefone:</span>
-      <span><%= @buffet.phone %></span>
+      <span data-controller="phone"><%= @buffet.phone %></span>
     </div>
     <hr class="divider"/>
     <div class="d-flex justify-content-between">
@@ -50,7 +50,7 @@
     <hr class="divider"/>
     <div class="d-flex justify-content-between">
       <span>CEP:</span>
-      <span><%= @buffet.zip_code %></span>
+      <span data-controller="zip-code"><%= @buffet.zip_code %></span>
     </div>
     <hr class="divider"/>
     <div class="d-flex justify-content-between">

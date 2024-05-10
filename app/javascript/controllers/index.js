@@ -4,8 +4,26 @@
 
 import { application } from "./application"
 
+import CleanInputController from "./clean_input_controller"
+application.register("clean-input", CleanInputController)
+
+import CompanyRegistrationNumberController from "./company_registration_number_controller"
+application.register("company-registration-number", CompanyRegistrationNumberController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import MoneyController from "./money_controller"
+application.register("money", MoneyController)
+
+import PhoneController from "./phone_controller"
+application.register("phone", PhoneController)
+
 import SocialSecurityNumberController from "./social_security_number_controller"
-application.register("social_security_number", SocialSecurityNumberController)
+application.register("social-security-number", SocialSecurityNumberController)
+
+import TurboModalController from "./turbo_modal_controller"
+application.register("turbo-modal", TurboModalController)
+
+import ZipCodeController from "./zip_code_controller"
+application.register("zip-code", ZipCodeController)

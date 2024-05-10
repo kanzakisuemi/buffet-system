@@ -9,11 +9,11 @@
     <%= f.label :corporate_name %>
   </div>
   <div class="form-floating mb-2">
-    <%= f.text_field :company_registration_number, class: "form-control" %>
+    <%= f.text_field :company_registration_number, class: "form-control", "data-controller": "company-registration-number" %>
     <%= f.label :company_registration_number %>
   </div>
   <div class="form-floating mb-2">
-    <%= f.text_field :phone, class: "form-control" %>
+    <%= f.text_field :phone, class: "form-control", "data-controller": "phone" %>
     <%= f.label :phone %>
   </div>
   <div class="form-floating mb-2">
@@ -33,11 +33,11 @@
     <%= f.label :city %>
   </div>
   <div class="form-floating mb-2">
-    <%= f.text_field :state, class: "form-control" %>
+    <%= f.text_field :state, class: "form-control text-uppercase", maxlength: "2" %>
     <%= f.label :state %>
   </div>
   <div class="form-floating mb-2">
-    <%= f.text_field :zip_code, class: "form-control" %>
+    <%= f.text_field :zip_code, class: "form-control", "data-controller": "zip-code" %>
     <%= f.label :zip_code %>
   </div>
   <div class="form-floating mb-2">
