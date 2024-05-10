@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :set_event_type, only: %i[new create]
   before_action :set_order, only: %i[show edit update canceled confirmed]
   before_action :authenticate_user!, only: %i[new create edit update]
+  after_action :cancel_when_proposal_expire, only: %i[my index]
 
   def my
     @orders = Order.where(user: current_user)
@@ -64,6 +65,15 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def cancel_when_proposal_expire
+    approved_orders = @orders.where(status: :approved)
+    approved_orders.each do |approved_order|
+      if approved_order.due_date?
+        approved_order.due_date < Date.today ? approved_order.canceled! : return
+      end
+    end
+  end
 
   def is_client?
     if user_signed_in? && current_user.role == 'client'
