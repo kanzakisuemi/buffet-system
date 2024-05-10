@@ -7,4 +7,11 @@ class Buffet < ApplicationRecord
 
   validates :social_name, :corporate_name, :company_registration_number, :phone, :email, :address, :neighborhood, :city, :state, :zip_code, :description, :user_id, presence: true
   validates :user_id, :company_registration_number, uniqueness: true
+  validate :check_company_registration_number
+
+  private
+
+  def check_company_registration_number
+    errors.add(:company_registration_number, 'deve ser válido') unless CNPJ.valid?(company_registration_number)
+  end
 end
