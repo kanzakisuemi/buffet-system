@@ -17,30 +17,11 @@
   width: 600px;
 }
 
-.cancel-button {
-  background-color: #1530ff;
-  font-size: 12px;
-  color: white;
-  padding: 4px 8px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-  text-decoration: none;
-}
-.cancel-button:hover {
-  background-color: #2640fe;
+.modal-lg {
+  height: 700px !important;
+  width: 900px !important;
 }
 
 .dean-modal-footer {  
   position: relative;
-}
-
-.modal-close-btn {
-  border-radius: 20px;
-  height: 27px;
-  width: 27px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
 }

@@ -1,25 +1,30 @@
 <h3 class="text-center mt-5">Buffets</h3>
 
 <% if @results.any? %>
-  <div id="search-results" class="text-center">
+  <div id="search-results" class="list-group">
     <% @results.each do |buffet| %>
-      <%= link_to buffet, class: "d-block" do %>
-        <%= content_tag(:span, "=>") %> |
-        <%= content_tag(:span, buffet.social_name) %> |
-        <%= content_tag(:span, buffet.city) %> |
-        <%= content_tag(:span, buffet.state) %>
+      <%= link_to buffet, class: "list-group-item list-group-item-action active" do %>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= buffet.social_name %></h5>
+          <small class="text-body-secondary"><%= buffet.email %></small>
+        </div>
+        <p class="mb-1"><%= buffet.city %> - <%= buffet.state %></p>
+        <small class="text-body-secondary"><%= buffet.description %></small>
       <% end %>
     <% end %>
   </div>
 <% end %>
 
 <% if @buffets.any? %>
-  <div id="buffets" class="text-center">
+  <div id="buffets" class="list-group">
     <% @buffets.each do |buffet| %>
-      <%= link_to buffet, class: "d-block" do %>
-        <%= content_tag(:span, buffet.social_name) %> |
-        <%= content_tag(:span, buffet.city) %> |
-        <%= content_tag(:span, buffet.state) %>
+      <%= link_to buffet, class: "list-group-item list-group-item-action" do %>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= buffet.social_name %></h5>
+          <small class="text-body-secondary"><%= buffet.email %></small>
+        </div>
+        <p class="mb-1"><%= buffet.city %> - <%= buffet.state %></p>
+        <small class="text-body-secondary"><%= buffet.description %></small>
       <% end %>
     <% end %>
   </div>
@@ -28,4 +33,3 @@
 <% if @buffets.empty? && @results.empty? %>
   <p class="text-center">Não existem buffets cadastrados</p>
 <% end %>
-
