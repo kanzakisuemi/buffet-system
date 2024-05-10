@@ -4,29 +4,8 @@ class BuffetsController < ApplicationController
 
   def index
     @buffets = Buffet.all
-    @results = []
-
-    if params[:search].present?
-      query = params[:search].downcase
-
-      found_buffets = @buffets.where("LOWER(social_name) LIKE :query OR LOWER(city) LIKE :query", query: "%#{query}%")
-
-      if found_buffets.exists?
-        @results = found_buffets.order(social_name: :asc)
-      else
-        query_as_sym = query.to_sym
-
-        if EventType.categories.key?(query_as_sym)
-          buffet_ids = EventType.where(category: query_as_sym).pluck(:buffet_id)
-          @results = @buffets.where(id: buffet_ids).order(social_name: :asc)
-        else
-          buffet_ids = EventType.where("LOWER(name) LIKE ?", "%#{query}%").pluck(:buffet_id)
-          @results = @buffets.where(id: buffet_ids).order(social_name: :asc)
-        end
-      end
-
-      @buffets = @buffets.where.not(id: @results.pluck(:id)).order(social_name: :asc)
-    end
+    params[:search].present? ? @results = search_buffets : @results = []
+    @buffets = @buffets.where.not(id: @results.pluck(:id)).order(social_name: :asc)
   end
 
   def show
@@ -72,6 +51,26 @@ class BuffetsController < ApplicationController
   end
 
   private
+
+  def search_buffets
+    query = params[:search].downcase
+
+    found_buffets = @buffets.where("LOWER(social_name) LIKE :query OR LOWER(city) LIKE :query", query: "%#{query}%")
+
+    if found_buffets.exists?
+      @results = found_buffets.order(social_name: :asc)
+    else
+      query_as_sym = query.to_sym
+
+      if EventType.categories.key?(query_as_sym)
+        buffet_ids = EventType.where(category: query_as_sym).pluck(:buffet_id)
+        @results = @buffets.where(id: buffet_ids).order(social_name: :asc)
+      else
+        buffet_ids = EventType.where("LOWER(name) LIKE ?", "%#{query}%").pluck(:buffet_id)
+        @results = @buffets.where(id: buffet_ids).order(social_name: :asc)
+      end
+    end
+  end
 
   def is_business_owner?
     redirect_to root_path unless current_user && current_user.business_owner?
