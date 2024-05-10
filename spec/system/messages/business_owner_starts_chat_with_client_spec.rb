@@ -9,7 +9,7 @@ describe 'business owner starts chat with client' do
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',

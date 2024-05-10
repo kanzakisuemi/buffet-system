@@ -6,7 +6,7 @@ describe 'user searches' do
     buffet_kylie = Buffet.create!(
       social_name: 'Buffet da Kylie',
       corporate_name: 'Buffet da Kylie LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'support@khybuffet.com',
       address: 'Rua das Flores, 230',
@@ -21,7 +21,7 @@ describe 'user searches' do
     buffet_kendall = Buffet.create!(
       social_name: 'Buffet da Kendall',
       corporate_name: 'Buffet da Kendall LTDA',
-      company_registration_number: '12345678978009',
+      company_registration_number: CNPJ.generate,
       phone: '996345000',
       email: 'support@buffetkendall.com',
       address: 'Rua dos Cactos, 780',
@@ -49,7 +49,7 @@ describe 'user searches' do
     buffet_kylie = Buffet.create!(
       social_name: 'Buffet da Kylie',
       corporate_name: 'Buffet da Kylie LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'support@khybuffet.com',
       address: 'Rua das Flores, 230',
@@ -64,7 +64,7 @@ describe 'user searches' do
     buffet_kendall = Buffet.create!(
       social_name: 'Buffet da Kendall',
       corporate_name: 'Buffet da Kendall LTDA',
-      company_registration_number: '12345678978009',
+      company_registration_number: CNPJ.generate,
       phone: '996345000',
       email: 'support@buffetkendall.com',
       address: 'Rua dos Cactos, 780',
@@ -92,7 +92,7 @@ describe 'user searches' do
     buffet_kylie = Buffet.create!(
       social_name: 'Buffet da Kylie',
       corporate_name: 'Buffet da Kylie LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'support@khybuffet.com',
       address: 'Rua das Flores, 230',
@@ -107,7 +107,7 @@ describe 'user searches' do
     buffet_kendall = Buffet.create!(
       social_name: 'Buffet da Kendall',
       corporate_name: 'Buffet da Kendall LTDA',
-      company_registration_number: '12345678978009',
+      company_registration_number: CNPJ.generate,
       phone: '996345000',
       email: 'support@buffetkendall.com',
       address: 'Rua dos Cactos, 780',
@@ -159,7 +159,7 @@ describe 'user searches' do
     buffet_kylie = Buffet.create!(
       social_name: 'Buffet da Kylie',
       corporate_name: 'Buffet da Kylie LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'support@khybuffet.com',
       address: 'Rua das Flores, 230',
@@ -174,7 +174,7 @@ describe 'user searches' do
     buffet_kendall = Buffet.create!(
       social_name: 'Buffet da Kendall',
       corporate_name: 'Buffet da Kendall LTDA',
-      company_registration_number: '12345678978009',
+      company_registration_number: CNPJ.generate,
       phone: '996345000',
       email: 'support@buffetkendall.com',
       address: 'Rua dos Cactos, 780',
@@ -189,7 +189,7 @@ describe 'user searches' do
     buffet_julia = Buffet.create!(
       social_name: 'As Festas da Ju',
       corporate_name: 'As Festas da Ju LTDA',
-      company_registration_number: '18975600978008',
+      company_registration_number: CNPJ.generate,
       phone: '996347600',
       email: 'support@kanzaki.com',
       address: 'Rua dos Morros, 450',

@@ -3,10 +3,11 @@ require 'rails_helper'
 describe 'user sees buffet details' do
   it 'as business owner successfully through navbar' do
     kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    cnpj = CNPJ.generate
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: cnpj,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',
@@ -28,7 +29,7 @@ describe 'user sees buffet details' do
     expect(current_path).to eq(buffet_path(kylie.buffet))
     expect(page).to have_content('Buffet da Maria')
     expect(page).to have_content('Buffet da Maria LTDA')
-    expect(page).to have_content('12345678910111')
+    expect(page).to have_content(cnpj)
     expect(page).to have_content('996348000')
     expect(page).to have_content('maria@email.com')
     expect(page).to have_content('Rua das Flores, 230')
@@ -45,7 +46,7 @@ describe 'user sees buffet details' do
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',
@@ -67,10 +68,11 @@ describe 'user sees buffet details' do
   it 'as client successfully' do
     kendall = User.create!(name: 'Kendall Jenner', email: 'kendall@jenner.com', password: 'password123', role: 1)
     kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    cnpj = CNPJ.generate
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: cnpj,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',
@@ -91,7 +93,7 @@ describe 'user sees buffet details' do
     click_on 'Buffet da Maria | São Paulo | SP'
     expect(page).to have_content('Buffet da Maria')
     expect(page).to have_content('Buffet da Maria LTDA')
-    expect(page).to have_content('12345678910111')
+    expect(page).to have_content(cnpj)
     expect(page).to have_content('996348000')
     expect(page).to have_content('maria@email.com')
     expect(page).to have_content('Rua das Flores, 230')
@@ -104,10 +106,11 @@ describe 'user sees buffet details' do
   end
   it 'as visitor successfully and does not see corporate name' do
     kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    cnpj = CNPJ.generate
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: cnpj,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',
@@ -127,7 +130,7 @@ describe 'user sees buffet details' do
     click_on 'Buffet da Maria | São Paulo | SP'
     expect(page).to have_content('Buffet da Maria')
     expect(page).not_to have_content('Buffet da Maria LTDA')
-    expect(page).to have_content('12345678910111')
+    expect(page).to have_content(cnpj)
     expect(page).to have_content('996348000')
     expect(page).to have_content('maria@email.com')
     expect(page).to have_content('Rua das Flores, 230')

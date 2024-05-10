@@ -20,7 +20,7 @@ antonia = User.create!(name: 'Antonia Grassano', email: 'antonia@angra.com', pas
 Buffet.create!(
   social_name: 'Festas Criativas', 
   corporate_name: 'Tereza Kanzaki Festas LTDA',
-  company_registration_number: '12366710987123',
+  company_registration_number: CNPJ.generate,
   phone: '11987654321',
   email: 'festas@suporte.com',
   address: 'Rua das Margaridas, 1070',
@@ -34,7 +34,7 @@ Buffet.create!(
 Buffet.create!(
   social_name: 'Planalto', 
   corporate_name: 'Buffet Planalto LTDA',
-  company_registration_number: '67902479221123',
+  company_registration_number: CNPJ.generate,
   phone: '4333385038',
   email: 'contato@planalto.com',
   address: 'Av. Tiradentes, 6429',
@@ -48,7 +48,7 @@ Buffet.create!(
 Buffet.create!(
   social_name: 'Baby Buffet', 
   corporate_name: 'Bruschi SA',
-  company_registration_number: '54094456090823',
+  company_registration_number: CNPJ.generate,
   phone: '4333367098',
   email: 'suporte@babybuffet.com',
   address: 'Rua Santiago, 581',
@@ -62,7 +62,7 @@ Buffet.create!(
 Buffet.create!(
   social_name: 'Monte Líbano', 
   corporate_name: 'Monte Líbano Restaurante e Buffet LTDA',
-  company_registration_number: '88909284877622',
+  company_registration_number: CNPJ.generate,
   phone: '4133309067',
   email: 'kuis@montelibano.com',
   address: 'Rua dos Libaneses, 670',
@@ -76,7 +76,7 @@ Buffet.create!(
 Buffet.create!(
   social_name: 'Angra', 
   corporate_name: 'Angra MEI',
-  company_registration_number: '89873956121456',
+  company_registration_number: CNPJ.generate,
   phone: '4333301264',
   email: 'antonia@mail.com',
   address: 'Rua do Aurora, 508',

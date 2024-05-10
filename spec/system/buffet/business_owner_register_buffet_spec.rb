@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'business owner registers buffet' do
   it 'successfully right after signing up' do
+    cnpj = CNPJ.generate
     visit root_path
 
     click_on 'Entrar'
@@ -20,7 +21,7 @@ describe 'business owner registers buffet' do
     
     fill_in 'Nome Social', with: 'Buffet da Maria'
     fill_in 'Razão Social', with: 'Buffet da Maria LTDA'
-    fill_in 'CNPJ', with: '12345678910111'
+    fill_in 'CNPJ', with: cnpj
     fill_in 'Telefone', with: '996348000'
     fill_in 'E-mail', with: 'maria@email.com'
     fill_in 'Endereço', with: 'Rua das Flores, 230'
@@ -34,7 +35,7 @@ describe 'business owner registers buffet' do
     expect(current_path).to eq(buffet_path(Buffet.last))
     expect(page).to have_content('Buffet da Maria')
     expect(page).to have_content('Buffet da Maria LTDA')
-    expect(page).to have_content('12345678910111')
+    expect(page).to have_content(cnpj)
     expect(page).to have_content('996348000')
     expect(page).to have_content('maria@email.com')
     expect(page).to have_content('Rua das Flores, 230')
@@ -50,6 +51,7 @@ describe 'business owner registers buffet' do
     PaymentMethod.create!(name: 'Dinheiro')
     PaymentMethod.create!(name: 'Cartão de Crédito')
     PaymentMethod.create!(name: 'Cartão de Débito')
+    cnpj = CNPJ.generate
 
     login_as(kylie)
     visit root_path
@@ -58,7 +60,7 @@ describe 'business owner registers buffet' do
     
     fill_in 'Nome Social', with: 'Buffet da Maria'
     fill_in 'Razão Social', with: 'Buffet da Maria LTDA'
-    fill_in 'CNPJ', with: '12345678910111'
+    fill_in 'CNPJ', with: cnpj
     fill_in 'Telefone', with: '996348000'
     fill_in 'E-mail', with: 'maria@email.com'
     fill_in 'Endereço', with: 'Rua das Flores, 230'
@@ -76,7 +78,7 @@ describe 'business owner registers buffet' do
     expect(current_path).to eq(buffet_path(Buffet.last))
     expect(page).to have_content('Buffet da Maria')
     expect(page).to have_content('Buffet da Maria LTDA')
-    expect(page).to have_content('12345678910111')
+    expect(page).to have_content(cnpj)
     expect(page).to have_content('996348000')
     expect(page).to have_content('maria@email.com')
     expect(page).to have_content('Rua das Flores, 230')

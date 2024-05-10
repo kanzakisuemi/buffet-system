@@ -3,10 +3,11 @@ require 'rails_helper'
 describe 'business owner edits buffet' do
   it 'adding payment methods successfully' do
     kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+    cnpj = CNPJ.generate
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: cnpj,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',
@@ -33,7 +34,7 @@ describe 'business owner edits buffet' do
 
     expect(page).to have_field('Nome Social', with: 'Buffet da Maria')
     expect(page).to have_field('Razão Social', with: 'Buffet da Maria LTDA')
-    expect(page).to have_field('CNPJ', with: '12345678910111')
+    expect(page).to have_field('CNPJ', with: cnpj)
     expect(page).to have_field('Telefone', with: '996348000')
     expect(page).to have_field('E-mail', with: 'maria@email.com')
     expect(page).to have_field('Endereço', with: 'Rua das Flores, 230')
@@ -50,7 +51,7 @@ describe 'business owner edits buffet' do
     expect(page).to have_content('Editar Buffet')
     expect(page).to have_content('Buffet da Maria')
     expect(page).to have_content('Buffet da Maria LTDA')
-    expect(page).to have_content('12345678910111')
+    expect(page).to have_content(cnpj)
     expect(page).to have_content('996348000')
     expect(page).to have_content('maria@email.com')
     expect(page).to have_content('Rua das Flores, 230')

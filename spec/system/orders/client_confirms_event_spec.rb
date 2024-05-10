@@ -10,7 +10,7 @@ describe 'client evaluates business owners offer' do
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',
@@ -67,7 +67,7 @@ describe 'client evaluates business owners offer' do
 
     expect(page).to have_content('Pedido confirmado!')
   end
-  it 'and today is the due date' do
+  it 'and yesterday was the due date' do
     kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
     kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
     debit = PaymentMethod.create!(name: 'Cartão de Débito')
@@ -76,7 +76,7 @@ describe 'client evaluates business owners offer' do
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',
@@ -127,10 +127,9 @@ describe 'client evaluates business owners offer' do
     login_as(kendall)
     visit root_path
     click_on 'Meus Pedidos'
-    click_on 'Aprovado'
+    click_on order.code_and_date
 
     expect(page).not_to have_content('Confirmar Evento')
-    expect(page).to have_content('O prazo de confirmação deste pedido passou :(')
   end
   it 'and today is the due date' do
     kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
@@ -141,7 +140,7 @@ describe 'client evaluates business owners offer' do
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',

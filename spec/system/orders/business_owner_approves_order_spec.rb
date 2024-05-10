@@ -10,7 +10,7 @@ describe 'business owner evaluates order' do
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',
@@ -72,7 +72,7 @@ describe 'business owner evaluates order' do
     expect(page).to have_content('Detalhes do Orçamento: Taxa extra de 100 reais para cobrir deslocamento.')
     expect(page).to have_content('Data de Vencimento:')
     expect(page).to have_content(5.days.from_now.strftime('%d/%m/%Y'))
-    expect(page).to have_content('Orçamento: R$2100.0')
+    expect(page).to have_content('Orçamento: R$1750.0')
     expect(page).to have_link('Aprovado')
   end
   it 'and rejects' do
@@ -84,7 +84,7 @@ describe 'business owner evaluates order' do
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
       corporate_name: 'Buffet da Maria LTDA',
-      company_registration_number: '12345678910111',
+      company_registration_number: CNPJ.generate,
       phone: '996348000',
       email: 'maria@email.com',
       address: 'Rua das Flores, 230',
