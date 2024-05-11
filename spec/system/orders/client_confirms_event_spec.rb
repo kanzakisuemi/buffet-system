@@ -120,16 +120,18 @@ describe 'client evaluates business owners offer' do
       extra_fee: 100.00,
       discount: nil,
       budget_details: 'Taxa extra de 100 reais para cobrir deslocamento.',
-      due_date: 1.day.ago,
+      due_date: 1.day.from_now,
       status: 1
     )
     
-    login_as(kendall)
-    visit root_path
-    click_on 'Meus Pedidos'
-    click_on order.code_and_date
+    travel_to 2.days.from_now do
+      login_as(kendall)
+      visit root_path
+      click_on 'Meus Pedidos'
+      click_on order.code_and_date
 
-    expect(page).not_to have_content('Confirmar Evento')
+      expect(page).not_to have_content('Confirmar Evento')
+    end
   end
   it 'and today is the due date' do
     kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
