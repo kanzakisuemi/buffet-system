@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "modal" do %>
-  <div class="dean-modal">
+  <div class="dean-modal modal-lg">
     <div class="mb-3 ">
       <%= link_to "", :back, class: "btn btn-close btn-sm" %>
     </div>
@@ -16,11 +16,11 @@
       <% @event_types.each do |event_type| %>
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= event_type.id %>" aria-expanded="true" aria-controls="collapse<%= event_type.id %>">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= event_type.id %>" aria-expanded="false" aria-controls="collapse<%= event_type.id %>">
               <%= event_type.name %>
             </button>
           </h2>
-          <div id="collapse<%= event_type.id %>" class="accordion-collapse collapse hide">
+          <div id="collapse<%= event_type.id %>" class="accordion-collapse collapse">
             <div class="accordion-body">
               <p><strong>Categoria:</strong> <%= event_type.humanized_category %></p>
               <p><strong>Descrição:</strong> <%= event_type.description %></p>

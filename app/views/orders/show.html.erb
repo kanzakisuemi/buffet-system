@@ -28,19 +28,40 @@
       <p><span class="bold">Orçamento: </span>R$<%= @order.budget %></p>
     <% end %>
     <% if current_user.client? %>
-      <button type="button" class="btn btn-secondary"
-              data-bs-toggle="tooltip" data-bs-placement="right"
-              data-bs-custom-class="custom-tooltip"
-              data-bs-title="Aguardando avaliação do Buffet :)">
-        <%= @order.humanized_status %> 
-      </button>
+      <% if @order.pending? %>
+        <button type="button" class="btn btn-secondary"
+                data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="Aguardando avaliação do Buffet :)">
+          <%= @order.humanized_status %> 
+        </button>
+      <% elsif @order.approved? %>
+        <button type="button" class="btn btn-secondary"
+                data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="O seu pedido já foi avaliado e o orçamento já está disponível :)">
+          <%= @order.humanized_status %> 
+        </button>
+      <% elsif @order.confirmed? %>
+        <button type="button" class="btn btn-secondary"
+                data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="O evento foi confirmado, agora só aguardar o grande dia :)">
+          <%= @order.humanized_status %> 
+        </button>
+      <% elsif @order.canceled? %>
+        <button type="button" class="btn btn-secondary"
+                data-bs-toggle="tooltip" data-bs-placement="right"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="O pedido foi cancelado :(">
+          <%= @order.humanized_status %> 
+        </button>
+      <% end %>
     <% elsif current_user.business_owner? %>
       <%= link_to @order.humanized_status, edit_order_path(@order) %>
     <% end %>
     <% if current_user.client? && @order.approved? && (@order.due_date.future? || @order.due_date.today?) %>
       <%= button_to "Confirmar Evento", confirmed_order_path(@order), class: "btn btn-primary" %>
-    <% elsif current_user.client? && @order.approved? && @order.due_date.past? %>
-      <p class="bold text-danger">O prazo de confirmação deste pedido passou :(</p>
     <% end %>
 
     <% if current_user.business_owner? && @order.messages.empty? %>

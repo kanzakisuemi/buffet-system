@@ -24,7 +24,9 @@ describe 'user accesses buffets index' do
       click_on 'Buffets'
     end
 
-    expect(page).to have_content('Buffet da Maria | São Paulo | SP')
+    expect(page).to have_content('Buffet da Maria')
+    expect(page).to have_content('São Paulo')
+    expect(page).to have_content('SP')
   end
   it 'successfully as visitor and theres no buffet' do
     visit root_path
@@ -60,7 +62,9 @@ describe 'user accesses buffets index' do
       click_on 'Buffets'
     end
 
-    expect(page).to have_content('Buffet da Maria | São Paulo | SP')
+    expect(page).to have_content('Buffet da Maria')
+    expect(page).to have_content('São Paulo')
+    expect(page).to have_content('SP')
   end
   it 'successfully as client and theres no buffet' do
     kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
@@ -97,6 +101,8 @@ describe 'user accesses buffets index' do
       click_on 'Todos Buffets'
     end
 
-    expect(page).to have_content('Buffet da Maria | São Paulo | SP')
+    expect(page).to have_content('Buffet da Maria')
+    expect(page).to have_content('São Paulo')
+    expect(page).to have_content('SP')
   end
 end

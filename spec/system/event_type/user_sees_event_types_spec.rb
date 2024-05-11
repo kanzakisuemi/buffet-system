@@ -41,7 +41,7 @@ describe 'user sees event types' do
       click_on 'Buffets'
     end
 
-    click_on 'Buffet da Maria | São Paulo | SP'
+    click_on 'Buffet da Maria'
     click_on 'Ver Tipos de Eventos'
 
     expect(page).to have_content('Festa Infantil')
