@@ -4,7 +4,7 @@ ruby "3.1.2"
 ### Set Up
 ```
 bin/setup
-
+RAILS_ENV=development bundle exec rake assets:precompile
 ```
 ## Cade Buffet? API
 ### Introduction
