@@ -15,11 +15,15 @@ This is an Open Source API. Authentication is not required for further queries.
 Cade Buffet? provides only one encoding for you to render the data, which is **JSON**.
 ### Resources
 **Buffets**
+
 We call Buffets, the catering companies.
+
 **Endpoints**
+
 + `/api/v1/buffets/`-- get all the buffet resources
 + `/api/v1/buffet/:id/`-- get a specific buffet resource
 + `/api/v1/buffets?search=example`-- search for a buffet's social name
+
 **Example request:**
 ```
 http http://localhost:3000/api/v1/buffets/1/
@@ -56,9 +60,13 @@ Content-Type: application/json
 + `events_per_day` integer -- the maximum number of events this Buffet can host per day
 
 **Event Types**
+
 We call Event Types, the variety of events a Buffet can cater.
+
 **Endpoints**
+
 + `/api/v1/buffet/:id/event_types/`-- get all the event type resources, from a specific buffet
+
 **Example request:**
 ```
 http http://localhost:3000/api/v1/buffets/1/event_types/
