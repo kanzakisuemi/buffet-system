@@ -67,7 +67,7 @@ We call Event Types, the variety of events a Buffet can cater.
 
 + `/api/v1/buffet/:id/event_types/`-- get all the event type resources, from a specific buffet
 + `/api/v1/event_types/:id/available?`-- check availability for an event on a specific date w/ certain guests amount
-  - params: { order: { event_type_id: integer, event_date: date, guests_estimation: integer } } 
+  - `params: { order: { event_type_id: integer, event_date: date, guests_estimation: integer } }` 
 
 **Example request:**
 ```
