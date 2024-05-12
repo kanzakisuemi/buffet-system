@@ -3,7 +3,8 @@
 ruby "3.1.2"
 ### Set Up
 ```
-rails db:setup
+bin/setup
+
 ```
 ## Cade Buffet? API
 ### Introduction
