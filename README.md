@@ -66,6 +66,7 @@ We call Event Types, the variety of events a Buffet can cater.
 **Endpoints**
 
 + `/api/v1/buffet/:id/event_types/`-- get all the event type resources, from a specific buffet
++ `/api/v1/event_types/:id/available?order[event_type_id]=1&order[event_date]=2024-05-17&order[guests_estimation]=210`
 
 **Example request:**
 ```
