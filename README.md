@@ -2,6 +2,8 @@
 ### Version
 ruby "3.1.2"
 ### Set Up
+This app is using [Yarn](https://classic.yarnpkg.com/en/docs/getting-started)
+https://classic.yarnpkg.com/en/docs/getting-started
 ```
 bin/setup
 rake assets:precompile
