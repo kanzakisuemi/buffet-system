@@ -14,7 +14,7 @@ describe 'business owner edits buffet' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -41,7 +41,7 @@ describe 'business owner edits buffet' do
     expect(page).to have_field('Bairro', with: 'Jardim das Flores')
     expect(page).to have_field('Cidade', with: 'São Paulo')
     expect(page).to have_field('Estado', with: 'SP')
-    expect(page).to have_field('CEP', with: '123456')
+    expect(page).to have_field('CEP', with: '12345678')
     expect(page).to have_field('Descrição', with: 'Buffet para festas infantis e de adultos')
     check 'Cartão de Crédito'
     check 'Cartão de Débito'
@@ -58,7 +58,7 @@ describe 'business owner edits buffet' do
     expect(page).to have_content('Jardim das Flores')
     expect(page).to have_content('São Paulo')
     expect(page).to have_content('SP')
-    expect(page).to have_content('123456')
+    expect(page).to have_content('12345678')
     expect(page).to have_content('Buffet para festas infantis e de adultos')
     expect(page).to have_content('Kylie Kristen Jenner')
     expect(page).to have_content('Cartão de Crédito')

@@ -13,7 +13,7 @@ describe 'business owner edits a event type' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )

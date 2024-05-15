@@ -14,7 +14,7 @@ describe 'user tries to access' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -82,7 +82,7 @@ describe 'user tries to access' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -142,9 +142,9 @@ describe 'user tries to access' do
     expect(page).to have_content(order_1.event_date.strftime('%d/%m/%Y'))
   end
   it 'orders through navbar and fails - as visitor' do
-     visit root_path
-     expect(page).not_to have_link('Pedidos')
-     expect(page).not_to have_link('Todos Pedidos')
-     expect(page).not_to have_link('Meus Pedidos')
+    visit root_path
+    expect(page).not_to have_link('Pedidos')
+    expect(page).not_to have_link('Todos Pedidos')
+    expect(page).not_to have_link('Meus Pedidos')
   end
 end

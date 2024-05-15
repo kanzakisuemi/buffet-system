@@ -14,7 +14,7 @@ describe 'user tries to edit a buffet' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345689',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -36,7 +36,7 @@ describe 'user tries to edit a buffet' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345689',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )

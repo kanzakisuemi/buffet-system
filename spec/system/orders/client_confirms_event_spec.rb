@@ -17,7 +17,7 @@ describe 'client evaluates business owners offer' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie,
       payment_methods: [debit, credit, pix]
@@ -83,7 +83,7 @@ describe 'client evaluates business owners offer' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie,
       payment_methods: [debit, credit, pix]
@@ -149,7 +149,7 @@ describe 'client evaluates business owners offer' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie,
       payment_methods: [debit, credit, pix]

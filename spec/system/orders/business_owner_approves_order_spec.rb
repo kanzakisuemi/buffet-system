@@ -17,7 +17,7 @@ describe 'business owner evaluates order' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie,
       payment_methods: [debit, credit, pix]
@@ -57,7 +57,8 @@ describe 'business owner evaluates order' do
     click_on 'Todos Pedidos'
     click_on order.code_and_date
 
-    click_on 'Pendente'
+    expect(page).to have_content 'Pendente'
+    click_on 'Aprovar Evento'
     select 'Pix', from: 'Método de Pagamento'
     check 'Cobrar Taxa Extra'
     fill_in 'Taxa Extra', with: 100
@@ -77,7 +78,7 @@ describe 'business owner evaluates order' do
     elsif 12.days.from_now.on_weekend?
       expect(page).to have_content('Orçamento: R$2100.0')
     end
-    expect(page).to have_link('Aprovado')
+    expect(page).to have_content('Aprovado')
   end
   it 'and rejects' do
     kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
@@ -95,7 +96,7 @@ describe 'business owner evaluates order' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie,
       payment_methods: [debit, credit, pix]

@@ -28,7 +28,7 @@ describe 'business owner registers buffet' do
     fill_in 'Bairro', with: 'Jardim das Flores'
     fill_in 'Cidade', with: 'São Paulo'
     fill_in 'Estado', with: 'SP'
-    fill_in 'CEP', with: '123456'
+    fill_in 'CEP', with: '12345678'
     fill_in 'Descrição', with: 'Buffet para festas infantis e de adultos'
     click_on 'Registrar'
     
@@ -42,7 +42,7 @@ describe 'business owner registers buffet' do
     expect(page).to have_content('Jardim das Flores')
     expect(page).to have_content('São Paulo')
     expect(page).to have_content('SP')
-    expect(page).to have_content('123456')
+    expect(page).to have_content('12345678')
     expect(page).to have_content('Buffet para festas infantis e de adultos')
     expect(page).to have_content('Kylie Kristen Jenner')
   end
@@ -67,7 +67,7 @@ describe 'business owner registers buffet' do
     fill_in 'Bairro', with: 'Jardim das Flores'
     fill_in 'Cidade', with: 'São Paulo'
     fill_in 'Estado', with: 'SP'
-    fill_in 'CEP', with: '123456'
+    fill_in 'CEP', with: '12345678'
     fill_in 'Descrição', with: 'Buffet para festas infantis e de adultos'
     check 'Dinheiro'
     check 'Cartão de Crédito'
@@ -85,7 +85,7 @@ describe 'business owner registers buffet' do
     expect(page).to have_content('Jardim das Flores')
     expect(page).to have_content('São Paulo')
     expect(page).to have_content('SP')
-    expect(page).to have_content('123456')
+    expect(page).to have_content('12345678')
     expect(page).to have_content('Buffet para festas infantis e de adultos')
     expect(page).to have_content('Kylie Kristen Jenner')
     expect(page).to have_content('Dinheiro')

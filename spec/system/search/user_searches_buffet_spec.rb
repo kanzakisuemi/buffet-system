@@ -13,7 +13,7 @@ describe 'user searches' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -28,7 +28,7 @@ describe 'user searches' do
       neighborhood: 'Jardim dos Cactos',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123407',
+      zip_code: '12345678',
       description: 'Buffet para festas de cavalos',
       user: kendall
     )
@@ -56,7 +56,7 @@ describe 'user searches' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -71,7 +71,7 @@ describe 'user searches' do
       neighborhood: 'Jardim dos Cactos',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123407',
+      zip_code: '12345678',
       description: 'Buffet para festas de cavalos',
       user: kendall
     )
@@ -99,7 +99,7 @@ describe 'user searches' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -114,7 +114,7 @@ describe 'user searches' do
       neighborhood: 'Jardim dos Cactos',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123407',
+      zip_code: '12345678',
       description: 'Buffet para festas de cavalos',
       user: kendall
     )
@@ -166,7 +166,7 @@ describe 'user searches' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -181,7 +181,7 @@ describe 'user searches' do
       neighborhood: 'Jardim dos Cactos',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123407',
+      zip_code: '12345678',
       description: 'Buffet para festas de cavalos',
       user: kendall
     )
@@ -196,7 +196,7 @@ describe 'user searches' do
       neighborhood: 'Jardim dos Morros',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '458901',
+      zip_code: '12345678',
       description: 'Buffet para as melhores festas do mundo!',
       user: julia
     )
