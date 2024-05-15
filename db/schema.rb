@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_13_224319) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_15_101746) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,32 +49,33 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_224319) do
   end
 
   create_table "buffets", force: :cascade do |t|
-    t.string "social_name"
-    t.string "corporate_name"
-    t.string "company_registration_number"
-    t.string "phone"
-    t.string "email"
-    t.string "address"
-    t.string "neighborhood"
-    t.string "city"
-    t.string "state"
-    t.string "zip_code"
+    t.string "social_name", null: false
+    t.string "corporate_name", null: false
+    t.string "company_registration_number", null: false
+    t.string "phone", null: false
+    t.string "email", null: false
+    t.string "address", null: false
+    t.string "neighborhood", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.text "description"
-    t.integer "events_per_day", default: 1
+    t.text "description", null: false
+    t.integer "events_per_day", default: 1, null: false
     t.boolean "archived", default: false
+    t.index ["user_id"], name: "index_buffets_on_user_id", unique: true
   end
 
   create_table "event_types", force: :cascade do |t|
-    t.integer "category"
-    t.string "name"
-    t.text "description"
-    t.integer "minimal_people_capacity"
-    t.integer "maximal_people_capacity"
-    t.integer "default_duration_minutes"
-    t.text "food_menu"
+    t.integer "category", null: false
+    t.string "name", null: false
+    t.text "description", null: false
+    t.integer "minimal_people_capacity", null: false
+    t.integer "maximal_people_capacity", null: false
+    t.integer "default_duration_minutes", null: false
+    t.text "food_menu", null: false
     t.boolean "alcoholic_drinks"
     t.boolean "decoration"
     t.boolean "parking_service"
@@ -82,12 +83,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_224319) do
     t.integer "buffet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "base_price", precision: 8, scale: 2
-    t.integer "weekend_fee"
-    t.decimal "per_person_fee", precision: 8, scale: 2
-    t.integer "per_person_weekend_fee"
-    t.decimal "per_hour_fee", precision: 8, scale: 2
-    t.integer "per_hour_weekend_fee"
+    t.decimal "base_price", precision: 8, scale: 2, null: false
+    t.integer "weekend_fee", null: false
+    t.decimal "per_person_fee", precision: 8, scale: 2, null: false
+    t.integer "per_person_weekend_fee", null: false
+    t.decimal "per_hour_fee", precision: 8, scale: 2, null: false
+    t.integer "per_hour_weekend_fee", null: false
     t.boolean "archived", default: false
     t.index ["buffet_id"], name: "index_event_types_on_buffet_id"
   end
@@ -151,6 +152,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_224319) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "buffet_payments", "buffets"
   add_foreign_key "buffet_payments", "payment_methods"
+  add_foreign_key "buffets", "users"
   add_foreign_key "buffets", "users"
   add_foreign_key "event_types", "buffets"
   add_foreign_key "messages", "orders"
