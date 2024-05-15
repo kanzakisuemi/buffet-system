@@ -1,6 +1,7 @@
 class BuffetsController < ApplicationController
   before_action :set_buffet, only: %i[show edit update event_types event_selection archive]
   before_action :is_business_owner?, only: %i[new create edit update]
+  before_action :already_has_buffet?, only: %i[new create edit update]
 
   def index
     @buffets = Buffet.all
@@ -12,7 +13,6 @@ class BuffetsController < ApplicationController
   end
 
   def new
-    # @payment_methods = PaymentMethod.all
     @buffet = Buffet.new
   end
 
@@ -22,7 +22,6 @@ class BuffetsController < ApplicationController
     if @buffet.save
       redirect_to @buffet
     else
-      # @payment_methods = PaymentMethod.all
       render :new
     end
   end
@@ -75,6 +74,13 @@ class BuffetsController < ApplicationController
         buffet_ids = EventType.where("LOWER(name) LIKE ?", "%#{query}%").pluck(:buffet_id)
         @results = @buffets.where(id: buffet_ids).order(social_name: :asc)
       end
+    end
+  end
+
+  def already_has_buffet?
+    if current_user.buffet.present?
+      flash[:notice] = 'Você já possui um Buffet cadastrado!'
+      return redirect_to root_path
     end
   end
 
