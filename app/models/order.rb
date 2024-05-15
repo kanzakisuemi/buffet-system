@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   belongs_to :event_type
   belongs_to :user, optional: true
   belongs_to :payment_method, optional: true
+  has_one :buffet, through: :event_type
 
   has_many :messages, dependent: :delete_all
 
@@ -67,10 +68,6 @@ class Order < ApplicationRecord
 
   def code_and_date
     "#{code} - #{I18n.localize(event_date)}"
-  end
-
-  def buffet
-    event_type.buffet
   end
 
   private

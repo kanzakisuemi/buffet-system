@@ -48,14 +48,37 @@ RSpec.describe User, type: :model do
       expect(result).to be true
     end
   end
-  describe '#validations' do
-    it 'check_social_security_number' do
+  describe '#check_social_security_number' do
+    it 'when value is not valid ' do
       user = User.new(role: 1, social_security_number: '66666666666')
 
       user.valid?
       result = user.errors.include?(:social_security_number)
 
       expect(result).to be true
+    end
+  end
+  describe '#humanized_role' do
+    it 'when role is client' do
+      user = User.new(role: 1)
+
+      result = user.humanized_role
+
+      expect(result).to eq('Cliente')
+    end
+    it 'when role is business_owner' do
+      user = User.new(role: 0)
+
+      result = user.humanized_role
+
+      expect(result).to eq('Dono de Buffet')
+    end
+  end
+  describe '#role_options_for_select' do
+    it 'returns user roles' do
+      result = User.role_options_for_select
+
+      expect(result).to eq([['Dono de Buffet', 'business_owner'], ['Cliente', 'client']])
     end
   end
 end

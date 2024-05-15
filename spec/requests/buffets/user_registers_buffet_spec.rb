@@ -33,7 +33,7 @@ describe 'user tries to register buffet' do
     expect(response).to redirect_to root_path
   end
   it 'and fails - as visitor' do
-    post buffets_path, params: { buffet: { social_name: 'buffet fake', corporate_name: 'buffet fake ltda', company_registration_number: CNPJ.generate, phone: '43998248585', email: 'buffet@email.com', address: 'Rua Inexistente, 300', neighborhood: 'Jardim dos Sonhos', city: 'Londrina', state: 'PR', zip_code: '85044190', description: 'buffet totalmente fake' } } 
+    post buffets_path, params: { buffet: { social_name: 'buffet fake', corporate_name: 'buffet fake ltda', company_registration_number: CNPJ.generate, phone: '43998248585', email: 'buffet@email.com', address: 'Rua Inexistente, 300', neighborhood: 'Jardim dos Sonhos', city: 'Londrina', state: 'PR', zip_code: '85044190', description: 'buffet totalmente fake' } }
     
     expect(response).to redirect_to root_path
   end

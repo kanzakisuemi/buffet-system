@@ -1,6 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe Buffet, type: :model do
+  describe '#format' do
+    it 'email - w/out @' do
+      buffet = Buffet.new(email: 'abcabc.com')
+
+      buffet.valid?
+      result = buffet.errors.include?(:email)
+
+      expect(result).to be true
+    end
+  end
+  describe '#numericality' do
+    it 'of phone' do
+      buffet = Buffet.new(phone: 'abcdefghij')
+
+      buffet.valid?
+      result = buffet.errors.include?(:phone)
+
+      expect(result).to be true
+    end
+    it 'of events per day' do
+      buffet = Buffet.new(events_per_day: 'abc')
+
+      buffet.valid?
+      result = buffet.errors.include?(:events_per_day)
+
+      expect(result).to be true
+    end
+    it 'of zipcode' do
+      buffet = Buffet.new(zip_code: 'abcdefgh')
+
+      buffet.valid?
+      result = buffet.errors.include?(:zip_code)
+
+      expect(result).to be true
+    end
+  end
   describe '#uniqueness' do
     it 'of user that already has a buffet' do
       kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
@@ -14,7 +50,7 @@ RSpec.describe Buffet, type: :model do
         neighborhood: 'Jardim das Flores',
         city: 'São Paulo',
         state: 'SP',
-        zip_code: '123456',
+        zip_code: '12345678',
         description: 'Buffet para festas infantis e de adultos',
         user: kylie
       )
@@ -28,7 +64,7 @@ RSpec.describe Buffet, type: :model do
         neighborhood: 'Gleba Palhano',
         city: 'São Paulo',
         state: 'SP',
-        zip_code: '123098',
+        zip_code: '12345678',
         description: 'Buffet para festas de 15 e universitárias',
         user: kylie
       )
@@ -48,7 +84,7 @@ RSpec.describe Buffet, type: :model do
         neighborhood: 'Jardim das Flores',
         city: 'São Paulo',
         state: 'SP',
-        zip_code: '123456',
+        zip_code: '12345678',
         description: 'Buffet para festas infantis e de adultos',
         user: kylie
       )
@@ -62,7 +98,7 @@ RSpec.describe Buffet, type: :model do
         neighborhood: 'Jardim das Flores',
         city: 'São Paulo',
         state: 'SP',
-        zip_code: '123456',
+        zip_code: '12345678',
         description: 'Buffet para festas infantis e de adultos',
         user: kendall
       )
@@ -83,7 +119,7 @@ RSpec.describe Buffet, type: :model do
         neighborhood: 'Jardim das Flores',
         city: 'São Paulo',
         state: 'SP',
-        zip_code: '123456',
+        zip_code: '12345678',
         description: 'Buffet para festas infantis e de adultos',
         user: kylie
       )
@@ -202,17 +238,66 @@ RSpec.describe Buffet, type: :model do
 
       expect(result).to be true
     end
+    it 'of events per day' do
+      buffet = Buffet.new(events_per_day: nil)
+
+      buffet.valid?
+      result = buffet.errors.include?(:events_per_day)
+
+      expect(result).to be true
+    end
+  end
+  describe '#length' do
+    it 'of phone number - too short' do
+      buffet = Buffet.new(phone: '1234567')
+
+      buffet.valid?
+      result = buffet.errors.include?(:phone)
+
+      expect(result).to be true
+    end
+    it 'of phone number - too long' do
+      buffet = Buffet.new(phone: '123456789012345')
+
+      buffet.valid?
+      result = buffet.errors.include?(:phone)
+
+      expect(result).to be true
+    end
+    it 'of zipcode - too short' do
+      buffet = Buffet.new(zip_code: '123456')
+
+      buffet.valid?
+      result = buffet.errors.include?(:zip_code)
+
+      expect(result).to be true
+    end
+    it 'of zipcode - too long' do
+      buffet = Buffet.new(zip_code: '123456789')
+
+      buffet.valid?
+      result = buffet.errors.include?(:zip_code)
+
+      expect(result).to be true
+    end
+    it 'of state - too short' do
+      buffet = Buffet.new(state: 'A')
+
+      buffet.valid?
+      result = buffet.errors.include?(:state)
+
+      expect(result).to be true
+    end
+    it 'of state - too long' do
+      buffet = Buffet.new(state: 'ABC')
+
+      buffet.valid?
+      result = buffet.errors.include?(:state)
+
+      expect(result).to be true
+    end
   end
   describe '#associations' do
-    it 'has many event types' do
-      # esperar resposta no mattermost
-    end
-    it 'has many buffet payments' do
-      # esperar resposta no mattermost
-    end
-    it 'has many payment methods' do
-      # esperar resposta no mattermost
-    end
     it 'buffet belongs to user - when user is nil' do
       invalid_buffet = Buffet.new(user: nil)
 
@@ -225,6 +310,24 @@ RSpec.describe Buffet, type: :model do
       buffet.valid?
 
       expect(buffet.errors.include?(:user)).to be false
+    end
+  end
+  describe '#check_company_registration_number' do
+    it 'when company registration number is invalid' do
+      buffet = Buffet.new(company_registration_number: '12345678910999')
+
+      buffet.valid?
+      result = buffet.errors.include?(:company_registration_number)
+
+      expect(result).to be true
+    end
+    it 'when company registration number is valid' do
+      buffet = Buffet.new(company_registration_number: CNPJ.generate)
+
+      buffet.valid?
+      result = buffet.errors.include?(:company_registration_number)
+
+      expect(result).to be false
     end
   end
 end

@@ -1,7 +1,7 @@
 class BuffetsController < ApplicationController
   before_action :set_buffet, only: %i[show edit update event_types event_selection archive]
   before_action :is_business_owner?, only: %i[new create edit update]
-  before_action :already_has_buffet?, only: %i[new create edit update]
+  before_action :already_has_buffet?, only: %i[new create]
 
   def index
     @buffets = Buffet.all
