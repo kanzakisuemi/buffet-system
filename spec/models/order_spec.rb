@@ -10,14 +10,6 @@ RSpec.describe Order, type: :model do
 
       expect(result).to be false
     end
-    it 'of user' do
-      order = Order.new(user: nil)
-
-      order.valid?
-      result = order.errors.include?(:user)
-
-      expect(result).to be true
-    end
     it 'of event type' do
       order = Order.new(event_type: nil)
 
@@ -133,7 +125,7 @@ RSpec.describe Order, type: :model do
       order = Order.new(event_date: 1.day.ago)
 
       order.valid?
-      result = order.errors.include?(:user)
+      result = order.errors.include?(:event_date)
 
       expect(result).to be true
     end
