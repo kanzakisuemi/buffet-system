@@ -11,7 +11,7 @@ class Order < ApplicationRecord
   validates :code, :event_type, :event_date, :guests_estimation, :status, presence: true
   validates :due_date, comparison: { less_than: :event_date }, if: -> { due_date.present? }
   validates :due_date, comparison: { greater_than_or_equal_to: Date.today }, if: -> { due_date.present? }
-  validates :event_date, comparison: { greater_than: Date.today }
+  validates :event_date, comparison: { greater_than: Date.today }, on: :create
   validates :guests_estimation, numericality: { less_than_or_equal_to: ->(order) { order.event_type.maximal_people_capacity } }
   validate :event_date_available?
 

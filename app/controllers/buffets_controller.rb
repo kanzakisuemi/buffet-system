@@ -1,10 +1,10 @@
 class BuffetsController < ApplicationController
-  before_action :set_buffet, only: %i[show edit update event_types event_selection archive]
+  before_action :set_buffet, only: %i[show edit update event_types event_selection archive unarchive]
   before_action :is_business_owner?, only: %i[new create edit update]
   before_action :already_has_buffet?, only: %i[new create]
 
   def index
-    @buffets = Buffet.all
+    @buffets = Buffet.where(archived: false)
     params[:search].present? ? @results = search_buffets : @results = []
     @buffets = @buffets.where.not(id: @results.pluck(:id)).order(social_name: :asc)
   end
@@ -38,7 +38,11 @@ class BuffetsController < ApplicationController
   end
 
   def event_types
-    @event_types = EventType.where(buffet: @buffet).order(:name)
+    if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet
+      @event_types = EventType.where(buffet: @buffet).order(:name)
+    else
+      @event_types = EventType.where(buffet: @buffet).where(archived: false).order(:name)
+    end
   end
 
   def event_selection
@@ -50,8 +54,14 @@ class BuffetsController < ApplicationController
   end
 
   def archive
-    @buffet.archive!
+    @buffet.update_attribute(:archived, true)
     flash[:notice] = 'Buffet desativado!'
+    redirect_to @buffet
+  end
+
+  def unarchive
+    @buffet.update_attribute(:archived, false)
+    flash[:notice] = 'Buffet reativado!'
     redirect_to @buffet
   end
 

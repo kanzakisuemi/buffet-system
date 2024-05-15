@@ -6,10 +6,13 @@ Rails.application.routes.draw do
     get 'event_selection', on: :member
     get 'event_types', on: :member
     post 'archive', on: :member
+    post 'unarchive', on: :member
   end
   resources :event_types, only: %i[new create edit update] do
     resources :orders, only: %i[new create]
     delete :remove_picture, on: :member
+    post 'archive', on: :member
+    post 'unarchive', on: :member
   end
   resources :orders, only: %i[index show edit update] do
     resources :messages, only: %i[index create] do

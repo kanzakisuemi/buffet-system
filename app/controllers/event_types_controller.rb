@@ -1,6 +1,6 @@
 class EventTypesController < ApplicationController
-  before_action :set_event_type, only: [:edit, :update]
-  before_action :is_business_owner?, only: [:new, :create, :edit, :update]
+  before_action :set_event_type, only: %i[edit update archive unarchive]
+  before_action :is_business_owner?, only: %i[new create edit update]
   
   def new
     @event_type = EventType.new
@@ -32,6 +32,18 @@ class EventTypesController < ApplicationController
     @picture.purge
     set_event_type
     redirect_to edit_event_type_path(@event_type)
+  end
+
+  def archive
+    @event_type.update_attribute(:archived, true)
+    flash[:notice] = 'Tipo de evento desativado!'
+    redirect_to event_types_buffet_path(@event_type.buffet)
+  end
+
+  def unarchive
+    @event_type.update_attribute(:archived, false)
+    flash[:notice] = 'Tipo de evento reativado!'
+    redirect_to event_types_buffet_path(@event_type.buffet)
   end
 
   private

@@ -8,16 +8,16 @@ class Api::V1::BuffetsController < Api::V1::ApiController
   def index
     if params[:search].present?
       query = params[:search].downcase
-      @buffets = Buffet.where("LOWER(social_name) LIKE :query OR LOWER(city) LIKE :query", query: "%#{query}%")
+      @buffets = Buffet.where("LOWER(social_name) LIKE :query OR LOWER(city) LIKE :query", query: "%#{query}%").where(archived: false)
       render status: 200, json: @buffets
     else
-      @buffets = Buffet.all
+      @buffets = Buffet.where(archived: false).order(social_name: :asc)
       render status: 200, json: @buffets
     end
   end
 
   def event_types
-    @event_types = EventType.where(buffet: @buffet).order(:name)
+    @event_types = EventType.where(buffet: @buffet).where(archived: false).order(:name)
     render status: 200, json: @event_types.as_json(except: [:created_at, :updated_at])
   end
 

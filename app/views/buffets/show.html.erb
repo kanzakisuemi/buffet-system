@@ -1,76 +1,79 @@
 <div class="card border-dark mx-auto mb-5 mt-5" style="max-width: 40rem;">
   <div class="card-body">  
     
-    <div class="d-flex justify-content-between">
-      <span>Nome do Buffet:</span>
-      <span><%= @buffet.social_name %></span>
+    <div class="d-flex justify-content-center">
+      <span class="fs-4"><%= @buffet.social_name %></span>
     </div>
-    <hr class="divider"/>
-    <% if user_signed_in? %>
-      <div class="d-flex justify-content-between">
-        <span>Razão Social:</span>
-        <span><%= @buffet.corporate_name %></span>
-      </div>
-      <hr class="divider"/>
-    <% end %>
-    <div class="d-flex justify-content-between">
-      <span>CNPJ:</span>
-      <span data-controller="company-registration-number"><%= @buffet.company_registration_number %></span>
-    </div>
+
     <hr class="divider"/>
     <div class="d-flex justify-content-between">
-      <span>Eventos por dia:</span>
-      <span><%= @buffet.events_per_day %></span>
+      <span class="bold">Descrição:</span>
+      <span class="mw-50 text-end"><%= @buffet.description %></span>
     </div>
+
     <hr class="divider"/>
+    <div class="d-flex justify-content-center">
+      <span class="fs-5">Informações para contato:</span>
+    </div>
     <div class="d-flex justify-content-between">
-      <span>Telefone:</span>
+      <span class="bold">Telefone:</span>
       <span data-controller="phone"><%= @buffet.phone %></span>
     </div>
-    <hr class="divider"/>
     <div class="d-flex justify-content-between">
-      <span>E-mail:</span>
+      <span class="bold">E-mail:</span>
       <span><%= @buffet.email %></span>
     </div>
-    <hr class="divider"/>
     <div class="d-flex justify-content-between">
-      <span>Endereço:</span>
+      <span class="bold">Dono:</span>
+      <span><%= @buffet.user.name %></span>
+    </div>
+
+    <hr class="divider"/>
+    <div class="d-flex justify-content-center">
+      <span class="fs-5">Onde nos encontrar:</span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span class="bold">Endereço:</span>
       <span><%= @buffet.address %></span>
     </div>
-    <hr class="divider"/>
     <div class="d-flex justify-content-between">
-      <span>Bairro:</span>
+      <span class="bold">Bairro:</span>
       <span><%= @buffet.neighborhood %></span>
     </div>
-    <hr class="divider"/>
     <div class="d-flex justify-content-between">
-      <span>Cidade:</span>
+      <span class="bold">Cidade:</span>
       <span><%= @buffet.city %></span>
     </div>
-    <hr class="divider"/>
     <div class="d-flex justify-content-between">
-      <span>Estado:</span>
+      <span class="bold">Estado:</span>
       <span><%= @buffet.state %></span>
     </div>
-    <hr class="divider"/>
     <div class="d-flex justify-content-between">
-      <span>CEP:</span>
+      <span class="bold">CEP:</span>
       <span data-controller="zip-code"><%= @buffet.zip_code %></span>
     </div>
     <hr class="divider"/>
-    <div class="d-flex justify-content-between">
-      <span>Descrição:</span>
-      <span class="mw-50 text-end"><%= @buffet.description %></span>
+
+    <div class="d-flex justify-content-center">
+      <span class="fs-5">Informações Comerciais:</span>
     </div>
-    <hr class="divider"/>
+    <% if user_signed_in? %>
+      <div class="d-flex justify-content-between">
+        <span class="bold">Razão Social:</span>
+        <span><%= @buffet.corporate_name %></span>
+      </div>
+    <% end %>
     <div class="d-flex justify-content-between">
-      <span>Dono:</span>
-      <span><%= @buffet.user.name %></span>
+      <span class="bold">CNPJ:</span>
+      <span data-controller="company-registration-number"><%= @buffet.company_registration_number %></span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span class="bold">Eventos por dia:</span>
+      <span><%= @buffet.events_per_day %></span>
     </div>
     <% if @buffet.payment_method_ids.any? %>
-      <hr class="divider"/>
       <div class="d-flex justify-content-between">
-        <span>Métodos de Pagamento:</span>
+        <span class="bold">Métodos de Pagamento:</span>
         <% @buffet.payment_methods.each do |payment_method| %>
           <%= payment_method.name %>
           <% unless payment_method == @buffet.payment_methods.last %>, <% end %>
@@ -81,15 +84,22 @@
     <% if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet %>
     <hr class="divider"/>
       <div class="d-flex justify-content-center">
+        <span><%= @buffet.archived? ? "True" : "False" %></span>
         <%= link_to 'Editar Buffet', edit_buffet_path(@buffet), class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %> 
         <%= link_to 'Configurar Eventos', event_types_buffet_path, class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %>
+        <% if @buffet.archived? %>
+          <%= button_to 'Ativar Buffet', unarchive_buffet_path(@buffet), class: "btn btn-primary d-inline mx-2", data: { turbo_confirm: "Seu Buffet será ativado, dessa forma novos pedidos poderão ser realizados e seu Buffet ficará vísivel para todos os usuários. Pedidos em andamento não serão impactados. (Essa ação pode ser desfeita desativando seu Buffet)." } %> 
+        <% else %>
+          <%= button_to 'Desativar Buffet', archive_buffet_path(@buffet), class: "btn btn-primary d-inline mx-2", data: { turbo_confirm: "Tem certeza que deseja desativar seu Buffet? Ele não ficará vísivel para outros usuários e não será possível realizar novos pedidos. Pedidos em andamento não serão impactados. (Essa ação pode ser desfeita reativando seu Buffet)." } %>
+        <% end %>
       </div>
     <% else %>
       <hr class="divider"/>
       <div class="d-flex justify-content-between">
         <%= link_to 'Ver Tipos de Eventos', event_types_buffet_path, class: "btn btn-primary", data: { turbo_frame: "modal" } %>
-        <%= link_to 'Contratar Buffet', event_selection_buffet_path, class: "btn btn-primary", data: { turbo_frame: "modal" } %>
-      </div>
+        <% unless user_signed_in? && current_user.business_owner? && current_user.buffet != @buffet %>
+          <%= link_to 'Contratar Buffet', event_selection_buffet_path, class: "btn btn-primary", data: { turbo_frame: "modal" } %>
+        <% end %>
     <% end %>
 
   </div>

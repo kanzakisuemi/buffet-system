@@ -28,13 +28,15 @@
     <% if @order.budget? %>
       <p><span class="bold">Orçamento: </span>R$<%= @order.budget %></p>
     <% end %>
-    <% unless @order.canceled? %>
-      <%= button_to "Cancelar Evento", canceled_order_path(@order), class: "btn btn-primary mt-3" %>
+    <% if current_user.business_owner? && @order.pending? %>
+      <%= link_to "Aprovar Evento", edit_order_path(@order), class: "btn btn-secondary" %>
     <% end %>
     <% if current_user.client? && @order.approved? && (@order.due_date.future? || @order.due_date.today?) %>
       <%= button_to "Confirmar Evento", confirmed_order_path(@order), class: "btn btn-primary" %>
     <% end %>
-
+    <% unless @order.canceled? %>
+      <%= button_to "Cancelar Evento", canceled_order_path(@order), class: "btn btn-primary mt-3" %>
+    <% end %>
     <% if current_user.business_owner? && @order.messages.empty? %>
       <%= link_to start_chat_order_messages_path(@order), class: "d-block mt-3" do %>
         <%= image_tag "chat_message_icon", size: "35", class: "me-2" %>

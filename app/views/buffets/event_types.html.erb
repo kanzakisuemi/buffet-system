@@ -55,12 +55,22 @@
                 <p><strong>Preço por Hora Excedente no Final de Semana (taxa aplicada):</strong> <%= "R$#{event_type.apply_fee(event_type.per_hour_fee, event_type.per_hour_weekend_fee)}" %></p>
               <% end %>
               <hr class="divider" />
-              <% event_type.pictures_as_thumbnails.each do |picture| %>
-                <%= image_tag(picture) %>
+              <% if event_type.pictures.any? %>
+                <h5>Galeria de Imagens</h5>
+                <div class="alert overflow-y-auto" style="height: 30rem; border-width: 10px;">
+                  <% event_type.pictures_as_thumbnails.each do |picture| %>
+                    <%= image_tag(picture, class: "img-thumbnail") %>
+                  <% end %>
+                </div>
               <% end %>
               <% if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet %>
-                <div class="mt-3">
-                  <%= link_to "Editar", edit_event_type_path(event_type), class: "btn btn-primary" %>
+                <div class="mt-3 d-flex">
+                  <%= link_to "Editar", edit_event_type_path(event_type), class: "btn btn-secondary me-2" %>
+                  <% if event_type.archived? %>
+                    <%= button_to "Ativar", unarchive_event_type_path(event_type), class: "btn btn-secondary", data: { turbo_confirm: "Esse tipo de evento será ativado, dessa forma novos pedidos poderão ser realizados e seu Buffet ficará vísivel para todos os usuários. Pedidos em andamento não serão impactados. (Essa ação pode ser desfeita desativando seu Buffet)." } %>
+                  <% else %>
+                    <%= button_to "Desativar", archive_event_type_path(event_type), class: "btn btn-primary", data: { turbo_confirm: "Tem certeza que deseja desativar esse tipo de evento? Outros usuários não poderam acessá-lo e não serão realizados novos pedidos a esse tipo de evento. Pedidos em andamento não serão impactados. (Essa ação pode ser desfeita reativando esse tipo de evento)." } %>
+                  <% end %>
                 </div>
               <% end %>
             </div>

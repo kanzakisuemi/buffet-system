@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @buffet = current_user.buffet 
+    @buffet = current_user.buffet
     @orders = @buffet.orders
   end
 
@@ -20,6 +20,12 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @buffet = @event_type.buffet
+    if @buffet.archived?
+      return redirect_to(root_path, notice: 'Buffet desativado não aceita pedidos!')
+    elsif @event_type.archived?
+      return redirect_to(root_path, notice: 'Tipo de evento desativado não aceita pedidos!')
+    end
     @order = Order.new(order_params)
     @order.user = current_user
     @order.event_type = @event_type

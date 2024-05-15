@@ -41,9 +41,10 @@ describe 'buffet api' do
     end
   end
   context 'GET /api/v1/buffets' do
-    it 'success' do
+    it 'successfully - only unarchived buffets' do
       felipe = User.create!(name: 'Felipe Chineze', email: 'felipe@email.com', password: 'password123', role: 0)
       rafa = User.create!(name: 'Rafaela Bruschi', email: 'rafa@outlook.com', password: 'password123', role: 0)
+      antonia = User.create!(name: 'Antonia Grassano', email: 'antonia@angra.com', password: 'password123', role: 0)
       planalto = Buffet.create!(
         social_name: 'Planalto', 
         corporate_name: 'Buffet Planalto LTDA',
@@ -72,6 +73,22 @@ describe 'buffet api' do
         description: 'Buffet ideal para celebrar festas de bebês!',
         user: rafa
       )
+      angra = Buffet.create!(
+        social_name: 'Angra', 
+        corporate_name: 'Angra MEI',
+        company_registration_number: CNPJ.generate,
+        events_per_day: 2,
+        phone: '4333301264',
+        email: 'antonia@mail.com',
+        address: 'Rua do Aurora, 508',
+        neighborhood: 'Gleba Palhano',
+        city: 'Londrina',
+        state: 'PR',
+        zip_code: '86050600',
+        description: 'Buffet focado em alimentos saudáveis e fitness, refeições e doces milimetricamente avaliados pela nutri Antonia Grassano.',
+        user: antonia,
+        archived: true
+      )
       
       get '/api/v1/buffets'
 
@@ -80,8 +97,8 @@ describe 'buffet api' do
       json_response = JSON.parse(response.body)
       expect(json_response.class).to eq Array
       expect(json_response.length).to eq 2
-      expect(json_response[0]['social_name']).to eq planalto.social_name
-      expect(json_response[1]['social_name']).to eq baby_buffet.social_name
+      expect(json_response[0]['social_name']).to eq baby_buffet.social_name
+      expect(json_response[1]['social_name']).to eq planalto.social_name
     end
     it 'empty if there is no buffet' do
       get '/api/v1/buffets'
@@ -141,10 +158,8 @@ describe 'buffet api' do
     end
   end
   context 'GET /api/v1/buffet/1/event_types' do
-    it 'success' do
+    it 'successfully - only unarchived event types' do
       felipe = User.create!(name: 'Felipe Chineze', email: 'felipe@email.com', password: 'password123', role: 0)
-      debit = PaymentMethod.create(name: 'Cartão de Crédito')
-      credit = PaymentMethod.create(name: 'Cartão de Débito')
       buffet = Buffet.create!(
         social_name: 'Planalto', 
         corporate_name: 'Buffet Planalto LTDA',
@@ -158,7 +173,7 @@ describe 'buffet api' do
         zip_code: '86072000',
         description: 'Buffet para festas grandes e chiques.',
         user: felipe,
-        payment_methods: [ debit, credit ]
+        payment_methods: [ ]
       )
       casamento = EventType.create!(
         category: 2,
@@ -200,6 +215,27 @@ describe 'buffet api' do
         per_hour_fee: 400.00,
         per_hour_weekend_fee: 50
       )
+      niver = EventType.create!(
+        category: 3,
+        name: 'Aniversário de Idoso',
+        description: 'Festa de Aniversário para idosos.',
+        default_duration_minutes: 180,
+        minimal_people_capacity: 100,
+        maximal_people_capacity: 200,
+        food_menu: 'Entrada: Camarão Empanado. Prato principal: Refeição Surpresa. Sobremesa: Torta de Framboesa.',
+        alcoholic_drinks: true,
+        decoration: true,
+        location_flexibility: false,
+        parking_service: true,
+        buffet: felipe.buffet,
+        base_price: 9000.00,
+        weekend_fee: 10,
+        per_person_fee: 70.00,
+        per_person_weekend_fee: 20,
+        per_hour_fee: 400.00,
+        per_hour_weekend_fee: 50,
+        archived: true
+      )
       
       get "/api/v1/buffets/#{buffet.id}/event_types"
 
@@ -208,6 +244,7 @@ describe 'buffet api' do
       expect(response.status).to eq 200
       expect(response.content_type).to include('application/json')
       
+      expect(json_response.length).to eq 2
       expect(json_response[0]['name']).to eq bodas.name
       expect(json_response[1]['name']).to eq casamento.name
     end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'user sees only unarchived event types' do
+describe 'user sees event type details' do
   it 'successfully - as visitor' do
     kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
     buffet = Buffet.create!(
@@ -35,26 +35,7 @@ describe 'user sees only unarchived event types' do
       per_hour_weekend_fee: 10,
       buffet: kylie.buffet
     )
-    event_type = EventType.create!(
-      category: 3,
-      name: 'Festa de 15 anos',
-      description: 'Festa para debutantes',
-      default_duration_minutes: 240,
-      minimal_people_capacity: 100,
-      maximal_people_capacity: 200,
-      food_menu: 'Bolo, doces, salgados, refrigerante e suco',
-      alcoholic_drinks: true,
-      parking_service: true,
-      base_price: 4000.0,
-      weekend_fee: 25,
-      per_person_fee: 50.0,
-      per_person_weekend_fee: 10,
-      per_hour_fee: 300.0,
-      per_hour_weekend_fee: 10,
-      buffet: kylie.buffet,
-      archived: true
-    )
-
+    
     visit root_path
 
     within('nav') do
@@ -65,6 +46,21 @@ describe 'user sees only unarchived event types' do
     click_on 'Ver Tipos de Eventos'
 
     expect(page).to have_content('Festa Infantil')
-    expect(page).not_to have_content('Festa de 15 anos')
+    expect(page).to have_content('Categoria: Aniversário')
+    expect(page).to have_content('Descrição: Festa para crianças')
+    expect(page).to have_content('Duração Padrão: 240 minutos')
+    expect(page).to have_content('Capacidade Mínima: 30 pessoas')
+    expect(page).to have_content('Capacidade Máxima: 60 pessoas')
+    expect(page).to have_content('Cardápio: Bolo, doces, salgados, refrigerante e suco')
+    expect(page).to have_content('Bebidas Alcoólicas: Sim')
+    expect(page).to have_content('Decoração: Não')
+    expect(page).to have_content('Estacionamento/Valet: Sim')
+    expect(page).to have_content('Flexibilidade de Localização: Não')
+    expect(page).to have_content('Preço Base: R$4000.0 Taxa de Final de Semana: 25%')
+    expect(page).to have_content('Preço Final de Semana (taxa aplicada): R$5000.0')
+    expect(page).to have_content('Preço por Pessoa Excedente: R$50.0 Taxa de Final de Semana: 10%')
+    expect(page).to have_content('Preço por Pessoa Excedente no Final de Semana (taxa aplicada): R$55.0')
+    expect(page).to have_content('Preço por Hora Excedente: R$300.0 Taxa de Final de Semana: 10%')
+    expect(page).to have_content('Preço por Hora Excedente no Final de Semana (taxa aplicada): R$330.0')
   end
 end

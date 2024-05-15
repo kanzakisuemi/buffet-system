@@ -38,7 +38,14 @@
   <% end %>
 <% elsif current_user.business_owner? %>
   <% if @order.pending? %>
-    <%= link_to "Aprovar Evento", edit_order_path(@order) %>
+    <button type="button" class="btn btn-secondary mx-auto"
+            data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Evento pedente. O cliente está aguardando orçamento :0">
+      <span class="bold">
+        <%= @order.humanized_status %> 
+      </span>
+    </button>
   <% elsif @order.approved? %>
     <button type="button" class="btn btn-secondary"
             data-bs-toggle="tooltip" data-bs-placement="right"

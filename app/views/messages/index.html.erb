@@ -10,7 +10,7 @@
           <div class="row justify-content-end">
             <div class="alert alert-secondary w-50">
               <span class="bold"><%= message.user.name %></span>
-              <span class="d-block"><%= message.content %></span>
+              <span class="d-block text-break"><%= message.content %></span>
               <span class="fs-8"><%= I18n.localize(message.created_at, format: :short) %></span>
             </div>
           </div>
@@ -18,7 +18,7 @@
           <div class="row justify-content-start">
             <div class="alert alert-primary w-50">
               <span class="bold"><%= message.user.name %></span>
-              <span class="d-block"><%= message.content %></span>
+              <span class="d-block text-break"><%= message.content %></span>
               <span class="fs-8"><%= I18n.localize(message.created_at, format: :short) %></span>
             </div>
           </div>
