@@ -1,0 +1,70 @@
+<% if current_user.client? %>
+  <% if @order.pending? %>
+    <button type="button" class="btn btn-secondary"
+            data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Aguardando avaliação do Buffet :)">
+      <span class="bold">
+        <%= @order.humanized_status %> 
+      </span>
+    </button>
+  <% elsif @order.approved? %>
+    <button type="button" class="btn btn-secondary"
+            data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="O seu pedido já foi avaliado e o orçamento já está disponível :)">
+      <span class="bold">
+        <%= @order.humanized_status %> 
+      </span>
+    </button>
+  <% elsif @order.confirmed? %>
+    <button type="button" class="btn btn-secondary"
+            data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="O evento foi confirmado, agora só aguardar o grande dia :)">
+      <span class="bold">
+        <%= @order.humanized_status %> 
+      </span>
+    </button>
+  <% elsif @order.canceled? %>
+    <button type="button" class="btn btn-secondary"
+            data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="O pedido foi cancelado :(">
+      <span class="bold">
+        <%= @order.humanized_status %> 
+      </span>
+    </button>
+  <% end %>
+<% elsif current_user.business_owner? %>
+  <% if @order.pending? %>
+    <%= link_to "Aprovar Evento", edit_order_path(@order) %>
+  <% elsif @order.approved? %>
+    <button type="button" class="btn btn-secondary"
+            data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Evento aprovado, aguardando confirmação do cliente :)">
+      <span class="bold">
+        <%= @order.humanized_status %> 
+      </span>
+    </button>
+  <% elsif @order.confirmed? %>
+    <button type="button" class="btn btn-secondary"
+            data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Evento confirmado, se atende a data :)">
+      <span class="bold">
+        <%= @order.humanized_status %> 
+      </span>
+    </button>
+  <% elsif @order.canceled? %>
+    <button type="button" class="btn btn-secondary"
+            data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Evento cancelado :(">
+      <span class="bold">
+        <%= @order.humanized_status %> 
+      </span>
+    </button>
+  <% end %>
+<% end %>

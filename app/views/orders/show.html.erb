@@ -2,7 +2,8 @@
   <meta name="turbo-visit-control" content="reload">
 <% end %>
 <div class="card border-dark mx-auto mb-5 mt-5" style="max-width: 30rem;">
-  <div class="card-body">  
+  <div class="card-body">
+    <%= render "status_tag" %>
     <p class="bold text-center"><%= @order.code %></p>
     <p class="text-center bold"><%= @order.buffet.social_name %> - <%= @order.event_type.name %></p>
     <p><span class="bold">Observações do cliente: </span><%= @order.event_details %></p>
@@ -26,39 +27,6 @@
     <% end %>
     <% if @order.budget? %>
       <p><span class="bold">Orçamento: </span>R$<%= @order.budget %></p>
-    <% end %>
-    <% if current_user.client? %>
-      <% if @order.pending? %>
-        <button type="button" class="btn btn-secondary"
-                data-bs-toggle="tooltip" data-bs-placement="right"
-                data-bs-custom-class="custom-tooltip"
-                data-bs-title="Aguardando avaliação do Buffet :)">
-          <%= @order.humanized_status %> 
-        </button>
-      <% elsif @order.approved? %>
-        <button type="button" class="btn btn-secondary"
-                data-bs-toggle="tooltip" data-bs-placement="right"
-                data-bs-custom-class="custom-tooltip"
-                data-bs-title="O seu pedido já foi avaliado e o orçamento já está disponível :)">
-          <%= @order.humanized_status %> 
-        </button>
-      <% elsif @order.confirmed? %>
-        <button type="button" class="btn btn-secondary"
-                data-bs-toggle="tooltip" data-bs-placement="right"
-                data-bs-custom-class="custom-tooltip"
-                data-bs-title="O evento foi confirmado, agora só aguardar o grande dia :)">
-          <%= @order.humanized_status %> 
-        </button>
-      <% elsif @order.canceled? %>
-        <button type="button" class="btn btn-secondary"
-                data-bs-toggle="tooltip" data-bs-placement="right"
-                data-bs-custom-class="custom-tooltip"
-                data-bs-title="O pedido foi cancelado :(">
-          <%= @order.humanized_status %> 
-        </button>
-      <% end %>
-    <% elsif current_user.business_owner? %>
-      <%= link_to @order.humanized_status, edit_order_path(@order) %>
     <% end %>
     <% unless @order.canceled? %>
       <%= button_to "Cancelar Evento", canceled_order_path(@order), class: "btn btn-primary mt-3" %>
