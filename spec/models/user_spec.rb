@@ -19,9 +19,9 @@ RSpec.describe User, type: :model do
       expect(result).to be true
     end
     it 'of social security number if user is a client' do
-      user = User.create!(name: 'Harry Potter', email: 'harryp@mail.com', role: 1, social_security_number: nil, password: 'password123')
+      user = User.new(name: 'Harry Potter', email: 'harryp@mail.com', role: 1, social_security_number: nil, password: 'password123')
 
-      user.update(social_security_number: nil)
+      user.valid?
 
       result = user.errors.include?(:social_security_number)
       expect(result).to be true

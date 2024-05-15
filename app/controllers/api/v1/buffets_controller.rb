@@ -2,7 +2,7 @@ class Api::V1::BuffetsController < Api::V1::ApiController
   before_action :set_buffet, only: %i[show event_types]
   
   def show
-    render status: 200, json: @buffet.as_json(except: [:created_at, :updated_at, :corporate_name, :company_registration_number])
+    render status: 200, json: @buffet.as_json(except: [:created_at, :updated_at, :corporate_name, :company_registration_number, :user_id])
   end
 
   def index
@@ -18,7 +18,7 @@ class Api::V1::BuffetsController < Api::V1::ApiController
 
   def event_types
     @event_types = EventType.where(buffet: @buffet).order(:name)
-    render status: 200, json: @event_types
+    render status: 200, json: @event_types.as_json(except: [:created_at, :updated_at])
   end
 
   private

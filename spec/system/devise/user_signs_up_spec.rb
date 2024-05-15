@@ -27,16 +27,10 @@ describe 'User signs up' do
     within('form#new_user') do
       fill_in 'Nome', with: 'Kylie Kristen Jenner'
       select 'Cliente', from: 'Perfil'
+      fill_in 'CPF', with: CPF.generate
       fill_in 'E-mail', with: 'khy@jenner.com'
       fill_in 'Senha', with: 'password123'
       fill_in 'Confirme sua senha', with: 'password123'
-      click_on 'Registrar'
-    end
-
-    expect(page).to have_content('khy@jenner.com')
-
-    within('form#edit_user') do
-      fill_in 'CPF', with: CPF.generate
       click_on 'Registrar'
     end
 

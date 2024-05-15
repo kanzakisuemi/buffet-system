@@ -7,16 +7,23 @@
     <h2>Registrar</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render "devise/shared/error_messages" %>
 
       <div class="form-floating mb-2">
         <%= f.text_field :name, autofocus: true, class: "form-control text-capitalize" %>
         <%= f.label :name, class: "form-label" %>
       </div>
 
-      <div class="form-floating mb-2">
-        <%= f.select :role, options_for_select(User.role_options_for_select), { include_blank: true }, class: "form-select" %>
-        <%= f.label :role, class: "form-label" %>
+      <div data-controller="showhide" data-showhide-show-if-value="client">
+        <div class="form-floating mb-2">
+          <%= f.select(:role, options_for_select(User.role_options_for_select), { include_blank: true }, data: { showhide_target: "input", action: "change->showhide#toggle" }, class: "form-select") %>
+          <%= f.label :role, class: "form-label" %>
+        </div>
+
+        <div class="form-floating mb-2" data-showhide-target="output">
+          <%= f.text_field :social_security_number, class: "form-control", "data-controller": "social-security-number" %>
+          <%= f.label :social_security_number, class: "form-label" %>
+        </div>
       </div>
 
       <div class="form-floating mb-2">
@@ -24,9 +31,9 @@
         <%= f.label :email, class: "form-label" %>
       </div>
 
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %>
+      <% if @minimum_password_length %>
+        <em class="fs-7">(mínimo de <%= @minimum_password_length %> caractéres)</em>
+      <% end %>
       <div class="form-floating mb-2">
         <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         <%= f.label :password, class: "form-label" %>

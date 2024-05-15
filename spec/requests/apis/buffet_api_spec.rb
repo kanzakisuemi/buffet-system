@@ -83,7 +83,7 @@ describe 'buffet api' do
       expect(json_response[0]['social_name']).to eq planalto.social_name
       expect(json_response[1]['social_name']).to eq baby_buffet.social_name
     end
-    it 'empty if there is no warehouse' do
+    it 'empty if there is no buffet' do
       get '/api/v1/buffets'
 
       expect(response.status).to eq 200
@@ -219,4 +219,3 @@ describe 'buffet api' do
     end
   end
 end
-

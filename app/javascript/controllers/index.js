@@ -4,20 +4,20 @@
 
 import { application } from "./application"
 
-import CleanInputController from "./clean_input_controller"
-application.register("clean-input", CleanInputController)
-
 import CompanyRegistrationNumberController from "./company_registration_number_controller"
 application.register("company-registration-number", CompanyRegistrationNumberController)
-
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
 
 import MoneyController from "./money_controller"
 application.register("money", MoneyController)
 
+import NumbersOnlyController from "./numbers_only_controller"
+application.register("numbers-only", NumbersOnlyController)
+
 import PhoneController from "./phone_controller"
 application.register("phone", PhoneController)
+
+import ShowhideController from "./showhide_controller"
+application.register("showhide", ShowhideController)
 
 import SocialSecurityNumberController from "./social_security_number_controller"
 application.register("social-security-number", SocialSecurityNumberController)

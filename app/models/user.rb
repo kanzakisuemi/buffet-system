@@ -9,9 +9,9 @@ class User < ApplicationRecord
   has_many :messages
 
   validates :name, :role, presence: true
-  validates :social_security_number, presence: true, on: :update, if: :client?
-  validates :social_security_number, uniqueness: true, if: -> { client? && social_security_number.present? }
-  validate :check_social_security_number, if: -> { client? && social_security_number.present? }
+  validates :social_security_number, presence: true, if: :client?
+  validates :social_security_number, uniqueness: true, if: :client?
+  validate :check_social_security_number
 
   def humanized_role
     I18n.t("activerecord.attributes.user.roles.#{role}", user: self)
@@ -20,6 +20,7 @@ class User < ApplicationRecord
   private
 
   def check_social_security_number
+    return unless social_security_number.present?
     errors.add(:social_security_number, 'deve ser válido') unless CPF.valid?(social_security_number)
   end
 

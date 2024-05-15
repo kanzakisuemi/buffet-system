@@ -1,5 +1,5 @@
 class BuffetsController < ApplicationController
-  before_action :set_buffet, only: %i[show edit update event_types event_selection]
+  before_action :set_buffet, only: %i[show edit update event_types event_selection archive]
   before_action :is_business_owner?, only: %i[new create edit update]
 
   def index
@@ -50,6 +50,12 @@ class BuffetsController < ApplicationController
     end
   end
 
+  def archive
+    @buffet.archive!
+    flash[:notice] = 'Buffet desativado!'
+    redirect_to @buffet
+  end
+
   private
 
   def search_buffets
@@ -93,6 +99,7 @@ class BuffetsController < ApplicationController
       :state,
       :zip_code,
       :description,
+      :events_per_day,
       payment_method_ids: []
     )
   end

@@ -12,6 +12,13 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
+        <% if current_user.client? && current_user.social_security_number.nil? %>
+          <div class="form-floating mb-3">
+            <%= f.text_field :social_security_number, autofocus: true, class: "form-control", "data-controller": "social-security-number" %>
+            <%= f.label :social_security_number, class: "form-label" %>
+          </div>
+        <% end %>
+
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -49,21 +56,6 @@
       <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
       <%= link_to "Back", :back %>
-    <% end %>
-
-    <% if current_user.client? && current_user.social_security_number.nil? %>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-
-        <div class="form-floating mb-3">
-          <%= f.text_field :social_security_number, autofocus: true, class: "form-control", "data-controller": "social-security-number" %>
-          <%= f.label :social_security_number, class: "form-label" %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit "Registrar", class: "btn btn-primary" %>
-        </div>
-      <% end %>
     <% end %>
 
   </div>

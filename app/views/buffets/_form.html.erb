@@ -13,6 +13,10 @@
     <%= f.label :company_registration_number %>
   </div>
   <div class="form-floating mb-2">
+    <%= f.number_field :events_per_day, class: "form-control" %>
+    <%= f.label :events_per_day %>
+  </div>
+  <div class="form-floating mb-2">
     <%= f.text_field :phone, class: "form-control", "data-controller": "phone" %>
     <%= f.label :phone %>
   </div>

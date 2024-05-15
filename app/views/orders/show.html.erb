@@ -60,6 +60,9 @@
     <% elsif current_user.business_owner? %>
       <%= link_to @order.humanized_status, edit_order_path(@order) %>
     <% end %>
+    <% unless @order.canceled? %>
+      <%= button_to "Cancelar Evento", canceled_order_path(@order), class: "btn btn-primary mt-3" %>
+    <% end %>
     <% if current_user.client? && @order.approved? && (@order.due_date.future? || @order.due_date.today?) %>
       <%= button_to "Confirmar Evento", confirmed_order_path(@order), class: "btn btn-primary" %>
     <% end %>

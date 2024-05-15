@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :buffets, only: %i[index new create show edit update] do
     get 'event_selection', on: :member
     get 'event_types', on: :member
+    post 'archive', on: :member
   end
   resources :event_types, only: %i[new create edit update] do
     resources :orders, only: %i[new create]
@@ -18,12 +19,15 @@ Rails.application.routes.draw do
     post 'confirmed', on: :member
     post 'canceled', on: :member
   end
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users
 
   namespace :api do
     namespace :v1 do
       resources :buffets, only: %i[index show] do
         get 'event_types', on: :member
+      end
+      resources :event_types, only: %i[] do
+        get 'available', on: :member
       end
     end
   end

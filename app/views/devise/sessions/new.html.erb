@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "modal" do %>
   <div class="dean-modal">
     <div class="mb-3 ">
-      <%= link_to "", :back, class: "btn btn-close btn-sm" %>
+      <%= button_tag "", data: { controller: "turbo-modal" }, type: "button", class: "btn btn-close" %>
     </div>
 
     <h2>Entrar</h2>

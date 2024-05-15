@@ -18,6 +18,7 @@ pt-BR:
         state: Estado
         zip_code: CEP
         description: Descrição
+        events_per_day: Eventos por Dia
       payment_method: Método de Pagamento
       event_type:
         category: Categoria
