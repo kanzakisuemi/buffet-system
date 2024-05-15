@@ -9,18 +9,23 @@ PaymentMethod.create(name: 'Dinheiro')
 PaymentMethod.create(name: 'Cheque')
 PaymentMethod.create(name: 'Vale-refeição')
 
-# User - Business Owner
+# Users - Business Owner
 tereza = User.create!(name: 'Tereza Kanzaki', email: 'tkanzaki@eemail.com', password: 'password123', role: 0)
 felipe = User.create!(name: 'Felipe Chineze', email: 'felipe@email.com', password: 'password123', role: 0)
 rafa = User.create!(name: 'Rafaela Bruschi', email: 'rafa@outlook.com', password: 'password123', role: 0)
 luis_f = User.create!(name: 'Luis Fernando Marques', email: 'luis@advocacia.com', password: 'password123', role: 0)
 antonia = User.create!(name: 'Antonia Grassano', email: 'antonia@angra.com', password: 'password123', role: 0)
+# Users - Client
+julia = User.create!(name: 'Julia Kanzaki', email: 'kanzaki@myself.com', password: 'password123', role: 1)
+pablo = User.create!(name: 'Pablo Marçal', email: 'plabom@mail.com', password: 'password123', role: 1)
+felca = User.create!(name: 'Felipe Bressanim', email: 'felca@youtuber.com', password: 'password123', role: 1)
 
 # Buffets
 Buffet.create!(
   social_name: 'Festas Criativas', 
   corporate_name: 'Tereza Kanzaki Festas LTDA',
   company_registration_number: CNPJ.generate,
+  events_per_day: 2,
   phone: '11987654321',
   email: 'festas@suporte.com',
   address: 'Rua das Margaridas, 1070',
@@ -35,6 +40,7 @@ Buffet.create!(
   social_name: 'Planalto', 
   corporate_name: 'Buffet Planalto LTDA',
   company_registration_number: CNPJ.generate,
+  events_per_day: 5,
   phone: '4333385038',
   email: 'contato@planalto.com',
   address: 'Av. Tiradentes, 6429',
@@ -49,6 +55,7 @@ Buffet.create!(
   social_name: 'Baby Buffet', 
   corporate_name: 'Bruschi SA',
   company_registration_number: CNPJ.generate,
+  events_per_day: 1,
   phone: '4333367098',
   email: 'suporte@babybuffet.com',
   address: 'Rua Santiago, 581',
@@ -63,8 +70,9 @@ Buffet.create!(
   social_name: 'Monte Líbano', 
   corporate_name: 'Monte Líbano Restaurante e Buffet LTDA',
   company_registration_number: CNPJ.generate,
+  events_per_day: 3,
   phone: '4133309067',
-  email: 'kuis@montelibano.com',
+  email: 'luis@montelibano.com',
   address: 'Rua dos Libaneses, 670',
   neighborhood: 'Guanabara',
   city: 'Ribeirão Claro',
@@ -77,6 +85,7 @@ Buffet.create!(
   social_name: 'Angra', 
   corporate_name: 'Angra MEI',
   company_registration_number: CNPJ.generate,
+  events_per_day: 2,
   phone: '4333301264',
   email: 'antonia@mail.com',
   address: 'Rua do Aurora, 508',
@@ -246,11 +255,3 @@ EventType.create!(
   per_hour_fee: 100.00,
   per_hour_weekend_fee: 50
 )
-
-# t.decimal "base_price", precision: 8, scale: 2
-# t.integer "weekend_fee"
-# t.decimal "per_person_fee", precision: 8, scale: 2
-# t.integer "per_person_weekend_fee"
-# t.decimal "per_hour_fee", precision: 8, scale: 2
-# t.integer "per_hour_weekend_fee"
-
