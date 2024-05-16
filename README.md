@@ -1,14 +1,21 @@
-## Cade Buffet?
-### Version
+## Cadê Buffet?
+### 🧭 Description
+Cadê Buffet? is a web application that connects users with a variety of buffets and event types available for hire. Users can browse through a curated selection of buffets and event options, making it easy to find the perfect fit for their needs.
+Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Development (TDD) methodology to ensure consistensy and reliability. The application allows both guests and registered users to explore buffet listings and event types. However, to place bids or inquire about a specific buffet, users must first create an account and log in.
+### 📂 Features
++ **User registration:** There are two user roles in this application:
+  + **Business Owner** should own a buffet. A business owner can not fully complete the account registration before registering a buffet. A business owner is not allowed to register another buffet within the same account. 
+  + **Client** should register a social security number to complete their registration. Client can search, hire and see details of all available buffets.
++ **Buffet listing:** Both authenticated users and visitors can accesses the buffet listing which includes all unarchived buffets.
+### 📌 Version
 ruby "3.1.2"
-### Set Up
-This app is using [Yarn](https://classic.yarnpkg.com/en/docs/getting-started)
-https://classic.yarnpkg.com/en/docs/getting-started
+### 🚀 Set Up
+This app is using
 ```
 bin/setup
 rake assets:precompile
 ```
-## Cade Buffet? API
+## Cadê Buffet? API
 ### Introduction
 Welcome to Cade Buffet? API's doc.
 See our available resources and learn how to consume them with HTTP requests.
