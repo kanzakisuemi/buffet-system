@@ -15,17 +15,35 @@ Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Developm
 + **Payment methods:** This resource is set by the system and can be associated to multiple buffets.
 + **Chat:** A business owner can start a chat with a client through an order, meaning the same pair of users can have multiple chats through different orders.
 ## ⚙️ Dependencies
+![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+
 ![Ruby on Rails](https://img.shields.io/badge/Ruby_on_Rails-A10E3B?style=for-the-badge&logo=rubyonrails&logoColor=white)
 ![html](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
-> [!IMPORTANT]
-> Yarn is required
 
-ruby "3.1.2"
+- ![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)
 
-rails "7.0.8.1"
+  - **v 3.1.2**
+
+- ![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
+
+  - **v 7.0.8.1**
+
+
+**GEMS**
+- devise
+- rspec-rails
+- capybara
+- jquery-rails
+- cpf_cnpj
+- turbo-rails
+- stimulus-rails
+- jsbundling-rails
+- cssbundling-rails
+
 ## 🚀 Set Up
 * remember to ```npm install --global yarn```
 
