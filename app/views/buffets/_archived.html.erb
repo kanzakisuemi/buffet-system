@@ -1,0 +1,11 @@
+<% if @buffet.archived? %>
+  <div class="alert alert-primary d-flex align-items-center" >
+    <%= image_tag "pin_icon", size: "40", class: "me-2" %>
+    <div>
+      <span class="bold">O seu Buffet está desativado.</span>
+      <span>Lembre-se que novos pedidos não podem ser realizados e outros usuários não conseguem ver o seu Buffet.</span>
+      <span>Você pode desarquivá-lo a qualquer momento.</span>
+    </div>
+  </div>
+<% end %>
+

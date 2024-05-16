@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User signs up' do
-  it 'as business owner through navbar link' do
+  it 'as business owner through navbar' do
     visit root_path
 
     click_on 'Entrar'
@@ -18,7 +18,7 @@ describe 'User signs up' do
 
     expect(page).to have_content('khy@jenner.com')
   end
-  it 'as client through navbar link' do
+  it 'as client through navbar' do
     visit root_path
 
     click_on 'Entrar'

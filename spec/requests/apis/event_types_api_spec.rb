@@ -1,6 +1,5 @@
 require 'rails_helper'
-# available_api_v1_event_type
-# GET /api/v1/event_types/:id/available(.:format)
+
 describe 'event types api' do
   context 'GET /api/v1/event_types/:id/available' do
     it 'and event is bookable' do
@@ -49,8 +48,6 @@ describe 'event types api' do
       expect(json_response['event_date']).to eq 5.days.from_now.strftime('%Y-%m-%d')
       expect(json_response['guests_estimation']).to eq 210
       expect(json_response['event_price']).to eq "15700.0"
-      puts json_response
-      puts request.fullpath
     end
     it 'and event is not bookable due to guest quantity' do
       felipe = User.create!(name: 'Felipe Chineze', email: 'felipe@email.com', password: 'password123', role: 0)
@@ -97,7 +94,7 @@ describe 'event types api' do
       expect(json_response).to include 'Quantidade de Convidados deve ser menor ou igual a 400'
     end
     it 'and event is not bookable on this date' do
-      julia = User.create!(name: 'Julia Kanzaki', email: 'kanzaki@myself.com', password: 'password123', role: 1)
+      julia = User.create!(name: 'Julia Kanzaki', email: 'kanzaki@myself.com', password: 'password123', role: 1, social_security_number: CPF.generate)
       felipe = User.create!(name: 'Felipe Chineze', email: 'felipe@email.com', password: 'password123', role: 0)
       planalto = Buffet.create!(
         social_name: 'Planalto', 
@@ -149,7 +146,6 @@ describe 'event types api' do
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
       expect(json_response).to include 'Data do Evento não está disponível. Por favor, escolha outra data.'
-      puts request.fullpath
     end
   end
 end

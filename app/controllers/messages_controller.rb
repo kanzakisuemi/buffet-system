@@ -9,10 +9,19 @@ before_action :set_order, only: %i[start_chat create index]
     @message = Message.new(message_params)
     @message.user = current_user
     @message.order = @order
-    if @message.save
-      redirect_to order_messages_path(@order)
+    if @order.messages.empty?
+      if @message.save
+        redirect_to order_messages_path(@order)
+      else
+        render 'start_chat', notice: 'Não foi possível enviar a mensagem.'
+      end
     else
-      render 'start_chat', notice: 'Não foi possível enviar a mensagem.'
+      if @message.save
+        redirect_to order_messages_path(@order)
+      else
+        @messages = @order.messages.order(created_at: :asc)
+        render 'index'
+      end
     end
   end
 

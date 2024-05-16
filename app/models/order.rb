@@ -27,12 +27,12 @@ class Order < ApplicationRecord
   end
 
   def total_price
-    if self.charge_fee?
-      event_price + self.extra_fee
+    if self.charge_fee? && self.grant_discount?
+      event_price + self.extra_fee - self.discount
     elsif self.grant_discount?
       event_price - self.discount
-    elsif self.charge_fee? && self.grant_discount?
-      event_price + self.extra_fee - self.discount
+    elsif self.charge_fee?
+      event_price + self.extra_fee
     else
       event_price
     end

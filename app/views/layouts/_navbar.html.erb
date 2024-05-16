@@ -17,7 +17,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Todos Buffets", buffets_path, class: "dropdown-item" %></li>
-              <li><%= link_to "Ver meu Buffet", buffet_path(current_user.buffet), class: "dropdown-item" %></li>
+              <li><%= link_to "Ver meu Buffet", current_user.buffet, class: "dropdown-item" %></li>
             </ul>
           </li>
         <% elsif user_signed_in? && current_user.business_owner? && current_user.buffet.nil? %>

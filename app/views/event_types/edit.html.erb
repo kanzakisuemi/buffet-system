@@ -4,6 +4,14 @@
       <%= link_to "", :back, class: "btn btn-close btn-sm" %>
     </div>
 
+    <% if @event_type.errors.any? %>
+      <div style="color: red;">
+        <% @event_type.errors.full_messages.each do |message| %>
+          <span><%= message %></span><br/>
+        <% end %>
+      </div>
+    <% end %>
+
     <p>Tipo de Evento - <%= @event_type.name %></p>
     <%= render "form" %>
 

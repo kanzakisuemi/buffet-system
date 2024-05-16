@@ -3,10 +3,9 @@
     <div class="mb-3 ">
       <%= link_to "", :back, class: "btn btn-close btn-sm" %>
     </div>
-    <p class="notice"><%= notice %></p>
+    
     <% if @buffet.errors.any? %>
       <div style="color: red;">
-        <h5><%= pluralize(@buffet.errors.count, "erro") %> impediram o cadastro do produto:</h5>
         <% @buffet.errors.full_messages.each do |message| %>
           <span><%= message %></span><br/>
         <% end %>

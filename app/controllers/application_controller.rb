@@ -20,10 +20,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def after_sign_up_path_for(user)
-    user.business_owner? ? new_buffet_path() : root_path
-  end
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name role social_security_number])
     devise_parameter_sanitizer.permit(:sign_in, keys: %i[name role social_security_number])

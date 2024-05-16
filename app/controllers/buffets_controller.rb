@@ -77,13 +77,8 @@ class BuffetsController < ApplicationController
     else
       query_as_sym = query.to_sym
 
-      if EventType.categories.key?(query_as_sym)
-        buffet_ids = EventType.where(category: query_as_sym).pluck(:buffet_id)
-        @results = @buffets.where(id: buffet_ids).order(social_name: :asc)
-      else
-        buffet_ids = EventType.where("LOWER(name) LIKE ?", "%#{query}%").pluck(:buffet_id)
-        @results = @buffets.where(id: buffet_ids).order(social_name: :asc)
-      end
+      buffet_ids = EventType.where("LOWER(name) LIKE ?", "%#{query}%").pluck(:buffet_id)
+      @results = @buffets.where(id: buffet_ids).order(social_name: :asc)
     end
   end
 

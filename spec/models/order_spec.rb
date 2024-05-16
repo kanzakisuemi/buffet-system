@@ -404,9 +404,66 @@ RSpec.describe Order, type: :model do
         expect(result).to eq(1350.00)
       end
     end
-  end
-  describe '#event_price' do
-    it 'returns event price based on base price and fees' do
+    it 'grants discount' do
+      kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
+      kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+      buffet = Buffet.create!(
+        social_name: 'Buffet da Maria',
+        corporate_name: 'Buffet da Maria LTDA',
+        company_registration_number: CNPJ.generate,
+        events_per_day: 3,
+        phone: '996348000',
+        email: 'maria@email.com',
+        address: 'Rua das Flores, 230',
+        neighborhood: 'Jardim das Flores',
+        city: 'São Paulo',
+        state: 'SP',
+        zip_code: '12345678',
+        description: 'Buffet para festas infantis e de adultos',
+        user: kylie,
+        payment_methods: []
+      )
+      event_type = EventType.create!(
+        category: 3,
+        name: 'Festa Infantil',
+        description: 'Festa para crianças',
+        default_duration_minutes: 240,
+        minimal_people_capacity: 30,
+        maximal_people_capacity: 60,
+        food_menu: 'Bolo, doces, salgados, refrigerante e suco',
+        alcoholic_drinks: true,
+        parking_service: true,
+        buffet: kylie.buffet,
+        base_price: 1000.00,
+        weekend_fee: 20,
+        per_person_fee: 50.00,
+        per_person_weekend_fee: 20,
+        per_hour_fee: 100.00,
+        per_hour_weekend_fee: 50
+      )
+      order = Order.new(
+        event_date: 12.days.from_now,
+        guests_estimation: 35,
+        event_details: 'Festa de aniversário de 2 anos do José',
+        event_address: nil,
+        event_type_id: event_type.id,
+        user: kendall,
+        status: 0,
+        charge_fee: false,
+        extra_fee: 0.00,
+        grant_discount: true,
+        discount: 50.00
+      )
+
+      result = order.total_price.to_f
+
+      if order.event_date.on_weekend?
+        expect(result).to eq(1450.00)
+      else
+        expect(result).to eq(1200.00)
+      end
+    end
+    it 'charges extra fee and grants discount' do
       kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
       kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
       buffet = Buffet.create!(
@@ -452,17 +509,125 @@ RSpec.describe Order, type: :model do
         user: kendall,
         status: 0,
         charge_fee: true,
-        extra_fee: 100.00,
-        grant_discount: false,
-        discount: 0.00
+        extra_fee: 200.00,
+        grant_discount: true,
+        discount: 100.00
       )
 
-      result = order.event_price.to_f
+      result = order.total_price.to_f
 
       if order.event_date.on_weekend?
-        expect(result).to eq(1500.00)
+        expect(result).to eq(1600.00)
       else
+        expect(result).to eq(1350.00)
+      end
+    end
+  end
+  describe '#event_price' do
+    context 'weekday' do
+      it 'returns event price based on base price and fees' do
+        kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
+        kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+        buffet = Buffet.create!(
+          social_name: 'Buffet da Maria',
+          corporate_name: 'Buffet da Maria LTDA',
+          company_registration_number: CNPJ.generate,
+          events_per_day: 3,
+          phone: '996348000',
+          email: 'maria@email.com',
+          address: 'Rua das Flores, 230',
+          neighborhood: 'Jardim das Flores',
+          city: 'São Paulo',
+          state: 'SP',
+          zip_code: '12345678',
+          description: 'Buffet para festas infantis e de adultos',
+          user: kylie,
+          payment_methods: []
+        )
+        event_type = EventType.create!(
+          category: 3,
+          name: 'Festa Infantil',
+          description: 'Festa para crianças',
+          default_duration_minutes: 240,
+          minimal_people_capacity: 30,
+          maximal_people_capacity: 60,
+          food_menu: 'Bolo, doces, salgados, refrigerante e suco',
+          alcoholic_drinks: true,
+          parking_service: true,
+          buffet: kylie.buffet,
+          base_price: 1000.00,
+          weekend_fee: 20,
+          per_person_fee: 50.00,
+          per_person_weekend_fee: 20,
+          per_hour_fee: 100.00,
+          per_hour_weekend_fee: 50
+        )
+        order = Order.new(
+          event_date: weekday_date,
+          guests_estimation: 35,
+          event_details: 'Festa de aniversário de 2 anos do José',
+          event_address: nil,
+          event_type_id: event_type.id,
+          user: kendall,
+          status: 0
+        )
+
+        result = order.event_price.to_f
+
         expect(result).to eq(1250.00)
+      end
+    end
+    context 'weekend' do
+      it 'returns event price based on base price and fees' do
+        kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
+        kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+        buffet = Buffet.create!(
+          social_name: 'Buffet da Maria',
+          corporate_name: 'Buffet da Maria LTDA',
+          company_registration_number: CNPJ.generate,
+          events_per_day: 3,
+          phone: '996348000',
+          email: 'maria@email.com',
+          address: 'Rua das Flores, 230',
+          neighborhood: 'Jardim das Flores',
+          city: 'São Paulo',
+          state: 'SP',
+          zip_code: '12345678',
+          description: 'Buffet para festas infantis e de adultos',
+          user: kylie,
+          payment_methods: []
+        )
+        event_type = EventType.create!(
+          category: 3,
+          name: 'Festa Infantil',
+          description: 'Festa para crianças',
+          default_duration_minutes: 240,
+          minimal_people_capacity: 30,
+          maximal_people_capacity: 60,
+          food_menu: 'Bolo, doces, salgados, refrigerante e suco',
+          alcoholic_drinks: true,
+          parking_service: true,
+          buffet: kylie.buffet,
+          base_price: 1000.00,
+          weekend_fee: 20,
+          per_person_fee: 50.00,
+          per_person_weekend_fee: 20,
+          per_hour_fee: 100.00,
+          per_hour_weekend_fee: 50
+        )
+        order = Order.new(
+          event_date: weekend_date,
+          guests_estimation: 35,
+          event_details: 'Festa de aniversário de 2 anos do José',
+          event_address: nil,
+          event_type_id: event_type.id,
+          user: kendall,
+          status: 0
+        )
+
+        result = order.event_price.to_f
+
+        expect(result).to eq(1500.00)
       end
     end
   end
