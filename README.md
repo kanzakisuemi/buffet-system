@@ -1,9 +1,10 @@
-## Cadê Buffet?
-### 🧭 Description
+# Cadê Buffet?
+TreinaDev 12 - Campus Code
+## 🧭 Description
 Cadê Buffet? is a web application that connects users with a variety of buffets and event types available for hire. Users can browse through a curated selection of buffets and event options, making it easy to find the perfect fit for their needs.
 Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Development (TDD) methodology to ensure consistensy and reliability. The application allows both guests and registered users to explore buffet listings and event types. However, to place bids or inquire about a specific buffet, users must first create an account and log in.
 
-### 📂 Features
+## 📂 Features
 + **User registration:** There are two user roles in this application:
   + **Business Owner** should own a buffet. A business owner can not fully complete the account registration before registering a buffet. A business owner is not allowed to register another buffet within the same account. 
   + **Client** should register a social security number to complete their registration. Client can search, hire and see details of all available buffets.
@@ -13,7 +14,7 @@ Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Developm
 + **Order placement:** A client can place an order.
 + **Payment methods:** This resource is set by the system and can be associated to multiple buffets.
 + **Chat:** A business owner can start a chat with a client through an order, meaning the same pair of users can have multiple chats through different orders.
-### ⚙️ Dependencies
+## ⚙️ Dependencies
 ![Ruby on Rails](https://img.shields.io/badge/Ruby_on_Rails-A10E3B?style=for-the-badge&logo=rubyonrails&logoColor=white)
 ![html](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
@@ -26,7 +27,7 @@ ruby "3.1.2"
 
 rails "7.0.8.1"
 ## 🚀 Set Up
-Clone the project
+Clone this repository
 
 ```bash
 git clone git@github.com:kanzakisuemi/buffet-system.git
@@ -37,9 +38,14 @@ Then run
 ```bash
 bin/setup
 ```
+this is going to prepare the database, and install dependencies
+
+Then run
 ```bash
 rake assets:precompile
 ```
+and this will compile js and css files
+
 Start the server
 
 ```bash
