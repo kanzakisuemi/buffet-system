@@ -27,6 +27,8 @@ ruby "3.1.2"
 
 rails "7.0.8.1"
 ## 🚀 Set Up
+* remember to ```npm install --global yarn```
+
 Clone this repository
 
 ```bash
