@@ -1,19 +1,75 @@
-## Cadê Buffet?
-### 🧭 Description
+# Cadê Buffet?
+TreinaDev 12 - Campus Code
+## 🧭 Description
 Cadê Buffet? is a web application that connects users with a variety of buffets and event types available for hire. Users can browse through a curated selection of buffets and event options, making it easy to find the perfect fit for their needs.
 Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Development (TDD) methodology to ensure consistensy and reliability. The application allows both guests and registered users to explore buffet listings and event types. However, to place bids or inquire about a specific buffet, users must first create an account and log in.
-### 📂 Features
+
+## 📂 Features
 + **User registration:** There are two user roles in this application:
   + **Business Owner** should own a buffet. A business owner can not fully complete the account registration before registering a buffet. A business owner is not allowed to register another buffet within the same account. 
   + **Client** should register a social security number to complete their registration. Client can search, hire and see details of all available buffets.
 + **Buffet listing:** Both authenticated users and visitors can accesses the buffet listing which includes all unarchived buffets.
-### 📌 Version
-ruby "3.1.2"
-### 🚀 Set Up
-This app is using
++ **Buffet search:** Both authenticated users and visitors are able to search a buffet either by social name, city and event name.
++ **Event type management:** Business owners can register event types, which will be associated to the business owner's buffet.
++ **Order placement:** A client can place an order.
++ **Payment methods:** This resource is set by the system and can be associated to multiple buffets.
++ **Chat:** A business owner can start a chat with a client through an order, meaning the same pair of users can have multiple chats through different orders.
+## ⚙️ Dependencies
+![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+
+![Ruby on Rails](https://img.shields.io/badge/Ruby_on_Rails-A10E3B?style=for-the-badge&logo=rubyonrails&logoColor=white)
+![html](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+
+- ![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)
+
+  - **v 3.1.2**
+
+- ![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
+
+  - **v 7.0.8.1**
+
+
+**GEMS**
+- devise
+- rspec-rails
+- capybara
+- jquery-rails
+- cpf_cnpj
+- turbo-rails
+- stimulus-rails
+- jsbundling-rails
+- cssbundling-rails
+
+## 🚀 Set Up
+* remember to ```npm install --global yarn```
+
+Clone this repository
+
+```bash
+git clone git@github.com:kanzakisuemi/buffet-system.git
 ```
+
+Then run
+
+```bash
 bin/setup
+```
+this is going to prepare the database, and install dependencies
+
+Then run
+```bash
 rake assets:precompile
+```
+and this will compile js and css files
+
+Start the server
+
+```bash
+rails s
 ```
 ## Cadê Buffet? API
 ### Introduction
