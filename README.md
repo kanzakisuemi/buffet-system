@@ -17,15 +17,33 @@ Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Developm
 ![Ruby on Rails](https://img.shields.io/badge/Ruby_on_Rails-A10E3B?style=for-the-badge&logo=rubyonrails&logoColor=white)
 ![html](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+> [!IMPORTANT]
+> Yarn is required
 
 ruby "3.1.2"
 
 rails "7.0.8.1"
-### 🚀 Set Up
-This app is using
+## 🚀 Set Up
+Clone the project
+
+```bash
+git clone git@github.com:kanzakisuemi/buffet-system.git
 ```
+
+Then run
+
+```bash
 bin/setup
+```
+```bash
 rake assets:precompile
+```
+Start the server
+
+```bash
+rails s
 ```
 ## Cadê Buffet? API
 ### Introduction
