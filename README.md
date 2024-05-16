@@ -7,9 +7,9 @@ Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Developm
   + **Business Owner** should own a buffet. A business owner can not fully complete the account registration before registering a buffet. A business owner is not allowed to register another buffet within the same account. 
   + **Client** should register a social security number to complete their registration. Client can search, hire and see details of all available buffets.
 + **Buffet listing:** Both authenticated users and visitors can accesses the buffet listing which includes all unarchived buffets.
-### Version
+### 📌 Version
 ruby "3.1.2"
-### Set Up
+### 🚀 Set Up
 This app is using
 ```
 bin/setup
