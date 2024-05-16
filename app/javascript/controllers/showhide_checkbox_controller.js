@@ -1,17 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="showhide"
+// Connects to data-controller="showhide-checkbox"
 export default class extends Controller {
   static targets = ["input", "output"]
-  static values = { showIf: String }
   connect() {
     this.toggle()
   }
 
   toggle() {
-    if (this.inputTarget.value != this.showIfValue) {
+    if (this.inputTarget.checked == false) {
       this.outputTarget.hidden = true
-    } else if (this.inputTarget.value == this.showIfValue) {
+    } else if (this.inputTarget.checked == true) {
       this.outputTarget.hidden = false
     }
   }

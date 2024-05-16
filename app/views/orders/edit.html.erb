@@ -20,21 +20,25 @@
         <%= f.select :payment_method_id, options_for_select(@order.payment_methods_options_for_select), { include_blank: true }, class: "form-select" %>
         <%= f.label :payment_method_id, class: "form-label" %>
       </div>
-      <div class="form-check form-switch">
-        <%= f.check_box :charge_fee, class: "form-check-input" %>
-        <%= f.label :charge_fee, class: "form-check-label" %>
+      <div data-controller="showhide-checkbox">
+        <div class="form-check form-switch">
+          <%= f.check_box :charge_fee, class: "form-check-input", data: { showhide_checkbox_target: "input", action: "change->showhide-checkbox#toggle" } %>
+          <%= f.label :charge_fee, class: "form-check-label" %>
+        </div>
+        <div class="form-floating mb-3" data-showhide-checkbox-target="output">
+          <%= f.text_field :extra_fee, class: "form-control", maxlength: 15, "data-controller": "money" %>
+          <%= f.label :extra_fee, class: "form-label" %>
+        </div>
       </div>
-      <div class="form-check form-switch mb-3">
-        <%= f.check_box :grant_discount, class: "form-check-input" %>
-        <%= f.label :grant_discount, class: "form-check-label" %>
-      </div>
-      <div class="form-floating mb-3">
-        <%= f.text_field :extra_fee, class: "form-control", maxlength: 15, "data-controller": "money" %>
-        <%= f.label :extra_fee, class: "form-label" %>
-      </div>
-      <div class="form-floating mb-3">
-        <%= f.text_field :discount, class: "form-control", maxlength: 15, "data-controller": "money" %>
-        <%= f.label :discount, class: "form-label" %>
+      <div data-controller="showhide-checkbox-discount">
+        <div class="form-check form-switch mb-3">
+          <%= f.check_box :grant_discount, class: "form-check-input", data: { showhide_checkbox_discount_target: "input", action: "change->showhide-checkbox-discount#toggle" } %>
+          <%= f.label :grant_discount, class: "form-check-label" %>
+        </div>
+        <div class="form-floating mb-3" data-showhide-checkbox-discount-target="output">
+          <%= f.text_field :discount, class: "form-control", maxlength: 15, "data-controller": "money" %>
+          <%= f.label :discount, class: "form-label" %>
+        </div>
       </div>
       <div class="form-floating mb-3">
         <%= f.text_area :budget_details, class: "form-control" %>

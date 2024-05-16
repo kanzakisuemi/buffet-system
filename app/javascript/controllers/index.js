@@ -16,6 +16,12 @@ application.register("numbers-only", NumbersOnlyController)
 import PhoneController from "./phone_controller"
 application.register("phone", PhoneController)
 
+import ShowhideCheckboxController from "./showhide_checkbox_controller"
+application.register("showhide-checkbox", ShowhideCheckboxController)
+
+import ShowhideCheckboxDiscountController from "./showhide_checkbox_discount_controller"
+application.register("showhide-checkbox-discount", ShowhideCheckboxDiscountController)
+
 import ShowhideController from "./showhide_controller"
 application.register("showhide", ShowhideController)
 
