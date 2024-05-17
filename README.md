@@ -2,7 +2,7 @@
 TreinaDev 12 - Campus Code
 ## 🧭 Description
 Cadê Buffet? is a web application that connects users with a variety of buffets and event types available for hire. Users can browse through a curated selection of buffets and event options, making it easy to find the perfect fit for their needs.
-Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Development (TDD) methodology to ensure consistensy and reliability. The application allows both guests and registered users to explore buffet listings and event types. However, to place bids or inquire about a specific buffet, users must first create an account and log in.
+Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Development (TDD) methodology to ensure consistensy and reliability. The application allows both guests and registered users to explore buffet listings and event types. However, to hire or rate a specific buffet, users must first create an account and log in.
 
 ## 📂 Features
 + **User registration:** There are two user roles in this application:
@@ -10,7 +10,7 @@ Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Developm
   + **Client** should register a social security number to complete their registration. Client can search, hire, see details of all available buffets and rate previously hired buffets.
 + **Buffet Management:** the buffet's info can be updated by the associated business owner, who can also archive buffets.
   + archived buffets are not visible in the buffet listing, and its details are only accessible to the associated business owner. 
-+ **Buffet listing:** both authenticated users and visitors can accesses the buffet listing which includes all unarchived buffets.
++ **Buffet listing:** both authenticated users and visitors can access the buffet listing which includes all unarchived buffets.
 + **Buffet search:** both authenticated users and visitors are able to search a buffet either by social name, city and event name.
 + **Bufet Rating:** is visible on the buffet's details page. The rating consists on a score and a review message, there might be pictures associated.
 + **Event type management:** business owners can register and update event types, which will be associated to the business owner's buffet. Event types can have multiple images attached.
@@ -36,6 +36,9 @@ Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Developm
 
   - **v 7.0.8.1**
 
+- esbuild
+
+- inputmask
 
 **GEMS**
 - devise
