@@ -56,9 +56,12 @@ git clone git@github.com:kanzakisuemi/buffet-system.git
 Then run
 
 ```bash
-bin/setup
+bundle install
 ```
-this is going to prepare the database, and install dependencies
+
+```bash
+rails db:setup
+```
 
 Then run
 ```bash
@@ -78,6 +81,9 @@ Access through
 http://localhost:3000
 ```
 
+**To login as:**
++ **Client** use the following credentials: email:  ```kanzaki@myself.com``` password: ```password123```
++ **Business owner** use the following credentials: email:  ```felipe@mail.com``` password: ```password123```
 
 ### Testing
 
