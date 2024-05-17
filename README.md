@@ -2,7 +2,7 @@
 TreinaDev 12 - Campus Code
 ## 🧭 Description
 Cadê Buffet? is a web application that connects users with a variety of buffets and event types available for hire. Users can browse through a curated selection of buffets and event options, making it easy to find the perfect fit for their needs.
-Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Development (TDD) methodology to ensure consistensy and reliability. The application allows both guests and registered users to explore buffet listings and event types. However, to place bids or inquire about a specific buffet, users must first create an account and log in.
+Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Development (TDD) methodology to ensure consistensy and reliability. The application allows both guests and registered users to explore buffet listings and event types. However, to hire or rate a specific buffet, users must first create an account and log in.
 
 ## 📂 Features
 + **User registration:** There are two user roles in this application:
@@ -36,6 +36,9 @@ Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Developm
 
   - **v 7.0.8.1**
 
+- esbuild
+
+- inputmask
 
 **GEMS**
 - devise
