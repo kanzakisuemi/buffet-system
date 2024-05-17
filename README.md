@@ -71,6 +71,23 @@ Start the server
 ```bash
 rails s
 ```
+
+Access through
+
+```
+http://localhost:3000
+```
+
+
+### Testing
+
+Run
+
+```
+rspec
+```
+
+
 ## Cadê Buffet? API
 ### Introduction
 Welcome to Cade Buffet? API's doc.
