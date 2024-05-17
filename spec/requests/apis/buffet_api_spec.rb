@@ -4,6 +4,8 @@ describe 'buffet api' do
   context 'GET /api/v1/buffet/1' do
     it 'success' do
       felipe = User.create!(name: 'Felipe Chineze', email: 'felipe@email.com', password: 'password123', role: 0)
+      kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
+      matheus = User.create!(name: 'Matheus Bellucio', email: 'belluciom@mail.com', password: 'password123', role: 1, social_security_number: CPF.generate)
       debit = PaymentMethod.create(name: 'Cartão de Crédito')
       credit = PaymentMethod.create(name: 'Cartão de Débito')
       buffet = Buffet.create!(
@@ -21,6 +23,8 @@ describe 'buffet api' do
         user: felipe,
         payment_methods: [ debit, credit ]
       )
+      Rating.create!(score: 5, review: 'Achei hiper bacana.', buffet: buffet, user: kendall)
+      Rating.create!(score: 3, review: 'Achei que não foi bacana.', buffet: buffet, user: matheus)
       
       get "/api/v1/buffets/#{buffet.id}"
 
@@ -30,6 +34,7 @@ describe 'buffet api' do
       expect(response.content_type).to include('application/json')
       
       expect(json_response["social_name"]).to eq buffet.social_name
+      expect(json_response.keys).to include 'rating_average'
       expect(json_response.keys).not_to include 'corporate_name'
       expect(json_response.keys).not_to include 'company_registration_number'
     end

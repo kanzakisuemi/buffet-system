@@ -1,0 +1,56 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="dean-modal" style="height: 50%;">
+    <div class="mb-3 ">
+      <%= link_to "", :back, class: "btn btn-close btn-sm" %>
+    </div>
+
+    <p class="">
+      Avalie o buffet <%= @buffet.social_name %>, qual nota você daria de 0 a 5?
+    </p>
+
+    <%= form_with(model: [@buffet, @rating]) do |f| %>
+      <div class="form-check">
+        <%= f.radio_button :score, 0, class: "form-check-input" %>
+        <%= f.label :score, class: "form-check-label" %>
+        0
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :score, 1, class: "form-check-input" %>
+        <%= f.label :score, class: "form-check-label" %>
+        1
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :score, 2, class: "form-check-input" %>
+        <%= f.label :score, class: "form-check-label" %>
+          2
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :score, 3, class: "form-check-input" %>
+        <%= f.label :score, class: "form-check-label" %>
+          3
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :score, 4, class: "form-check-input" %>
+        <%= f.label :score, class: "form-check-label" %>
+          4
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :score, 5, class: "form-check-input" %>
+        <%= f.label :score, class: "form-check-label" %>
+          5
+      </div>
+      <div class="form-floating mt-3 mb-2">
+        <%= f.text_area :review, class: "form-control", placeholder: :review %>
+        <%= f.label :review %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :pictures %>
+        <%= f.file_field :pictures, class: "form-control" %>
+      </div>
+      <div>
+        <%= f.submit "Enviar Avaliação", class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+    
+  </div>
+<% end %>

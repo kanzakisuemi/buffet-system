@@ -330,4 +330,34 @@ RSpec.describe Buffet, type: :model do
       expect(result).to be false
     end
   end
+  describe '#rating_average' do
+    it 'when buffet has 3 ratings' do
+      felca = User.create!(name: 'Felipe Bressanim', email: 'felca@youtuber.com', password: 'password123', role: 1, social_security_number: CPF.generate)
+      orochinho = User.create!(name: 'Pedro Orochi', email: 'pedro@mail.com', password: 'password123', role: 1, social_security_number: CPF.generate)
+      matheus = User.create!(name: 'Matheus Bellucio', email: 'belluciom@mail.com', password: 'password123', role: 1, social_security_number: CPF.generate)
+      kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+      buffet = Buffet.create!(
+        social_name: 'Buffet da Maria',
+        corporate_name: 'Buffet da Maria LTDA',
+        company_registration_number: CNPJ.generate,
+        phone: '996348000',
+        email: 'maria@email.com',
+        address: 'Rua das Flores, 230',
+        neighborhood: 'Jardim das Flores',
+        city: 'São Paulo',
+        state: 'SP',
+        zip_code: '12345678',
+        description: 'Buffet para festas infantis e de adultos',
+        user: kylie,
+        payment_methods: [ ]
+      )
+      Rating.create!(score: 3, review: 'Achei que não foi bacana.', buffet: buffet, user: matheus)
+      Rating.create!(score: 4, review: 'Achei bem bacana.', buffet: buffet, user: felca)
+      Rating.create!(score: 2, review: 'Achei bem esquisito o evento.', buffet: buffet, user: orochinho)
+
+      result = buffet.rating_average
+
+      expect(result).to eq(3)
+    end
+  end
 end

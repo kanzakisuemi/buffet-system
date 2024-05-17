@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'event_types', on: :member
     post 'archive', on: :member
     post 'unarchive', on: :member
+    resources :ratings, only: %i[new create index]
   end
   resources :event_types, only: %i[new create edit update] do
     resources :orders, only: %i[new create]

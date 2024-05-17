@@ -2,17 +2,21 @@
   <p class="text-center mt-5">Você ainda não fez nenhum pedido.</p>
 <% end %>
 
-<div class="list-group mx-auto text-center mt-5" style="max-width: 17rem;">
+<div class="list-group mx-auto text-center mt-5" style="max-width: 25rem;">
   <% @orders.each do |order| %>
     <% if order.approved? %>
       <%= link_to order, class: "list-group-item list-group-item-action border-dark position-relative", id: dom_id(order) do %>
-        <%= order.code_and_date %>
+        <p class="badge text-bg-secondary mx-auto"><%= order.humanized_status %></p>
+        <h6 class="text-center"><%= order.code_and_date %></h6>
         <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
           <span class="visually-hidden">Aprovado</span>
         </span>
       <% end %>
     <% else %>
-      <%= link_to order.code_and_date, order, class: "list-group-item list-group-item-action border-dark" %>
+      <%= link_to order, class: "list-group-item list-group-item-action border-dark" do %>
+        <p class="badge text-bg-secondary mx-auto"><%= order.humanized_status %></p>
+        <h6 class="text-center"><%= order.code_and_date %></h6>
+      <% end %>
     <% end %>
   <% end %>
 </div>

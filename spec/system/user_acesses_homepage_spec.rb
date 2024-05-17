@@ -9,6 +9,9 @@ describe 'User accesses homepage' do
     within('nav') do
       expect(page).to have_content("Cadê Buffet?")
     end
-    expect(page).to have_content("Você está na homepage da aplicação Cadê Buffet?")
+    expect(page).to have_content("Você está na homepage da aplicação")
+    expect(page).to have_content("Cadê Buffet?")
+    expect(page).to have_content("Se conecte aos nossos Buffets e conheça os tipos de eventos!")
+    expect(page).to have_content("Faça pedidos e avalie buffets!")
   end
 end

@@ -122,7 +122,9 @@ describe 'user tries to access' do
       event_address: nil,
       event_type_id: event_type.id,
       user: kendall,
-      status: 1
+      status: 1,
+      due_date: 5.days.from_now
+
     )
 
     login_as(kylie)

@@ -3,8 +3,11 @@
 <% end %>
 <div class="card border-dark mx-auto mb-5 mt-5" style="max-width: 30rem;">
   <div class="card-body">
-    <%= render "status_tag" %>
-    <p class="bold text-center"><%= @order.code %></p>
+    <%= link_to :back do %>
+      <%= image_tag "arrow-left.svg" %>
+    <% end %>
+    <p class="bold text-center">Pedido: <%= @order.code %></p>
+    <p class="text-center"><%= render "status_tag" %></p>
     <p class="text-center bold"><%= @order.buffet.social_name %> - <%= @order.event_type.name %></p>
     <p><span class="bold">Observações do cliente: </span><%= @order.event_details %></p>
     <p><span class="bold">Data do Evento: </span><%= I18n.localize(@order.event_date) %></p>
@@ -31,19 +34,19 @@
     <% if current_user.business_owner? && @order.pending? %>
       <%= link_to "Aprovar Evento", edit_order_path(@order), class: "btn btn-secondary" %>
     <% end %>
-    <% if current_user.client? && @order.approved? && (@order.due_date.future? || @order.due_date.today?) %>
+    <% if current_user.client? && @order.approved? %>
       <%= button_to "Confirmar Evento", confirmed_order_path(@order), class: "btn btn-primary" %>
     <% end %>
     <% unless @order.canceled? %>
       <%= button_to "Cancelar Evento", canceled_order_path(@order), class: "btn btn-primary mt-3" %>
     <% end %>
     <% if current_user.business_owner? && @order.messages.empty? %>
-      <%= link_to start_chat_order_messages_path(@order), class: "d-block mt-3" do %>
+      <%= link_to start_chat_order_messages_path(@order), class: "d-block mt-3", data: { turbo_frame: "modal" } do %>
         <%= image_tag "chat_message_icon", size: "35", class: "me-2" %>
         <span>Iniciar Conversa com Cliente</span>
       <% end %>
     <% elsif @order.messages.any? %>
-      <%= link_to order_messages_path(@order), class: "d-block mt-3" do %>
+      <%= link_to order_messages_path(@order), class: "d-block mt-3", data: { turbo_frame: "modal" } do %>
         <%= image_tag "chat_message_icon", size: "35", class: "me-2" %>
         <span>Acessar chat</span>
       <% end %>

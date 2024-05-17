@@ -1,0 +1,24 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="dean-modal">
+    <div class="mb-3">
+      <%= link_to "", :back, class: "btn btn-close btn-sm" %>
+    </div>
+    <h4 class="text-center mb-3">Avaliações</h4>
+    <% @buffet.ratings.each do |rating| %>
+      <div class="alert alert-secondary w-75 mx-auto">
+        <h5><%= rating.user.name %></h5>
+        <p>Nota: <%= rating.score %></p>
+        <hr class="divider"/>
+        <p>Avaliação: <%= rating.review %></p>
+        <% if rating.pictures.any? %>
+          <h5>Fotos do Evento: </h5>
+          <div class="alert overflow-y-auto" style="height: 20rem; border-width: 10px;">
+            <% rating.pictures_as_thumbnails.each do |picture| %>
+              <%= image_tag(picture, class: "img-thumbnail") %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>        
+    <% end %>
+  </div>
+<% end %>

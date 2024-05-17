@@ -2,6 +2,7 @@ class BuffetsController < ApplicationController
   before_action :set_buffet, only: %i[show edit update event_types event_selection archive unarchive]
   before_action :is_business_owner?, only: %i[new create edit update]
   before_action :already_has_buffet?, only: %i[new create]
+  before_action :client_with_past_confirmed_events, only: %i[show]
 
   def index
     @buffets = Buffet.where(archived: false)
@@ -66,6 +67,17 @@ class BuffetsController < ApplicationController
   end
 
   private
+
+  def client_with_past_confirmed_events
+    current_user_confirmed_events = @buffet.orders.where(user: current_user).where(status: 2).filter { |order| order.event_date < Date.today }
+    if current_user_confirmed_events.any?
+      if @buffet.ratings.where(user: current_user).any?
+        @show_rate_now_alert = false
+      else
+        @show_rate_now_alert = true
+      end
+    end
+  end
 
   def search_buffets
     query = params[:search].downcase

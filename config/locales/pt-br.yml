@@ -66,3 +66,7 @@ pt-BR:
           canceled: Cancelado
       message:
         content: Mensagem
+      rating:
+        review: Avaliação
+        score: Nota
+        pictures: Fotos do Evento

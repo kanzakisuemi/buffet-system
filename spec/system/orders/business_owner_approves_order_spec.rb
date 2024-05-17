@@ -74,9 +74,9 @@ describe 'business owner evaluates order' do
     expect(page).to have_content('Data de Vencimento:')
     expect(page).to have_content(5.days.from_now.strftime('%d/%m/%Y'))
     if 12.days.from_now.on_weekday?
-    expect(page).to have_content('Orçamento: R$1750.0')
+    expect(page).to have_content('Orçamento: R$1850.0')
     elsif 12.days.from_now.on_weekend?
-      expect(page).to have_content('Orçamento: R$2100.0')
+      expect(page).to have_content('Orçamento: R$2200.0')
     end
     expect(page).to have_content('Aprovado')
   end

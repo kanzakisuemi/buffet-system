@@ -34,6 +34,84 @@ RSpec.describe Order, type: :model do
 
       expect(result).to be true
     end
+    it 'of due date - on update if order is approved' do
+      orochinho = User.create!(name: 'Pedro Orochi', email: 'pedro@mail.com', password: 'password123', role: 1, social_security_number: CPF.generate)
+      kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
+      buffet = Buffet.create!(
+        social_name: 'Buffet da Maria',
+        corporate_name: 'Buffet da Maria LTDA',
+        company_registration_number: CNPJ.generate,
+        phone: '996348000',
+        email: 'maria@email.com',
+        address: 'Rua das Flores, 230',
+        neighborhood: 'Jardim das Flores',
+        city: 'São Paulo',
+        state: 'SP',
+        zip_code: '12345689',
+        description: 'Buffet para festas infantis e de adultos',
+        user: kylie,
+        payment_methods: []
+      )
+      event_type = EventType.create!(
+        category: 3,
+        name: 'Festa Infantil',
+        description: 'Festa para crianças',
+        default_duration_minutes: 240,
+        minimal_people_capacity: 30,
+        maximal_people_capacity: 60,
+        food_menu: 'Bolo, doces, salgados, refrigerante e suco',
+        alcoholic_drinks: true,
+        parking_service: true,
+        buffet: kylie.buffet,
+        base_price: 1000.00,
+        weekend_fee: 20,
+        per_person_fee: 50.00,
+        per_person_weekend_fee: 20,
+        per_hour_fee: 100.00,
+        per_hour_weekend_fee: 50
+      )
+      order = Order.create!(
+        event_date: 6.days.from_now,
+        guests_estimation: 50,
+        event_details: 'Festa corporativa do Manikas HEHE',
+        event_address: 'Avenida Maringá, 808',
+        event_type_id: event_type.id,
+        user: orochinho,
+        status: 0
+      )
+
+      order.update(status: 1)
+      order.valid?
+      result = order.errors.include?(:due_date)
+
+      expect(result).to be true
+    end
+    context 'of budget details - when charging fee or granting discount' do
+      it ' - only charging fee' do
+        order = Order.new(budget_details: nil, charge_fee: true, grant_discount: false)
+
+        order.valid?
+        result = order.errors.include?(:budget_details)
+
+        expect(result).to be true
+      end
+      it ' - only granting discount' do
+        order = Order.new(budget_details: nil, charge_fee: false, grant_discount: true)
+
+        order.valid?
+        result = order.errors.include?(:budget_details)
+
+        expect(result).to be true
+      end
+      it ' - charging fee and granting discount' do
+        order = Order.new(budget_details: nil, charge_fee: true, grant_discount: true)
+
+        order.valid?
+        result = order.errors.include?(:budget_details)
+
+        expect(result).to be true
+      end
+    end
   end
   describe '#comparison' do
     it 'due date should be less than event date' do
@@ -136,6 +214,14 @@ RSpec.describe Order, type: :model do
 
       order.valid?
       result = order.errors.include?(:guests_estimation)
+
+      expect(result).to be true
+    end
+    it 'should be greater or equal to 0' do
+      order = Order.new(budget: -1)
+
+      order.valid?
+      result = order.errors.include?(:budget)
 
       expect(result).to be true
     end

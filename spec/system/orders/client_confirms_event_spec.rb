@@ -186,7 +186,7 @@ describe 'client evaluates business owners offer' do
       extra_fee: 100.00,
       discount: nil,
       budget_details: 'Taxa extra de 100 reais para cobrir deslocamento.',
-      due_date: Time.zone.today,
+      due_date: Date.today,
       status: 1
     )
     
@@ -194,7 +194,7 @@ describe 'client evaluates business owners offer' do
     visit root_path
     click_on 'Meus Pedidos'
     click_on 'Aprovado'
-
+    
     click_on 'Confirmar Evento'
 
     expect(page).to have_content('Pedido confirmado!')

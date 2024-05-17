@@ -19,7 +19,6 @@ class EventType < ApplicationRecord
 
   def pictures_as_thumbnails
     pictures.map do |picture|
-      # picture.variant(resize_to_limit: [400, 400]).processed
       picture.variant(resize: '400x400^', gravity: 'Center', extent: '400x400').processed
     end
   end

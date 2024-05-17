@@ -1,0 +1,8 @@
+<div class="alert alert-success mt-4 text-center">
+  <h4 class="alert-heading">Conte-nos como foi o seu evento!</h4>
+  <p>Sua avaliação é muito importante para nós. Avalie agora o buffet <%= @buffet.social_name %>.</p>
+  <hr>
+  <p class="mb-0">
+    <%= link_to "Avaliar Buffet", new_buffet_rating_path(@buffet), class: "btn btn-primary", data: { turbo_frame: "modal" } %>
+  </p>
+</div>

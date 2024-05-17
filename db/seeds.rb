@@ -296,9 +296,16 @@ Order.create!(
   event_address: nil,
   event_type_id: bodas.id,
   user: felca,
-  status: 1
+  status: 1,
+  due_date: 10.days.from_now,
+  payment_method_id: debito.id,
+  grant_discount: true,
+  discount: 200.00,
+  charge_fee: false,
+  extra_fee: nil,
+  budget_details: 'Desconto para cliente conhecido.'
 )
-festa_manikas =Order.create!(
+festa_manikas = Order.create!(
   event_date: 6.days.from_now,
   guests_estimation: 50,
   event_details: 'Festa corporativa do Manikas HEHE',
@@ -306,13 +313,13 @@ festa_manikas =Order.create!(
   event_type_id: festa_corporativa.id,
   user: orochinho,
   status: 2,
+  due_date: 3.days.from_now,
   payment_method_id: pix.id,
   grant_discount: false,
   discount: nil,
   charge_fee: true,
   extra_fee: 200.00,
-  budget_details: 'Taxa extra para aluguel e deslocamento de louças.',
-  due_date: 3.days.from_now
+  budget_details: 'Taxa extra para aluguel e deslocamento de louças.'
 )
 # Message
 Message.create!(content: 'Olá Pablo, tudo bem?', order_id: casamento_pablo.id, user: felipe)
@@ -328,3 +335,12 @@ Message.create!(content: 'O endereço em questão é a casa que alugamos para as
 Message.create!(content: 'Vocês cobram valor adicional para trazer esses ítens pra cá?', order_id: festa_manikas.id, user: orochinho)
 Message.create!(content: 'Nós temos diferentes sets de louças, para o set de louças padrão é cobrado um adicional simbólico de R$50.', order_id: festa_manikas.id, user: luis_f)
 Message.create!(content: 'Se quiser, podemos agendar uma reunião para que eu te apresente as louças da casa!', order_id: festa_manikas.id, user: luis_f)
+# Ratings
+Rating.create!(score: 5, review: 'Achei hiper bacana.', buffet: felipe.buffet, user: felca)
+Rating.create!(score: 5, review: 'Prometeram muito e entregaram! Adorei, com certeza voltarei a contratar.', buffet: felipe.buffet, user: julia)
+Rating.create!(score: 4, review: 'Foi bacana, mas poderia ser melhor.', buffet: felipe.buffet, user: pablo)
+rating = Rating.new(score: 4, review: 'Bem legal hehe.', buffet: felipe.buffet, user: orochinho)
+rating.pictures.attach(io: File.open('app/assets/images/londrina_planalto.jpg'), filename: 'londrina_planalto.jpg')
+rating.save
+Rating.create!(score: 3, review: 'Não gostei da comida, achei sem graça.', buffet: antonia.buffet, user: pablo)
+

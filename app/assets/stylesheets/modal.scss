@@ -3,12 +3,29 @@
   z-index: 3;
   padding: 20px;
   
-  /* Centering */
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 
   overflow: auto;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2), 0 5px 10px 0 rgba(0,0,0,0.19);
+
+  height: 600px;
+  width: 600px;
+}
+
+.chat-modal {
+  position: fixed;
+  z-index: 3;
+  padding: 0px;
+  
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  overflow: hidden;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.2), 0 5px 10px 0 rgba(0,0,0,0.19);
@@ -24,4 +41,10 @@
 
 .dean-modal-footer {  
   position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px; /* ajuste conforme necessário */
+  background-color: #f5f5f5; /* cor de fundo do footer */
+  border-top: 1px solid #ddd; /* linha superior opcional para separar o footer */
 }

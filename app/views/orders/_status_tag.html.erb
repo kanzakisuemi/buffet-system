@@ -1,6 +1,6 @@
 <% if current_user.client? %>
   <% if @order.pending? %>
-    <button type="button" class="btn btn-secondary"
+    <button type="button" class="btn btn-secondary btn-sm"
             data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="Aguardando avaliação do Buffet :)">
@@ -9,7 +9,7 @@
       </span>
     </button>
   <% elsif @order.approved? %>
-    <button type="button" class="btn btn-secondary"
+    <button type="button" class="btn btn-primary btn-sm"
             data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="O seu pedido já foi avaliado e o orçamento já está disponível :)">
@@ -18,7 +18,7 @@
       </span>
     </button>
   <% elsif @order.confirmed? %>
-    <button type="button" class="btn btn-secondary"
+    <button type="button" class="btn btn-secondary btn-sm"
             data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="O evento foi confirmado, agora só aguardar o grande dia :)">
@@ -27,7 +27,7 @@
       </span>
     </button>
   <% elsif @order.canceled? %>
-    <button type="button" class="btn btn-secondary"
+    <button type="button" class="btn btn-secondary btn-sm"
             data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="O pedido foi cancelado :(">
@@ -38,7 +38,7 @@
   <% end %>
 <% elsif current_user.business_owner? %>
   <% if @order.pending? %>
-    <button type="button" class="btn btn-secondary mx-auto"
+    <button type="button" class="btn btn-primary btn-sm"
             data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="Evento pedente. O cliente está aguardando orçamento :0">
@@ -47,7 +47,7 @@
       </span>
     </button>
   <% elsif @order.approved? %>
-    <button type="button" class="btn btn-secondary"
+    <button type="button" class="btn btn-secondary btn-sm"
             data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="Evento aprovado, aguardando confirmação do cliente :)">
@@ -56,7 +56,7 @@
       </span>
     </button>
   <% elsif @order.confirmed? %>
-    <button type="button" class="btn btn-secondary"
+    <button type="button" class="btn btn-secondary btn-sm"
             data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="Evento confirmado, se atende a data :)">
@@ -65,7 +65,7 @@
       </span>
     </button>
   <% elsif @order.canceled? %>
-    <button type="button" class="btn btn-secondary"
+    <button type="button" class="btn btn-secondary btn-sm"
             data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="Evento cancelado :(">

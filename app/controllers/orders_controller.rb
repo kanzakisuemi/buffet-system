@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
     approved_orders = @orders.where(status: :approved)
     approved_orders.each do |approved_order|
       if approved_order.due_date?
-        approved_order.due_date < Date.today ? approved_order.canceled! : return
+        approved_order.due_date < Date.today ? approved_order.canceled! : approved_order
       end
     end
   end

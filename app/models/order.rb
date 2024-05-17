@@ -7,15 +7,23 @@ class Order < ApplicationRecord
   has_many :messages, dependent: :delete_all
 
   before_validation :generate_code
+  before_save :set_budget
 
   validates :code, :event_type, :event_date, :guests_estimation, :status, presence: true
+  validates :due_date, presence: true, on: :update, if: -> { self.status == 'approved'}
   validates :due_date, comparison: { less_than: :event_date }, if: -> { due_date.present? }
-  validates :due_date, comparison: { greater_than_or_equal_to: Date.today }, if: -> { due_date.present? }
+  validates :due_date, comparison: { greater_than_or_equal_to: Date.today }, if: -> { self.status == 'approved' }
+  validates :budget, numericality: { greater_than_or_equal_to: 0 }, if: -> { budget.present? }
+  validates :budget_details, presence: true, if: -> { self.charge_fee? || self.grant_discount? }
   validates :event_date, comparison: { greater_than: Date.today }, on: :create
   validates :guests_estimation, numericality: { less_than_or_equal_to: ->(order) { order.event_type.maximal_people_capacity } }
   validate :event_date_available?
 
   enum status: { pending: 0, approved: 1, confirmed: 2, canceled: 3 }
+
+  def set_budget
+    self.budget = self.total_price
+  end
 
   def event_date_available?
     return if self.event_type.nil?

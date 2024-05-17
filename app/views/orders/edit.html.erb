@@ -48,7 +48,7 @@
         <%= f.label :due_date, class: "d-inline me-2" %>
         <%= f.date_field :due_date, class: "form-control form-control-sm d-inline", style: "max-width: 9rem;" %>
       </div>
-      <%= f.hidden_field :budget, :value => @order.total_price %>
+      
       <div class="mb-2">
         <%= f.submit "Aprovar Evento", class: "btn btn-secondary" %>
       </div>

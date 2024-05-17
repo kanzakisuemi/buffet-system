@@ -1,0 +1,46 @@
+<div class="card border-dark mx-auto mt-5 mb-5" id="ratings">
+  <div class="card-body">
+    <div class="d-flex justify-content-center">
+      <span class="fs-5">Avaliações</span>
+    </div>
+    <hr class="divider"/>
+    <% if @buffet.ratings.any? %>
+      <div class="d-flex justify-content-center">
+        <span class="fs-5">Média de avaliações: <%= @buffet.rating_average %></span>
+      </div>
+      <div class="d-flex justify-content-center">
+        <span class="fs-5">Total de avaliações: <%= @buffet.ratings.count %></span>
+      </div>
+      <hr class="divider"/>
+      <div class="d-flex justify-content-center">
+        <span class="fs-5">Últimas avaliações</span>
+      </div>
+      <div class="justify-content-center">
+        <% @buffet.ratings.last(3).each do |rating| %>
+          <div class="alert alert-secondary mt-3">
+            <h5><%= rating.user.name %></h5>
+            <span>Nota: <%= rating.score %></span>
+            <hr class="divider"/>
+            <span>Avaliação: <%= rating.review %></span>
+            <% if rating.pictures.any? %>
+              <hr class="divider"/>
+              <h5>Fotos do Evento: </h5>
+              <div class="alert overflow-y-auto" style="height: 30rem; border-width: 10px;">
+                <% rating.pictures_as_thumbnails.each do |picture| %>
+                  <%= image_tag(picture, class: "img-thumbnail") %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>        
+        <% end %>
+      </div>
+      <% if @buffet.ratings.count > 3 %>
+        <hr class="divider"/>
+        <%= link_to "Ver todas as avaliações", buffet_ratings_path(@buffet), class: "btn btn-primary", data: { turbo_frame: "modal" } %>
+      <% end %>
+    <% else %>
+      <div class="d-flex justify-content-center">
+        <span class="fs-5">Este buffet ainda não possui nenhuma validação.</span>
+      </div>
+    <% end %>
+</div>

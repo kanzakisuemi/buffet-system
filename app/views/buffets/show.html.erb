@@ -1,6 +1,12 @@
+<% if @show_rate_now_alert == true %>
+  <%= render "rate_now_alert" %>
+<% end %>
+
 <div class="card border-dark mx-auto mb-5 mt-5" style="max-width: 40rem;">
   <div class="card-body">  
-    
+    <%= link_to :back do %>
+      <%= image_tag "arrow-left.svg" %>
+    <% end %>
     <div class="d-flex justify-content-center">
       <span class="fs-4"><%= @buffet.social_name %></span>
     </div>
@@ -74,19 +80,20 @@
     <% if @buffet.payment_method_ids.any? %>
       <div class="d-flex justify-content-between">
         <span class="bold">Métodos de Pagamento:</span>
-        <% @buffet.payment_methods.each do |payment_method| %>
-          <%= payment_method.name %>
-          <% unless payment_method == @buffet.payment_methods.last %>, <% end %>
-        <% end %>
+          <span class="text-end">
+            <% @buffet.payment_methods.each do |payment_method| %>
+                <%= payment_method.name %>
+              <% unless payment_method == @buffet.payment_methods.last %>, <% end %>
+            <% end %>
+          </span>
       </div>
     <% end %>
 
     <% if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet %>
     <hr class="divider"/>
       <div class="d-flex justify-content-center">
-        <span><%= @buffet.archived? ? "True" : "False" %></span>
-        <%= link_to 'Editar Buffet', edit_buffet_path(@buffet), class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %> 
-        <%= link_to 'Configurar Eventos', event_types_buffet_path, class: "btn btn-primary d-inline mx-2", data: { turbo_frame: "modal" } %>
+        <%= link_to 'Editar Buffet', edit_buffet_path(@buffet), class: "btn btn-secondary d-inline mx-2", data: { turbo_frame: "modal" } %> 
+        <%= link_to 'Configurar Eventos', event_types_buffet_path, class: "btn btn-secondary d-inline mx-2", data: { turbo_frame: "modal" } %>
         <% if @buffet.archived? %>
           <%= button_to 'Ativar Buffet', unarchive_buffet_path(@buffet), class: "btn btn-primary d-inline mx-2", data: { turbo_confirm: "Seu Buffet será ativado, dessa forma novos pedidos poderão ser realizados e seu Buffet ficará vísivel para todos os usuários. Pedidos em andamento não serão impactados. (Essa ação pode ser desfeita desativando seu Buffet)." } %> 
         <% else %>
@@ -100,8 +107,11 @@
         <% unless user_signed_in? && current_user.business_owner? && current_user.buffet != @buffet %>
           <%= link_to 'Contratar Buffet', event_selection_buffet_path, class: "btn btn-primary", data: { turbo_frame: "modal" } %>
         <% end %>
+      </div>
     <% end %>
   </div>
 </div>
 
 <%= render "archived" %>
+
+<%= render "ratings" %>

@@ -232,7 +232,5 @@ RSpec.describe EventType, type: :model do
 
       expect(event_type.pictures).to be_an_instance_of(ActiveStorage::Attached::Many)
     end
-    it '' do
-    end
   end
 end

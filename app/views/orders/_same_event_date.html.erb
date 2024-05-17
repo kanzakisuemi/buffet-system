@@ -1,4 +1,4 @@
-<% if @same_date_orders.any? %>
+<% if @same_date_orders.any? && current_user.business_owner? %>
   <div class="alert alert-primary d-flex align-items-center" >
     <%= image_tag "calendar_date_event_icon", size: "35", class: "me-2" %>
     <div>
