@@ -141,7 +141,7 @@ festa_corporativa = EventType.create!(
   per_hour_fee: 70.00,
   per_hour_weekend_fee: 10
 )
-formatura_crianca = EventType.create!(
+formatura_crianca = EventType.new(
   category: 1,
   name: 'Formatura de Ensino Fundamental',
   description: 'Festa de formatura para turmas pequenas do Ensino Fundamental I e II.',
@@ -161,7 +161,9 @@ formatura_crianca = EventType.create!(
   per_hour_fee: 200.00,
   per_hour_weekend_fee: 10
 )
-niver_crianca = EventType.create!(
+formatura_crianca.pictures.attach(io: File.open('app/assets/images/kids_buffet.jpeg'), filename: 'kids_buffet.jpeg')
+formatura_crianca.save
+niver_crianca = EventType.new(
   category: 3,
   name: 'Aniversários Infantis',
   description: 'Festa de aniversário para crianças de 1 a 12 anos.',
@@ -181,7 +183,9 @@ niver_crianca = EventType.create!(
   per_hour_fee: 100.00,
   per_hour_weekend_fee: 10
 )
-casamento_luxo = EventType.create!(
+niver_crianca.pictures.attach(io: File.open('app/assets/images/another_kids_buffet.png'), filename: 'another_kids_buffet.png')
+niver_crianca.save
+casamento_luxo = EventType.new(
   category: 2,
   name: 'Casamento de Luxo',
   description: 'Casamento para casais de alto padrão.',
@@ -201,6 +205,15 @@ casamento_luxo = EventType.create!(
   per_hour_fee: 400.00,
   per_hour_weekend_fee: 50
 )
+attachements = [
+  { io: File.open('app/assets/images/planalto_image.jpg'), filename: 'planalto_image.jpg' },
+  { io: File.open('app/assets/images/outra_do_planalto.jpg'), filename: 'outra_do_planalto.jpg' }
+]
+attachements.each do |attachement|
+  casamento_luxo.pictures.attach(attachement)
+end
+casamento_luxo.save
+
 bodas = EventType.create!(
   category: 3,
   name: 'Aniversários de Casamento',

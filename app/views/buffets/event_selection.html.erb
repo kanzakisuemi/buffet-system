@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "modal" do %>
   <div class="dean-modal">
     <div class="mb-3 ">
-      <%= link_to "", :back, class: "btn btn-close btn-sm" %>
+      <%= link_to "", @buffet, class: "btn btn-close btn-sm" %>
     </div>
     <p>Solicitação de Evento ao <%= @buffet.social_name %></p>
     <% @event_types.each do |event_type| %>

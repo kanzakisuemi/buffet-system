@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "modal" do %>
   <div class="dean-modal modal-lg">
     <div class="mb-3 ">
-      <%= link_to "", :back, class: "btn btn-close btn-sm" %>
+      <%= link_to "", @buffet, class: "btn btn-close btn-sm" %>
     </div>
 
     <% if user_signed_in? && current_user.business_owner? && current_user.buffet == @buffet %>

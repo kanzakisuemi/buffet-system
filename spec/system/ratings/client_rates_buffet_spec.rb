@@ -148,7 +148,6 @@ describe 'client rates buffet' do
     it 'before event date' do
       kendall = User.create!(name: 'Kendall Jenner', email: 'kenny@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
       kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
-      pix = PaymentMethod.create!(name: 'Pix')
       buffet = Buffet.create!(
         social_name: 'Buffet da Maria',
         corporate_name: 'Buffet da Maria LTDA',
@@ -162,7 +161,7 @@ describe 'client rates buffet' do
         zip_code: '12345678',
         description: 'Buffet para festas infantis e de adultos',
         user: kylie,
-        payment_methods: [ pix ]
+        payment_methods: [ ]
       )
       event_type = EventType.create!(
         category: 3,
@@ -189,7 +188,6 @@ describe 'client rates buffet' do
         event_address: nil,
         event_type_id: event_type.id,
         user: kendall,
-        payment_method_id: pix.id,
         charge_fee: true,
         grant_discount: false,
         extra_fee: 100.00,

@@ -3,8 +3,14 @@
 <% end %>
 <div class="card border-dark mx-auto mb-5 mt-5" style="max-width: 30rem;">
   <div class="card-body">
-    <%= link_to :back do %>
-      <%= image_tag "arrow-left.svg" %>
+    <% if current_user.business_owner? %>
+      <%= link_to orders_path do %>
+        <%= image_tag "arrow-left.svg" %>
+      <% end %>
+    <% else %>
+      <%= link_to my_orders_path do %>
+        <%= image_tag "arrow-left.svg" %>
+      <% end %>
     <% end %>
     <p class="bold text-center">Pedido: <%= @order.code %></p>
     <p class="text-center"><%= render "status_tag" %></p>

@@ -28,8 +28,5 @@ application.register("showhide", ShowhideController)
 import SocialSecurityNumberController from "./social_security_number_controller"
 application.register("social-security-number", SocialSecurityNumberController)
 
-import TurboModalController from "./turbo_modal_controller"
-application.register("turbo-modal", TurboModalController)
-
 import ZipCodeController from "./zip_code_controller"
 application.register("zip-code", ZipCodeController)

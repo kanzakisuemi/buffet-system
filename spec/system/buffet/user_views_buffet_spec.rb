@@ -14,7 +14,7 @@ describe 'user sees buffet details' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -36,12 +36,12 @@ describe 'user sees buffet details' do
     expect(page).to have_content('Jardim das Flores')
     expect(page).to have_content('São Paulo')
     expect(page).to have_content('SP')
-    expect(page).to have_content('123456')
+    expect(page).to have_content('12345678')
     expect(page).to have_content('Buffet para festas infantis e de adultos')
     expect(page).to have_content('Kylie Kristen Jenner')
   end
   it 'as client through navbar and fails' do
-    kendall = User.create!(name: 'Kendall Jenner', email: 'kendall@jenner.com', password: 'password123', role: 1)
+    kendall = User.create!(name: 'Kendall Jenner', email: 'kendall@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
     kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
     buffet = Buffet.create!(
       social_name: 'Buffet da Maria',
@@ -53,7 +53,7 @@ describe 'user sees buffet details' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -66,7 +66,7 @@ describe 'user sees buffet details' do
     end
   end
   it 'as client successfully' do
-    kendall = User.create!(name: 'Kendall Jenner', email: 'kendall@jenner.com', password: 'password123', role: 1)
+    kendall = User.create!(name: 'Kendall Jenner', email: 'kendall@jenner.com', password: 'password123', role: 1, social_security_number: CPF.generate)
     kylie = User.create!(name: 'Kylie Kristen Jenner', email: 'khy@jenner.com', password: 'password123', role: 0)
     cnpj = CNPJ.generate
     buffet = Buffet.create!(
@@ -79,7 +79,7 @@ describe 'user sees buffet details' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -90,7 +90,7 @@ describe 'user sees buffet details' do
       click_on 'Buffets'
     end
 
-    click_on 'Buffet da Maria | São Paulo | SP'
+    click_on buffet.social_name
     expect(page).to have_content('Buffet da Maria')
     expect(page).to have_content('Buffet da Maria LTDA')
     expect(page).to have_content(cnpj)
@@ -100,7 +100,7 @@ describe 'user sees buffet details' do
     expect(page).to have_content('Jardim das Flores')
     expect(page).to have_content('São Paulo')
     expect(page).to have_content('SP')
-    expect(page).to have_content('123456')
+    expect(page).to have_content('12345678')
     expect(page).to have_content('Buffet para festas infantis e de adultos')
     expect(page).to have_content('Kylie Kristen Jenner')
   end
@@ -117,7 +117,7 @@ describe 'user sees buffet details' do
       neighborhood: 'Jardim das Flores',
       city: 'São Paulo',
       state: 'SP',
-      zip_code: '123456',
+      zip_code: '12345678',
       description: 'Buffet para festas infantis e de adultos',
       user: kylie
     )
@@ -127,7 +127,7 @@ describe 'user sees buffet details' do
       click_on 'Buffets'
     end
 
-    click_on 'Buffet da Maria | São Paulo | SP'
+    click_on buffet.social_name
     expect(page).to have_content('Buffet da Maria')
     expect(page).not_to have_content('Buffet da Maria LTDA')
     expect(page).to have_content(cnpj)
@@ -137,7 +137,7 @@ describe 'user sees buffet details' do
     expect(page).to have_content('Jardim das Flores')
     expect(page).to have_content('São Paulo')
     expect(page).to have_content('SP')
-    expect(page).to have_content('123456')
+    expect(page).to have_content('12345678')
     expect(page).to have_content('Buffet para festas infantis e de adultos')
     expect(page).to have_content('Kylie Kristen Jenner')
   end
