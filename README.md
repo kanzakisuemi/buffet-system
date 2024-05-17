@@ -71,7 +71,7 @@ Then run
 ```bash
 rake assets:precompile
 ```
-and this will compile js and css files
+which will compile js and css files
 
 Start the server
 
