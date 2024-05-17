@@ -7,12 +7,16 @@ Built on Ruby on Rails framework, Cadê Buffet? follows the Test-Driven Developm
 ## 📂 Features
 + **User registration:** There are two user roles in this application:
   + **Business Owner** should own a buffet. A business owner can not fully complete the account registration before registering a buffet. A business owner is not allowed to register another buffet within the same account. 
-  + **Client** should register a social security number to complete their registration. Client can search, hire and see details of all available buffets.
-+ **Buffet listing:** Both authenticated users and visitors can accesses the buffet listing which includes all unarchived buffets.
-+ **Buffet search:** Both authenticated users and visitors are able to search a buffet either by social name, city and event name.
-+ **Event type management:** Business owners can register event types, which will be associated to the business owner's buffet.
-+ **Order placement:** A client can place an order.
-+ **Payment methods:** This resource is set by the system and can be associated to multiple buffets.
+  + **Client** should register a social security number to complete their registration. Client can search, hire, see details of all available buffets and rate previously hired buffets.
++ **Buffet Management:** the buffet's info can be updated by the associated business owner, who can also archive buffets.
+  + archived buffets are not visible in the buffet listing, and its details are only accessible to the associated business owner. 
++ **Buffet listing:** both authenticated users and visitors can accesses the buffet listing which includes all unarchived buffets.
++ **Buffet search:** both authenticated users and visitors are able to search a buffet either by social name, city and event name.
++ **Bufet Rating:** is visible on the buffet's details page. The rating consists on a score and a review message, there might be pictures associated.
++ **Event type management:** business owners can register and update event types, which will be associated to the business owner's buffet. Event types can have multiple images attached.
++ **Event type listing:** event type listing is accessible through a buffet's details page.
++ **Order placement:** a client can place an order through a buffet's details page, where the event type is also specified.
++ **Payment methods:** this resource is set by the system and can be associated to multiple buffets.
 + **Chat:** A business owner can start a chat with a client through an order, meaning the same pair of users can have multiple chats through different orders.
 ## ⚙️ Dependencies
 ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
@@ -56,21 +60,44 @@ git clone git@github.com:kanzakisuemi/buffet-system.git
 Then run
 
 ```bash
-bin/setup
+bundle install
 ```
-this is going to prepare the database, and install dependencies
+
+```bash
+rails db:setup
+```
 
 Then run
 ```bash
 rake assets:precompile
 ```
-and this will compile js and css files
+which will compile js and css files
 
 Start the server
 
 ```bash
 rails s
 ```
+
+Access through
+
+```
+http://localhost:3000
+```
+
+**To login as:**
++ **Client** use the following credentials: email:  ```kanzaki@myself.com``` password: ```password123```
++ **Business owner** use the following credentials: email:  ```felipe@mail.com``` password: ```password123```
+
+### Testing
+
+Run
+
+```
+rspec
+```
+
+
 ## Cadê Buffet? API
 ### Introduction
 Welcome to Cade Buffet? API's doc.
